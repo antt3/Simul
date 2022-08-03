@@ -18,9 +18,17 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
+    hashed_password = db.Column(db.String(50), nullable=False)
+    team = db.Column(db.String(100), nullable=False)
+    full_name = db.Column(db.String(100), nullable=False)
+    nickname = db.Column(db.String(40), nullable=True)
+    bio = db.Column(db.String(255), nullable=True)
+    status = db.Column(db.Boolean, nullable=True)
+    profile_pic = db.Column(db.String(2000), nullable=True)
+
+    channels = db.relationship("Channel", secondary=Users_Channels, back_populates='user')
+    channel_message = db.relationship('Channel_Message', back_populates='user')
 
     @property
     def password(self):
@@ -36,6 +44,52 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'team': self.team,
+            'full_name': self.full_name,
+            'nickname': self.nickname,
+            'bio': self.bio,
+            'status': self.status,
+            'profile_pic': self.profile_pic
+        }
+
+
+class Channel(db.Model):
+    __tablename__ = 'channels'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(100), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  
+    user = db.relationship('User', secondary=Users_Channels, back_populates='channels')
+    channel_message = db.relationship('Channel_message', back_populates='channels')
+  
+  
+    def to_dict(self):
+        return{
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "user": self.user.to_dict()
+        }
+
+
+class Channel_message(db.Model):
+    __tablename__ = 'channel_messages'
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(255), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'), nullable=False)
+
+
+    user = db.relationship('User', back_populates='channel_messages')
+    channel = db.relationship('Channel', back_populates='channel_messages')
+  
+  
+    def to_dict(self):
+        return{
+            "id": self.id,
+            "message": self.message,
+            "user": self.user.to_dict(),
+            "channel": self.channel.to_dict()
         }
