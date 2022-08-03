@@ -1,6 +1,5 @@
 from app.models import db, Channel
-# emtpy seed file template: name= Song(
-#   name='', album='', albumImgUrl='', genre='', artist='', source='', user_Id=)
+
 def seed_channels():
     demo_team = Channel(
         title='Demo Team', description='The first team on Simul.', user_id=1)
