@@ -1,1 +1,1 @@
-from .db import db, User, Channnel, Users_Channels, Channel_message
+from .db import db, User, Channel, Users_Channels, Channel_message
