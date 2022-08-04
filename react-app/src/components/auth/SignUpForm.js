@@ -10,6 +10,7 @@ const SignUpForm = () => {
   const [team, setTeam] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [firstSubmit, setFirstSubmit] = useState(false);
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -39,7 +40,9 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (errors.length === 0) {
+    setFirstSubmit(true);
+
+    if (!errors.length) {
       const data = await dispatch(signUp(email, fullName, team, password));
       if (data) {
         setErrors(data)
@@ -74,7 +77,7 @@ const SignUpForm = () => {
   return (
     <div className='form_div'>
       <form className='form' onSubmit={onSignUp}>
-        {errors.length > 0 &&<div className='form_errors'>
+        {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
           {errors.map((error, ind) => (
             <div className='form_error' key={ind}>{error}</div>
           ))}
@@ -127,7 +130,6 @@ const SignUpForm = () => {
             onChange={updateRepeatPassword}
             placeholder='Repeated Password'
             value={repeatPassword}
-            required={true}
           ></input>
         </div>
         <button className='form_divs form_submit' type='submit'>Sign Up</button>
