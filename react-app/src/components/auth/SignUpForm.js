@@ -150,7 +150,7 @@ const SignUpForm = () => {
           <NavLink to='/login' className='NavLink' exact={true} activeClassName='active'>
             Log In
           </NavLink>
-        <p>Or skip logging in and use demo login!</p>
+        <p>Or skip logging in and use the demo login!</p>
         <p className='nav_p NavLink' onClick={handleDemo}>Demo Log In</p>
         </div>
     </div>
