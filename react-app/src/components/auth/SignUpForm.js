@@ -40,7 +40,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (errors.length === 0) {
-      const data = await dispatch(signUp(email, password));
+      const data = await dispatch(signUp(email, fullName, team, password));
       if (data) {
         setErrors(data)
       }
