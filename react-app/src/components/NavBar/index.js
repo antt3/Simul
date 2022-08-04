@@ -30,21 +30,7 @@ const NavBar = () => {
         <div>
           <LogoutButton />
         </div>
-      </div> : <div className='nav_div'>
-        <div className='navlink_divs'>
-          <NavLink to='/login' className='NavLink' exact={true} activeClassName='active'>
-            Log In
-          </NavLink>
-        </div>
-        <div className='navlink_divs'>
-          <NavLink to='/sign-up' className='NavLink' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </div>
-        <div>
-          <p className='nav_p NavLink' onClick={handleDemo}>Demo</p>
-        </div>
-      </div>}
+      </div> : <div></div>}
     </nav>
   );
 }

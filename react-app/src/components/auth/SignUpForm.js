@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { Redirect, NavLink } from 'react-router-dom';
+import * as sessionActions from '../../store/session';
+
 import logo from "../../logo.png";
 
 const SignUpForm = () => {
@@ -19,6 +20,10 @@ const SignUpForm = () => {
     let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   }
+
+  const handleDemo = () => {
+		return dispatch(sessionActions.demoLogin());
+	}
 
   useEffect(() => {
     const errors = [];
@@ -44,7 +49,7 @@ const SignUpForm = () => {
     setFirstSubmit(true);
 
     if (!errors.length) {
-      const data = await dispatch(signUp(email, fullName, team, password));
+      const data = await dispatch(sessionActions.signUp(email, fullName, team, password));
       if (data) {
         setErrors(data)
       }
@@ -139,7 +144,15 @@ const SignUpForm = () => {
           ></input>
         </div>
         <button className='form_divs form_submit' type='submit'>Sign Up</button>
-    </form>
+      </form>
+      <div className='navlink_divs form_links'>
+          <p>Already have a Simul account?</p>
+          <NavLink to='/login' className='NavLink' exact={true} activeClassName='active'>
+            Log In
+          </NavLink>
+        <p>Or skip logging in and use demo login!</p>
+        <p className='nav_p NavLink' onClick={handleDemo}>Demo Log In</p>
+        </div>
     </div>
   );
 };

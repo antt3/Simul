@@ -140,6 +140,12 @@ li {
 }
 
 
+.form_links {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .uploading_img {
     max-height: 18px;
     max-width: 18px;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
+import { Redirect, NavLink } from 'react-router-dom';
+import * as sessionActions from '../../store/session';
 import logo from '../../logo.png';
 
 const LoginForm = () => {
@@ -11,9 +11,13 @@ const LoginForm = () => {
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const handleDemo = () => {
+		return dispatch(sessionActions.demoLogin());
+	}
+
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(sessionActions.login(email, password));
     if (data) {
       setErrors(data);
     }
@@ -66,6 +70,14 @@ const LoginForm = () => {
         </div>
         <button className='form_divs form_submit' type='submit'>Log In</button>
       </form>
+      <div className='navlink_divs form_links'>
+          <p>New to Simul?</p>
+          <NavLink to='/sign-up' className='NavLink' exact={true} activeClassName='active'>
+            Sign Up
+          </NavLink>
+          <p>Or skip signing up and use demo login!</p>
+          <p className='nav_p NavLink' onClick={handleDemo}>Demo Log In</p>
+        </div>
     </div>
   );
 };
