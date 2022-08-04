@@ -1,1 +1,152 @@
-/* TODO Add site wide styles */
+p,
+h1,
+h2,
+h3,
+h4,
+a,
+div,
+label,
+input,
+button,
+ul,
+li {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+
+.form_div {
+    margin-top: 4vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.website {
+    font-size: 34px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 1vh;
+}
+
+
+.website > img {
+    margin-right: 7px;
+    height: 50px;
+    width: 50px;
+}
+
+
+.form_action {
+    font-size: 48px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+}
+
+
+.form_errors {
+    margin-bottom: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    background-color: antiquewhite;
+    border: 1px solid red;
+    padding-top: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+
+.form_error {
+    font-size: 18px;
+    color: red;
+    margin-bottom: 1vh;
+}
+
+
+.form_divs {
+    margin-top: 1vh;
+    margin-bottom: .5vh;
+}
+
+
+.form_label {
+    font-size: 17px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+}
+
+
+.form_divs > input {
+    padding-left: 9px;
+    border: 1px solid grey;
+    width: 350px;
+    height: 36px;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: 0.1s ease;
+}
+
+
+.form_divs > input:hover {
+    border: 1px solid darkgray;
+}
+
+
+.form_divs > input:focus {
+    outline: none;
+    border: 1px solid blue;
+    box-shadow: 0 0 1px 3px lightblue;
+  
+}
+
+
+.form_submit {
+    margin-top: 2vh;
+    text-decoration: none;
+    background-color: #4a154b;
+    font-weight: bold;
+    color: white;
+    font-size: 23px;
+    border: 0px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all .06s ease-in;
+    height: 50px;
+    width: 370px;
+    margin-bottom: 4vh;
+    transition: 0.3s ease;
+
+}
+
+
+.form_submit:hover {
+    background-color:#672868;
+}
+
+
+.form_links {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.uploading_img {
+    max-height: 18px;
+    max-width: 18px;
+}

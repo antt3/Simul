@@ -1,0 +1,30 @@
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+.nav_div {
+    display: flex;
+}
+
+.NavLink {
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.NavLink:hover {
+    color: darkgray;
+}
+
+.navlink_divs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav_p:hover {
+    cursor: pointer;
+}

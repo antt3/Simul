@@ -23,13 +23,22 @@ function User() {
   return (
     <ul>
       <li>
-        <strong>User Id</strong> {userId}
+        <strong>User Id: </strong> {userId}
       </li>
       <li>
-        <strong>Nickname</strong> {user.nickname}
+        <strong>Email: </strong> {user.email}
       </li>
       <li>
-        <strong>Email</strong> {user.email}
+        <strong>Full Name: </strong> {user.full_name}
+      </li>
+      <li>
+        <strong>Nickname: </strong> {user.nickname}
+      </li>
+      <li>
+        <strong>Team: </strong> {user.team}
+      </li>
+      <li>
+        <strong>Bio: </strong> {user.bio}
       </li>
     </ul>
   );
