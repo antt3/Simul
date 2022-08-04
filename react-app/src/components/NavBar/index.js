@@ -33,7 +33,7 @@ const NavBar = () => {
       </div> : <div className='nav_div'>
         <div className='navlink_divs'>
           <NavLink to='/login' className='NavLink' exact={true} activeClassName='active'>
-            Login
+            Log In
           </NavLink>
         </div>
         <div className='navlink_divs'>

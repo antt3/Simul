@@ -81,7 +81,7 @@ const SignUpForm = () => {
         <img src={logo} alt='Simul'></img>
         <p>simul</p>
       </div>
-      <p className='form_action'>Sign in to Simul</p>
+      <p className='form_action'>Sign up for Simul</p>
       <form className='form' onSubmit={onSignUp}>
         {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
           {errors.map((error, ind) => (
