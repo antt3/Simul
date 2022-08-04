@@ -72,60 +72,62 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Full Name</label>
-        <input
-          type='text'
-          name='fullName'
-          onChange={updateFullName}
-          value={fullName}
-        ></input>
-      </div>
-      <div>
-        <label>Team/Company Name</label>
-        <input
-          type='text'
-          name='team'
-          onChange={updateTeam}
-          value={team}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
+    <div className='form_div'>
+      <form className='form' onSubmit={onSignUp}>
+        <div className='form_errors'>
+          {errors.map((error, ind) => (
+            <div className='form_error' key={ind}>{error}</div>
+          ))}
+        </div>
+        <div className='form_divs'>
+          <div className='form_label'><label>Email</label></div>
+          <input
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+          ></input>
+        </div>
+        <div className='form_divs'>
+          <div className='form_label'><label>Full Name</label></div>
+          <input
+            type='text'
+            name='fullName'
+            onChange={updateFullName}
+            value={fullName}
+          ></input>
+        </div>
+        <div className='form_divs'>
+          <div className='form_label'><label>Team/Company Name</label></div>
+          <input
+            type='text'
+            name='team'
+            onChange={updateTeam}
+            value={team}
+          ></input>
+        </div>
+        <div className='form_divs'>
+          <div className='form_label'><label>Password</label></div>
+          <input
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+          ></input>
+        </div>
+        <div className='form_divs'>
+          <div className='form_label'><label>Repeat Password</label></div>
+          <input
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+          ></input>
+        </div>
+        <button className='form_divs form_submit' type='submit'>Sign Up</button>
     </form>
+    </div>
   );
 };
 
