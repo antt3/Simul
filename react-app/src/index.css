@@ -26,7 +26,7 @@
     padding-right: 20px;
     padding-left: 20px;
     padding-bottom: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 
@@ -52,15 +52,11 @@
 
 .form_divs > input {
     padding-left: 9px;
-}
-
-
-.form_divs > input {
     border: 1px solid grey;
     width: 350px;
     height: 36px;
     font-size: 18px;
-    border-radius: 9px;
+    border-radius: 5px;
 }
 
 
@@ -68,7 +64,7 @@
     border: 1px solid darkgray;
 }
 
-/* here */
+
 .form_divs > input:focus {
     outline: none;
     border: 1px solid blue;
@@ -79,13 +75,13 @@
 .form_submit {
     margin-top: 2vh;
     text-decoration: none;
-    background-color: purple;
+    background-color: #4a154b;
     font-weight: bold;
     color: white;
     font-size: 23px;
     border: 0px;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 5px;
     transition: all .06s ease-in;
     height: 50px;
     width: 370px;
@@ -94,7 +90,7 @@
 
 
 .form_submit:hover {
-    background-color: plum;
+    background-color:#672868;
 }
 
 
