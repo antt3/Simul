@@ -7,12 +7,7 @@ import * as sessionActions from "../../store/session";
 import './NavBar.css';
 
 const NavBar = () => {
-  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
-
-  const handleDemo = () => {
-		return dispatch(sessionActions.demoLogin());
-	}
   
   return (
     <nav>

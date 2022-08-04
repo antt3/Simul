@@ -145,14 +145,18 @@ const SignUpForm = () => {
         </div>
         <button className='form_divs form_submit' type='submit'>Sign Up</button>
       </form>
-      <div className='navlink_divs form_links'>
+      <div className='form_links'>
+        <div className='navlink_divs form_link'>
           <p>Already have a Simul account?</p>
-          <NavLink to='/login' className='NavLink' exact={true} activeClassName='active'>
+          <p><NavLink to='/login' className='NavLink' exact={true} activeClassName='active'>
             Log In
-          </NavLink>
-        <p>Or skip logging in and use the demo login!</p>
-        <p className='nav_p NavLink' onClick={handleDemo}>Demo Log In</p>
+          </NavLink></p>
         </div>
+        <div className='navlink_divs form_link'>
+          <p>Or skip logging in and use the demo login!</p>
+          <p className='nav_p NavLink' onClick={handleDemo}>Demo Log In</p>
+        </div>
+      </div>
     </div>
   );
 };
