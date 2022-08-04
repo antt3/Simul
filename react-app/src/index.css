@@ -56,6 +56,7 @@
 
 
 .form_divs > input {
+    border: 1px solid grey;
     width: 350px;
     height: 36px;
     font-size: 18px;
@@ -64,13 +65,15 @@
 
 
 .form_divs > input:hover {
-    box-shadow: inset 0 0 0 1px purple
-    ;
+    border: 1px solid darkgray;
 }
 
 /* here */
 .form_divs > input:focus {
-    box-shadow: inset 0 0 0 1px black;
+    outline: none;
+    border: 1px solid blue;
+    box-shadow: 0 0 1px 3px lightblue;
+  
 }
 
 .form_submit {
