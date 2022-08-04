@@ -1,12 +1,54 @@
-/* TODO Add site wide styles */
+p,
+h1,
+h2,
+h3,
+h4,
+a,
+div,
+label,
+input,
+button,
+ul,
+li {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+
 .form_div {
+    margin-top: 4vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.website {
+    font-size: 34px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 1vh;
+}
+
+
+.website > img {
+    margin-right: 7px;
+    height: 50px;
+    width: 50px;
+}
+
+
+.form_action {
+    font-size: 48px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
 
 
 .form {
-    margin-top: 4vh;
     display: flex;
     flex-direction: column;
     align-items: center;

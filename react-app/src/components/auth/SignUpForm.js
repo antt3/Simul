@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import logo from "../../logo.png";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -76,6 +77,11 @@ const SignUpForm = () => {
 
   return (
     <div className='form_div'>
+      <div className='website'>
+        <img src={logo} alt='Simul'></img>
+        <p>simul</p>
+      </div>
+      <p className='form_action'>Sign in to Simul</p>
       <form className='form' onSubmit={onSignUp}>
         {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
           {errors.map((error, ind) => (
