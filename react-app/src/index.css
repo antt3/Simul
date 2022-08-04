@@ -1,1 +1,101 @@
 /* TODO Add site wide styles */
+.form_div {
+    display: flex;
+    justify-content: center;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+}
+
+
+.form_errors {
+    margin-top: 4vh;
+    margin-bottom: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    background-color: antiquewhite;
+    border: 1px solid red;
+    padding-top: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
+
+.form_error {
+    font-size: 18px;
+    color: red;
+    margin-bottom: 1vh;
+}
+
+
+.form_divs {
+    margin-top: 1vh;
+    margin-bottom: .5vh;
+}
+
+
+.form_label {
+    font-size: 17px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+}
+
+
+.form_divs > input {
+    padding-left: 9px;
+}
+
+
+.form_divs > input {
+    width: 350px;
+    height: 36px;
+    font-size: 18px;
+    border-radius: 9px;
+}
+
+
+.form_divs > input:hover {
+    box-shadow: inset 0 0 0 1px purple
+    ;
+}
+
+
+.form_divs > input:focus {
+    box-shadow: inset 0 0 0 1px black;
+}
+
+.form_submit {
+    margin-top: 2vh;
+    text-decoration: none;
+    background-color: purple;
+    font-weight: bold;
+    color: white;
+    font-size: 23px;
+    border: 0px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all .06s ease-in;
+    height: 50px;
+    width: 370px;
+    margin-bottom: 4vh;
+}
+
+
+.form_submit:hover {
+    background-color: plum;
+}
+
+
+.uploading_img {
+    max-height: 18px;
+    max-width: 18px;
+}
