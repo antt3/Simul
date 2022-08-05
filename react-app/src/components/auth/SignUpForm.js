@@ -34,7 +34,6 @@ const SignUpForm = () => {
     if (fullName.length > 100) errors.push('Your name must be under 100 character.');
     if (!team) errors.push('Team/Company name is required.');
     if (team.length > 100) errors.push('Team/Company name must be under 100 characters.');
-    if (!password) errors.push('A password is required.');
     if (password.length < 7) errors.push('Password must be more than 6 characters.');
     if (password.length > 50) errors.push('Password must be under 50 characters.');
     if (!repeatPassword) errors.push('Please repeat the password.');

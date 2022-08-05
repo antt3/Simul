@@ -15,7 +15,8 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} is {error}.')
+            message = f'{field} is {error}.'
+            errorMessages.append(message.capitalize())
     return errorMessages
 
 
@@ -67,7 +68,7 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password'],
             team=form.data['team'],
-            full_name=form.data['full name'],
+            full_name=form.data['full_name'],
             nickname='',
             bio='',
             status=True,
