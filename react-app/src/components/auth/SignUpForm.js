@@ -85,6 +85,10 @@ const SignUpForm = () => {
         <img src={logo} alt='Simul'></img>
         <p>simul</p>
       </div>
+      <div className='devlinks_div'>
+        <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
+        <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
+      </div>
       <p className='form_action'>Sign up for Simul</p>
       <form className='form' onSubmit={onSignUp}>
         {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
@@ -148,12 +152,12 @@ const SignUpForm = () => {
         <div className='navlink_divs form_link'>
           <p>Already have a Simul account?</p>
           <p><NavLink to='/login' className='NavLink' exact={true} activeClassName='active'>
-            Log In
+            Sign in
           </NavLink></p>
         </div>
         <div className='navlink_divs form_link'>
-          <p>Or skip logging in and use the demo login!</p>
-          <p className='nav_p NavLink' onClick={handleDemo}>Demo Log In</p>
+          <p>Or skip sign up and use the demo login!</p>
+          <p className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
         </div>
       </div>
     </div>
