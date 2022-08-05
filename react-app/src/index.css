@@ -159,7 +159,27 @@ li {
 }
 
 
+.form_link_p {
+    font-size: 18px;
+}
+
+
+.devlinks_div > a {
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 10px;
+    margin-left: 10px;
+    color: grey;
+}
+
+
+.devlinks_div > a:hover {
+    color: darkgrey;
+}
+
+
 .uploading_img {
     max-height: 18px;
     max-width: 18px;
 }
+

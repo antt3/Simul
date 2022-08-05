@@ -63,6 +63,10 @@ const LoginForm = () => {
         <img src={logo} alt='Simul'></img>
         <p>simul</p>
       </div>
+      <div className='devlinks_div'>
+        <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
+        <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
+      </div>
       <p className='form_action'>Sign in to Simul</p>
       <form className='form' onSubmit={onLogin}>
         {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
@@ -94,13 +98,13 @@ const LoginForm = () => {
       </form>
       <div className='form_links'>
         <div className='navlink_divs form_link'>
-          <p>New to Simul?</p>
+          <p className='form_link_p'>New to Simul?</p>
           <p><NavLink to='/sign-up' className='NavLink' exact={true} activeClassName='active'>
             Sign Up
           </NavLink></p>
         </div>
         <div className='navlink_divs form_link'>
-          <p>Or skip sign in and use the demo login!</p>
+          <p className='form_link_p'>Or skip sign in and use the demo login!</p>
           <p className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
         </div>
       </div>

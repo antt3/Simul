@@ -85,6 +85,10 @@ const SignUpForm = () => {
         <img src={logo} alt='Simul'></img>
         <p>simul</p>
       </div>
+      <div className='devlinks_div'>
+        <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
+        <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
+      </div>
       <p className='form_action'>Sign up for Simul</p>
       <form className='form' onSubmit={onSignUp}>
         {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
