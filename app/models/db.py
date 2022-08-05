@@ -20,7 +20,6 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    team = db.Column(db.String(100), nullable=False)
     full_name = db.Column(db.String(100), nullable=False)
     nickname = db.Column(db.String(40), nullable=True)
     bio = db.Column(db.String(255), nullable=True)
@@ -45,7 +44,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'email': self.email,
-            'team': self.team,
             'full_name': self.full_name,
             'nickname': self.nickname,
             'bio': self.bio,
