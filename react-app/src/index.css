@@ -17,10 +17,11 @@ li {
 
 
 .form_div {
-    margin-top: 4vh;
+    margin-top: 2vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 2vh;
 }
 
 
@@ -30,7 +31,6 @@ li {
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin-bottom: 1vh;
 }
 
 
@@ -129,7 +129,6 @@ li {
     transition: all .06s ease-in;
     height: 50px;
     width: 370px;
-    margin-bottom: 4vh;
     transition: 0.3s ease;
 
 }
@@ -142,7 +141,21 @@ li {
 
 .form_links {
     display: flex;
+    flex-direction: row;
+    margin-top: 1vh;
+}
+
+
+.form_link {
+    display: flex;
     flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.form_link > p {
+    margin-top: 10px;
 }
 
 

@@ -34,7 +34,6 @@ const SignUpForm = () => {
     if (fullName.length > 100) errors.push('Your name must be under 100 character.');
     if (!team) errors.push('Team/Company name is required.');
     if (team.length > 100) errors.push('Team/Company name must be under 100 characters.');
-    if (!password) errors.push('A password is required.');
     if (password.length < 7) errors.push('Password must be more than 6 characters.');
     if (password.length > 50) errors.push('Password must be under 50 characters.');
     if (!repeatPassword) errors.push('Please repeat the password.');
@@ -145,14 +144,18 @@ const SignUpForm = () => {
         </div>
         <button className='form_divs form_submit' type='submit'>Sign Up</button>
       </form>
-      <div className='navlink_divs form_links'>
+      <div className='form_links'>
+        <div className='navlink_divs form_link'>
           <p>Already have a Simul account?</p>
-          <NavLink to='/login' className='NavLink' exact={true} activeClassName='active'>
+          <p><NavLink to='/login' className='NavLink' exact={true} activeClassName='active'>
             Log In
-          </NavLink>
-        <p>Or skip logging in and use the demo login!</p>
-        <p className='nav_p NavLink' onClick={handleDemo}>Demo Log In</p>
+          </NavLink></p>
         </div>
+        <div className='navlink_divs form_link'>
+          <p>Or skip logging in and use the demo login!</p>
+          <p className='nav_p NavLink' onClick={handleDemo}>Demo Log In</p>
+        </div>
+      </div>
     </div>
   );
 };

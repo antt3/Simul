@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
@@ -8,19 +8,41 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstSubmit, setFirstSubmit] = useState(false);
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const validateEmail = (email) => {
+    let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
 
   const handleDemo = () => {
 		return dispatch(sessionActions.demoLogin());
 	}
 
+  useEffect(() => {
+    const errors = [];
+    if (!email) errors.push('An email is required.');
+    if (!validateEmail(email)) errors.push('Must be a valid email address.');
+    if (email.length > 50) errors.push('Email length must be under 50 characters.');
+    if (password.length < 7) errors.push('Password must be more than 6 characters.');
+    if (password.length > 50) errors.push('Password must be under 50 characters.');
+
+    setErrors(errors);
+  }, [email, password])
+
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(sessionActions.login(email, password));
-    if (data) {
-      setErrors(data);
-    }
+    setFirstSubmit(true);
+
+    if (errors.length === 0) {
+      const data = await dispatch(sessionActions.login(email, password));
+
+      if (data) {
+        setErrors(data);
+      };
+    };
   };
 
   const updateEmail = (e) => {
@@ -43,7 +65,7 @@ const LoginForm = () => {
       </div>
       <p className='form_action'>Log in to Simul</p>
       <form className='form' onSubmit={onLogin}>
-        {errors.length > 0 &&<div className='form_errors'>
+        {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
           {errors.map((error, ind) => (
             <div className='form_error' key={ind}>{error}</div>
           ))}
@@ -70,14 +92,18 @@ const LoginForm = () => {
         </div>
         <button className='form_divs form_submit' type='submit'>Log In</button>
       </form>
-      <div className='navlink_divs form_links'>
+      <div className='form_links'>
+        <div className='navlink_divs form_link'>
           <p>New to Simul?</p>
-          <NavLink to='/sign-up' className='NavLink' exact={true} activeClassName='active'>
+          <p><NavLink to='/sign-up' className='NavLink' exact={true} activeClassName='active'>
             Sign Up
-          </NavLink>
+          </NavLink></p>
+        </div>
+        <div className='navlink_divs form_link'>
           <p>Or skip signing up and use the demo login!</p>
           <p className='nav_p NavLink' onClick={handleDemo}>Demo Log In</p>
         </div>
+      </div>
     </div>
   );
 };

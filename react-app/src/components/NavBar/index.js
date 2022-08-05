@@ -1,18 +1,12 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
-import * as sessionActions from "../../store/session";
 import './NavBar.css';
 
 const NavBar = () => {
-  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
-
-  const handleDemo = () => {
-		return dispatch(sessionActions.demoLogin());
-	}
   
   return (
     <nav>
