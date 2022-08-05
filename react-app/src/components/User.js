@@ -35,9 +35,6 @@ function User() {
         <strong>Nickname: </strong> {user.nickname}
       </li>
       <li>
-        <strong>Team: </strong> {user.team}
-      </li>
-      <li>
         <strong>Bio: </strong> {user.bio}
       </li>
     </ul>

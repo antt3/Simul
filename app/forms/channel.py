@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired
 
 class addChannel(FlaskForm):
     title = StringField('title', validators=[DataRequired(message='required')])
-    description = StringField('Album')
+    description = StringField('description')
