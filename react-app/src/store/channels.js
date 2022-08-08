@@ -1,4 +1,4 @@
-const GET_CHANNELS = "channels/GET_CHANNEL";
+const GET_CHANNELS = "channels/GET_CHANNELS";
 const ADD_CHANNEL = "channels/ADD_CHANNEL";
 const EDIT_CHANNEL = "channels/EDIT_CHANNEL";
 const DELETE_CHANNEL = "channels/DELETE_CHANNEL";
@@ -31,10 +31,12 @@ const actionDeleteChannel = (channelId) => {
 	};
 };
 
-export const thunkGetChannels = (channels) => async (dispatch) => {
+export const thunkGetChannels = () => async (dispatch) => {
+	// console.log('Being Called.')
 	const res = await fetch("/api/channels/");
+	// console.log('-------res: ', res, '-------')
 	const channels = await res.json();
-	dispatch(actionGetChannels(channels));
+	if (res.ok) dispatch(actionGetChannels(channels));
 	return res;
 };
 
@@ -76,6 +78,7 @@ const channelReducer = (state = {}, action) => {
 	const newState = { ...state };
 	switch (action.type) {
 		case GET_CHANNELS:
+			console.log('-----------Reducer: ', action.channels.channels, '-------------')
 			action.channels.channels.forEach((channel) => {
 				newState[channel.id] = channel;
 			});

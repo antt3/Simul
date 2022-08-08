@@ -2,9 +2,9 @@ from copyreg import constructor
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
 from app.models import db
-from app.models import User
-from app.models import Channel
-from app.models import Users_Channels
+from app.models.db import User
+from app.models.db import Channel
+from app.models.db import Users_Channels
 from app.forms.channel import AddChannel
 from app.forms.user_channel import AddUserToChannel
 
@@ -13,8 +13,9 @@ channel_routes = Blueprint('channels', __name__)
 
 
 @channel_routes.route('/')
-@login_required
+# @login_required
 def channels():
+    # print('-------Being Called:----------')
     channels = Channel.query.all()
     # print('-------channels: ', channels,'----------')
     return {'channels': [channel.to_dict() for channel in channels]}

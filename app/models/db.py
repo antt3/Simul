@@ -67,8 +67,7 @@ class Channel(db.Model):
         return{
             "id": self.id,
             "title": self.title,
-            "description": self.description,
-            "user": self.user.to_dict()
+            "description": self.description
         }
 
 

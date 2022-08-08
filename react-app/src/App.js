@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import AllChannels from './components/AllChannels';
 import User from './components/User';
 import { authenticate } from './store/session';
+import * as channelsReducer from './store/channels';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -20,6 +21,10 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
+
+  useEffect(() => {
+      dispatch(channelsReducer.thunkGetChannels());
+}, [dispatch]);
 
   if (!loaded) {
     return null;
