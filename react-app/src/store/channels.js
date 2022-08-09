@@ -78,7 +78,7 @@ const channelReducer = (state = {}, action) => {
 	const newState = { ...state };
 	switch (action.type) {
 		case GET_CHANNELS:
-			console.log('-----------Reducer: ', action.channels.channels, '-------------')
+			// console.log('-----------Reducer: ', action.channels.channels, '-------------')
 			action.channels.channels.forEach((channel) => {
 				newState[channel.id] = channel;
 			});
@@ -89,6 +89,7 @@ const channelReducer = (state = {}, action) => {
 			return newState;
 
 		case DELETE_CHANNEL:
+			console.log('-----------Reducer: ', action.channels.channels, '-------------')
 			delete newState[action.channelId];
 			return newState;
 

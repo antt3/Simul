@@ -92,11 +92,12 @@ def delete_user(channel_id,user_id):
 @login_required
 def delete_channel(channel_id):
     channel = Channel.query.get(channel_id)
-    # print('-------channel: ', channel,'----------')
+    print('-------channel: ', channel,'----------')
     # if channel.user_id != current_user.id:
     #     return jsonify({'error': 'You do not have permission to delete this channel'})
     db.session.delete(channel)
     db.session.commit()
+    return("Channel Deleted")
 
 
 @channel_routes.route('/<int:channel_id>', methods=['PUT'])

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import CreateChannelModal from './Modals/CreateChannelModal';
+import DeleteChannelModal from './Modals/DeleteChannelModal';
 
 const AllChannels = () => {
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const AllChannels = () => {
                     <div className='channel' key={channel.id}>
                         <div># {channel.title}: {channel.description}</div>
                         <button>Edit</button>
-                        <button>Delete</button>
+                        <DeleteChannelModal channel={channel} />
                     </div>
                 )}
         </>
