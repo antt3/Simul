@@ -37,6 +37,9 @@ function App() {
       <NavBar />
       <AllChannels />
       <Switch>
+        <ProtectedRoute path='/' exact={true}>
+          <h1 className='content'>Home Page</h1>
+        </ProtectedRoute>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
