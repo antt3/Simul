@@ -36,9 +36,9 @@ def add_channel():
     form = AddChannel()
 
     channel = Channel(
-        title=form.data['name'],
+        title=form.data['title'],
         description=form.data['description'],
-        user_Id=current_user.id
+        user_id=current_user.id
     )
     db.session.add(channel)
     db.session.commit()
@@ -107,7 +107,7 @@ def update_channel(channel_id):
     # print('--------channel.to_dict(): ', channel.to_dict(), '------------')
     form = AddChannel()
     # print('--------form.data: ', form.data, '------------')
-    channel.title = form.data['name']
+    channel.title = form.data['title']
     channel.description = form.data['description']
     db.session.commit()
     return channel.to_dict()
