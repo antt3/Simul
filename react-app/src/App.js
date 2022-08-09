@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import AllChannels from './components/AllChannels';
+import PageNotFound from './components/PageNotFound';
 import User from './components/User';
 import { authenticate } from './store/session';
 import * as channelsReducer from './store/channels';
@@ -50,7 +51,7 @@ function App() {
           <AllChannels />
         </ProtectedRoute>
         <Route>
-          <h1>Page Not Found</h1>
+          <PageNotFound />
         </Route>
       </Switch>
     </BrowserRouter>
