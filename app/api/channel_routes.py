@@ -103,11 +103,11 @@ def delete_channel(channel_id):
 @channel_routes.route('/<int:channel_id>', methods=['PUT'])
 @login_required
 def update_channel(channel_id):
-    # print('--------channel_id: ', channel_id, '------------')
+    print('--------channel_id: ', channel_id, '------------')
     channel = Channel.query.get(channel_id)
-    # print('--------channel.to_dict(): ', channel.to_dict(), '------------')
+    print('--------channel.to_dict(): ', channel.to_dict(), '------------')
     form = AddChannel()
-    # print('--------form.data: ', form.data, '------------')
+    print('--------form.data: ', form.data, '------------')
     channel.title = form.data['title']
     channel.description = form.data['description']
     db.session.commit()

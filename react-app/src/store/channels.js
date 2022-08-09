@@ -13,21 +13,21 @@ const actionGetChannels = (channels) => {
 const actionAddChannel = (channel) => {
 	return {
 		type: ADD_CHANNEL,
-		channel,
+		channel
 	};
 };
 
 const actionEditChannel = (channel) => {
 	return {
 		type: EDIT_CHANNEL,
-		channel,
+		channel
 	};
 };
 
 const actionDeleteChannel = (channelId) => {
 	return {
 		type: DELETE_CHANNEL,
-		channelId,
+		channelId
 	};
 };
 
@@ -88,8 +88,14 @@ const channelReducer = (state = {}, action) => {
 			newState[action.channel.id] = action.channel;
 			return newState;
 
+		case EDIT_CHANNEL:
+			newState[action.channel.id] = action.channel;
+			// const eventList = newState.map(id => newState[id]);
+			// eventList.push(action.payload)
+			return newState;
+
 		case DELETE_CHANNEL:
-			console.log('-----------Reducer: ', action.channels.channels, '-------------')
+			// console.log('-----------Reducer: ', action.channels.channels, '-------------')
 			delete newState[action.channelId];
 			return newState;
 
