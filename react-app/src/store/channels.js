@@ -53,6 +53,7 @@ export const thunkAddChannel = (channel) => async (dispatch) => {
 };
 
 export const thunkEditChannel = (channel) => async (dispatch) => {
+	console.log('----------Channel(Thunk): ', channel, '-------------');
 	const response = await fetch(`/api/channels/${channel.id}`, {
 		method: "PUT",
 		headers: {

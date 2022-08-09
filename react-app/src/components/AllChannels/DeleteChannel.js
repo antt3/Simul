@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as channelReducer from "../../store/channels";
 
 function DeleteChannel({setShowModal, channel}) {
@@ -10,6 +10,7 @@ function DeleteChannel({setShowModal, channel}) {
 
 
     const handleClick = async(e) => {
+        e.preventDefault();
         const deleted = await dispatch(channelReducer.thunkDeleteChannel(channel.id));
 
         if (deleted) {
@@ -20,7 +21,7 @@ function DeleteChannel({setShowModal, channel}) {
     };
 
     const handleClick2 = async(e) => {
-        
+        e.preventDefault();
         setShowModal(false);
 
     };
