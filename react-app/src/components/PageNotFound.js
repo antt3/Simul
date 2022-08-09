@@ -8,7 +8,7 @@ const PageNotFound = () => {
     if (!currentUser) return <Redirect to="/login" />;
 
     return (
-        <h1>Page Not Found</h1>
+        <h1 className='content'>Page Not Found</h1>
     );
 };
 

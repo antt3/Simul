@@ -21,7 +21,7 @@ function User() {
   }
 
   return (
-    <ul>
+    <ul className='content'>
       <li>
         <strong>User Id: </strong> {userId}
       </li>

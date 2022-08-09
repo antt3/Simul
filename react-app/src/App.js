@@ -34,6 +34,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <AllChannels />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -46,9 +47,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <AllChannels />
         </ProtectedRoute>
         <Route>
           <PageNotFound />

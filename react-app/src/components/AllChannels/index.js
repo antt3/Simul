@@ -23,7 +23,7 @@ const AllChannels = () => {
     if (!currentUser) return <Redirect to="/login" />;
 
     return (
-        <>
+        <div className='sidebar'>
             <h1>Channels</h1>
                 <CreateChannelModal currentUser={currentUser} />
                 {channels && channelsArr.map((channel) => 
@@ -33,7 +33,7 @@ const AllChannels = () => {
                         <DeleteChannelModal channel={channel} />
                     </div>
                 )}
-        </>
+        </div>
     );
 };
 
