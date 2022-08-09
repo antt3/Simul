@@ -29,9 +29,9 @@ const AllChannels = () => {
                 {channels && channelsArr.map((channel) => 
                     <div className='channel' key={channel.id}>
                         <div onClick={(e)=> onClick(e, channel)}># {channel.title}</div>
-                        <EditChannelModal channel={channel} />
-                        <DeleteChannelModal channel={channel} />
-                    </div>
+                        { currentUser.id === channel.userId && <EditChannelModal channel={channel} /> }
+                        { currentUser.id === channel.userId && <DeleteChannelModal channel={channel} /> }
+                        </div>
                 )}
         </div>
     );
