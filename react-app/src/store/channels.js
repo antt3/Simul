@@ -1,4 +1,4 @@
-const GET_CHANNELS = "channels/GET_CHANNEL";
+const GET_CHANNELS = "channels/GET_CHANNELS";
 const ADD_CHANNEL = "channels/ADD_CHANNEL";
 const EDIT_CHANNEL = "channels/EDIT_CHANNEL";
 const DELETE_CHANNEL = "channels/DELETE_CHANNEL";
@@ -13,28 +13,30 @@ const actionGetChannels = (channels) => {
 const actionAddChannel = (channel) => {
 	return {
 		type: ADD_CHANNEL,
-		channel,
+		channel
 	};
 };
 
 const actionEditChannel = (channel) => {
 	return {
 		type: EDIT_CHANNEL,
-		channel,
+		channel
 	};
 };
 
 const actionDeleteChannel = (channelId) => {
 	return {
 		type: DELETE_CHANNEL,
-		channelId,
+		channelId
 	};
 };
 
-export const thunkGetChannels = (channels) => async (dispatch) => {
+export const thunkGetChannels = () => async (dispatch) => {
+	// console.log('Being Called.')
 	const res = await fetch("/api/channels/");
+	// console.log('-------res: ', res, '-------')
 	const channels = await res.json();
-	dispatch(actionGetChannels(channels));
+	if (res.ok) dispatch(actionGetChannels(channels));
 	return res;
 };
 
@@ -51,6 +53,7 @@ export const thunkAddChannel = (channel) => async (dispatch) => {
 };
 
 export const thunkEditChannel = (channel) => async (dispatch) => {
+	console.log('----------Channel(Thunk): ', channel, '-------------');
 	const response = await fetch(`/api/channels/${channel.id}`, {
 		method: "PUT",
 		headers: {
@@ -76,6 +79,7 @@ const channelReducer = (state = {}, action) => {
 	const newState = { ...state };
 	switch (action.type) {
 		case GET_CHANNELS:
+			// console.log('-----------Reducer: ', action.channels.channels, '-------------')
 			action.channels.channels.forEach((channel) => {
 				newState[channel.id] = channel;
 			});
@@ -85,7 +89,14 @@ const channelReducer = (state = {}, action) => {
 			newState[action.channel.id] = action.channel;
 			return newState;
 
+		case EDIT_CHANNEL:
+			newState[action.channel.id] = action.channel;
+			// const eventList = newState.map(id => newState[id]);
+			// eventList.push(action.payload)
+			return newState;
+
 		case DELETE_CHANNEL:
+			// console.log('-----------Reducer: ', action.channels.channels, '-------------')
 			delete newState[action.channelId];
 			return newState;
 

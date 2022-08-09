@@ -68,7 +68,7 @@ class Channel(db.Model):
             "id": self.id,
             "title": self.title,
             "description": self.description,
-            "user": self.user.to_dict()
+            "userId": self.user_id
         }
 
 
