@@ -10,7 +10,7 @@ const NavBar = () => {
   
   return (
     <nav className='navbar'>
-      {currentUser ? <div className='nav_div'>
+      {currentUser && <div className='nav_div'>
         <div className='navlink_divs'>
           <NavLink to='/' className='NavLink' exact={true} activeClassName='active'>
             Home
@@ -24,7 +24,7 @@ const NavBar = () => {
         <div>
           <LogoutButton />
         </div>
-      </div> : <div></div>}
+      </div>}
     </nav>
   );
 }
