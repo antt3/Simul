@@ -15,7 +15,6 @@ def seed():
     seed_users()
     # Add other seed functions here
     seed_channels()
-    seed_users_channels()
     seed_channel_messages()
 
 
@@ -25,5 +24,4 @@ def undo():
     undo_users()
     # Add other undo functions here
     undo_channels()
-    undo_users_channels()
     undo_channel_messages()

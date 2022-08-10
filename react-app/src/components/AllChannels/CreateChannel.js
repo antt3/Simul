@@ -18,7 +18,7 @@ const CreateChannelForm = ({currentUser, setShowModal}) => {
 
 		if (!title) errors.push("Title is required.");
         if (title.length > 100) errors.push("Title must be less than 100 cahracters.");
-		if (description.length > 100) errors.push("Description must be less than 100 cahracters.");
+		if (description.length > 100) errors.push("Description must be less than 100 characters.");
         if (title) {
             const lowered = title.toLowerCase();
             setTitle(lowered);

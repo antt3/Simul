@@ -1,4 +1,4 @@
-from app.models.db import db, Users_Channels
+from app.models.db import db
 from app.seeds import users, channels
 
 def seed_users_channels():

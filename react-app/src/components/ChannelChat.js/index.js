@@ -11,10 +11,8 @@ const ChannelChat = () => {
     const { channelId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
     const channel = useSelector((state) => state.channels[channelId]);
-    const channelMessages = useSelector((state) => state.channelMessages);
-    console.log('-----------channelMessages: ', channelMessages, '--------');
     const [chatInput, setChatInput] = useState("");
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState(useSelector((state) => Object.values(state.channelMessages)));
 
     useEffect(() => {
         // open socket connection
@@ -28,7 +26,7 @@ const ChannelChat = () => {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, [messages])
 
     useEffect(() => {
         dispatch(channelMessagesReducer.thunkGetMessages(channelId));
@@ -38,8 +36,14 @@ const ChannelChat = () => {
         setChatInput(e.target.value)
     };
 
-    const sendChat = (e) => {
+    const sendChat = async(e) => {
         e.preventDefault()
+
+        const newMessage = {
+            
+        };
+
+        dispatch(channelMessagesReducer.actionAddEditMessage())
         socket.emit("chat", { user: currentUser.full_name, msg: chatInput });
         setChatInput("")
     }
@@ -50,7 +54,7 @@ const ChannelChat = () => {
         <div>
             <div>
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user}: ${message.msg}`}</div>
+                    <div key={ind}>{`${message.user.full_name}: ${message.message}`}</div>
                 ))}
             </div>
             <form onSubmit={sendChat}>

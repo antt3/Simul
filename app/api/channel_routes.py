@@ -4,9 +4,9 @@ from flask_login import login_required, current_user
 from app.models import db
 from app.models.db import User
 from app.models.db import Channel
-from app.models.db import Users_Channels
+# from app.models.db import Users_Channels
 from app.forms.channel import AddChannel
-from app.forms.user_channel import AddUserToChannel
+# from app.forms.user_channel import AddUserToChannel
 
 
 channel_routes = Blueprint('channels', __name__)
@@ -21,13 +21,13 @@ def channels():
     return {'channels': [channel.to_dict() for channel in channels]}
 
 
-@channel_routes.route('/users/<int:channel_id>')
-@login_required
-def channel_users(channel_id):
-    users = User.query.join(Users_Channels).join(Channel).filter(Channel.id == channel_id).all()
-    db.session.commit()
-    # print('-------channels: ', channels,'----------')
-    return {'users': [user.to_dict() for user in users]}
+# @channel_routes.route('/users/<int:channel_id>')
+# @login_required
+# def channel_users(channel_id):
+#     users = User.query.join(Users_Channels).join(Channel).filter(Channel.id == channel_id).all()
+#     db.session.commit()
+#     # print('-------channels: ', channels,'----------')
+#     return {'users': [user.to_dict() for user in users]}
 
 
 @channel_routes.route('/', methods=['POST'])
