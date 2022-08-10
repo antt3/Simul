@@ -19,7 +19,9 @@ def errors_list(validation_errors):
 @channel_message_routes.route("/<int:channel_id>")
 @login_required
 def get_messages(channel_id):
+    # print('-------------Here!!!!---------')
     channel_messages = Channel_message.query.filter(Channel_message.channel_id == channel_id)
+    # print('-------------channel_messages: ', channel_messages, '---------')
     return {
         "channel_messages":[message.to_dict() for message in channel_messages]
     }
@@ -36,7 +38,7 @@ def new_message():
         channelId = data['channel_id']
         add_message = Channel_message(
             content = newMessage,
-            userId = current_user.id,
+            user_id = current_user.id,
             channel_id = channelId,
             createdAt = datetime.datetime.now())
         db.session.add(add_message)

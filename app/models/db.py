@@ -68,7 +68,7 @@ class Channel(db.Model):
             "id": self.id,
             "title": self.title,
             "description": self.description,
-            "userId": self.user_id
+            "user_id": self.user_id
         }
 
 
@@ -88,6 +88,6 @@ class Channel_message(db.Model):
         return{
             "id": self.id,
             "message": self.message,
-            "user": self.user.to_dict(),
-            "channel": self.channel.to_dict()
+            "user_id": self.user_id,
+            "channel_id": self.channel_id
         }

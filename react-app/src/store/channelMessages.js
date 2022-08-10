@@ -26,14 +26,17 @@ export const actionDeleteMessage = (messageId) => {
 
 
 export const thunkGetMessages = (channelId) => async (dispatch) => {
+	// console.log('---------here---------');
 	const res = await fetch(`/api/channel-messages/${channelId}`);
 	if (res.ok) {
 		const data = await res.json();
-		dispatch(actionGetMessages(data.messages));
-		return data.messages;
+		// console.log('---------data1: ', data, '---------');
+		dispatch(actionGetMessages(data.channel_messages));
+		return data.channel_messages;
 
 	} else {
 		const data = await res.json();
+		// console.log('---------data2: ', data, '---------');
 		if (data.errors) {
 			return data.errors;
 		}
@@ -48,8 +51,8 @@ export const thunkAddMessage = (message, channel_id) => async (dispatch) => {
 	});
 	if (res.ok) {
 		const data = await res.json();
-		dispatch(actionAddEditMessage(data.message));
-		return data.message
+		dispatch(actionAddEditMessage(data.channel_message));
+		return data.channel_message
 
 	} else {
 		const data = await res.json();
@@ -67,8 +70,8 @@ export const thunkEditMessage = (message) => async (dispatch) => {
 	});
 	if (res.ok) {
 		const data = await res.json();
-		dispatch(actionAddEditMessage(data.message));
-		return data.message;
+		dispatch(actionAddEditMessage(data.channel_message));
+		return data.channel_message;
 
 	} else {
 		const data = await res.json();

@@ -51,18 +51,18 @@ def add_channel():
 def add_user(channel_id,user_id):
     channel = Channel.query.get(channel_id)
     user = User.query.get(user_id)
-    print('---')
-    print('---')
-    print('---')
+    # print('---')
+    # print('---')
+    # print('---')
     if user in channel.users:
         print('already has user')
     else:
         channel.users.append(user)
-    print('---')
-    print('---')
-    print('---')
-    print('---')
-    print('---')
+    # print('---')
+    # print('---')
+    # print('---')
+    # print('---')
+    # print('---')
     db.session.commit()
     return('-------------User Added--------------')
 
@@ -72,18 +72,18 @@ def add_user(channel_id,user_id):
 def delete_user(channel_id,user_id):
     channel = Channel.query.get(channel_id)
     user = User.query.get(user_id)
-    print('---')
-    print('---')
-    print('---')
+    # print('---')
+    # print('---')
+    # print('---')
     if user in channel.users:
         channel.users.remove(user)
     else:
         print('already removed user')
-    print('---')
-    print('---')
-    print('---')
-    print('---')
-    print('---')
+    # print('---')
+    # print('---')
+    # print('---')
+    # print('---')
+    # print('---')
     db.session.commit()
     return('User Removed')
 
@@ -103,11 +103,11 @@ def delete_channel(channel_id):
 @channel_routes.route('/<int:channel_id>', methods=['PUT'])
 @login_required
 def update_channel(channel_id):
-    print('--------channel_id: ', channel_id, '------------')
+    # print('--------channel_id: ', channel_id, '------------')
     channel = Channel.query.get(channel_id)
-    print('--------channel.to_dict(): ', channel.to_dict(), '------------')
+    # print('--------channel.to_dict(): ', channel.to_dict(), '------------')
     form = AddChannel()
-    print('--------form.data: ', form.data, '------------')
+    # print('--------form.data: ', form.data, '------------')
     channel.title = form.data['title']
     channel.description = form.data['description']
     db.session.commit()

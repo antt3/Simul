@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
+import * as channelMessagesReducer from '../../store/channelMessages';
+
 let socket;
 
 const ChannelChat = () => {
+    const dispatch = useDispatch();
     const { channelId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
     const channel = useSelector((state) => state.channels[channelId]);
@@ -26,6 +29,10 @@ const ChannelChat = () => {
             socket.disconnect()
         })
     }, [])
+
+    useEffect(() => {
+        dispatch(channelMessagesReducer.thunkGetMessages(channelId));
+    }, [dispatch, channelId]);
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
