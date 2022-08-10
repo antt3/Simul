@@ -1,37 +1,37 @@
-from app.models import db, Channel, User
+from app.models import db, Channel_message
 
 def seed_channel_messages():
-    demo_team_1 = Channel(
+    demo_team_1 = Channel_message(
         message='First Message', user_id=1, channel_id=1)
-    demo_team_2 = Channel(
+    demo_team_2 = Channel_message(
         message='Second Message', user_id=2, channel_id=1)
-    demo_team_3 = Channel(
+    demo_team_3 = Channel_message(
         message='Third Message', user_id=3, channel_id=1)
-    demo_team_4 = Channel(
+    demo_team_4 = Channel_message(
         message='Fourth Message', user_id=4, channel_id=1)
-    money_team_1 = Channel(
+    money_team_1 = Channel_message(
         message='First Message', user_id=2, channel_id=2)
-    money_team_2 = Channel(
+    money_team_2 = Channel_message(
         message='Second Message', user_id=3, channel_id=2)
-    money_team_3 = Channel(
+    money_team_3 = Channel_message(
         message='Third Message', user_id=4, channel_id=2)
-    money_team_4 = Channel(
+    money_team_4 = Channel_message(
         message='Third Message', user_id=1, channel_id=2)
-    tp_management_1 = Channel(
+    tp_management_1 = Channel_message(
         message='First Message', user_id=3, channel_id=3)
-    tp_management_2 = Channel(
+    tp_management_2 = Channel_message(
         message='Second Message', user_id=4, channel_id=3)
-    tp_management_3 = Channel(
+    tp_management_3 = Channel_message(
         message='Third Message', user_id=1, channel_id=3)
-    tp_management_4 = Channel(
+    tp_management_4 = Channel_message(
         message='Fourth Message', user_id=2, channel_id=3)
-    bobby_boys_1 = Channel(
+    bobby_boys_1 = Channel_message(
         message='First Message', user_id=4, channel_id=4)
-    bobby_boys_2 = Channel(
+    bobby_boys_2 = Channel_message(
         message='Second Message', user_id=1, channel_id=4)
-    bobby_boys_3 = Channel(
+    bobby_boys_3 = Channel_message(
         message='Third Message', user_id=2, channel_id=4)
-    bobby_boys_4 = Channel(
+    bobby_boys_4 = Channel_message(
         message='Fourth Message', user_id=3, channel_id=4)
 
     db.session.add(demo_team_1)
