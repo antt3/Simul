@@ -6,21 +6,23 @@ const DELETE_MESSAGE = "messages/DELETE_MESSAGE";
 export const actionGetMessages = (messages) => {
 	return {
 		type: GET_MESSAGES,
-		messages,
+		messages
 	};
 };
 
 export const actionAddEditMessage = (message) => {
+	console.log('---------Message: ', message, '--------');
+
 	return {
 		type: ADD_EDIT_MESSAGE,
-		message,
+		message
 	};
 };
 
 export const actionDeleteMessage = (messageId) => {
 	return {
 		type: DELETE_MESSAGE,
-		payload: messageId,
+		payload: messageId
 	};
 };
 
@@ -43,11 +45,13 @@ export const thunkGetMessages = (channelId) => async (dispatch) => {
 	}
 };
 
-export const thunkAddMessage = (message, channel_id) => async (dispatch) => {
+export const thunkAddMessage = (content, channel_id) => async (dispatch) => {
+	console.log('---------Params: ', JSON.stringify({content, channel_id}), '-----------')
+	
 	const res = await fetch(`/api/channel-messages/`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({message, channel_id}),
+		body: JSON.stringify({content, channel_id})
 	});
 	if (res.ok) {
 		const data = await res.json();

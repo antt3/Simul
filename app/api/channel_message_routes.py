@@ -33,18 +33,19 @@ def new_message():
     form = ChannelMessageForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        newMessage = form.data["message"]
+        form_message = form.data["message"]
         data = request.json
+        print('-----------data: ', data, '--------')
         channelId = data['channel_id']
-        add_message = Channel_message(
-            content = newMessage,
+        new_message = Channel_message(
+            message = form_message,
             user_id = current_user.id,
             channel_id = channelId,
             createdAt = datetime.datetime.now())
-        db.session.add(add_message)
+        db.session.add(new_message)
         db.session.commit()
         return{
-            "channel_message": add_message.to_dict()
+            "channel_message": new_message.to_dict()
         }
     return {'Message Failed To Post'}, 401
 

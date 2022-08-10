@@ -11,42 +11,39 @@ const ChannelChat = () => {
     const { channelId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
     const channel = useSelector((state) => state.channels[channelId]);
-    const [chatInput, setChatInput] = useState("");
-    const [messages, setMessages] = useState(useSelector((state) => Object.values(state.channelMessages)));
+    const channelMessages = useSelector((state) => Object.values(state.channelMessages));
+    const [content, setContent] = useState("");
+    const [messages, setMessages] = useState(channelMessages);
+    console.log('--------messages: ', messages, '------------')
 
     useEffect(() => {
+        
         // open socket connection
         // create websocket
         socket = io();
 
-        socket.on("chat", (chat) => {
-            setMessages(messages => [...messages, chat])
-        })
+
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
         })
-    }, [messages])
+    }, [channelMessages])
 
     useEffect(() => {
         dispatch(channelMessagesReducer.thunkGetMessages(channelId));
     }, [dispatch, channelId]);
 
-    const updateChatInput = (e) => {
-        setChatInput(e.target.value)
-    };
-
     const sendChat = async(e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        const newMessage = {
-            
-        };
-
-        dispatch(channelMessagesReducer.actionAddEditMessage())
-        socket.emit("chat", { user: currentUser.full_name, msg: chatInput });
-        setChatInput("")
-    }
+        const res = await dispatch(channelMessagesReducer.thunkAddMessage(content, channelId));
+        if (res.ok) {
+            setMessages(channelMessages);
+            setContent("")
+        } else {
+            alert('Get gud scrublord XD')
+        }
+    };
 
     if (!currentUser) return <Redirect to="/login" />;
 
@@ -59,9 +56,9 @@ const ChannelChat = () => {
             </div>
             <form onSubmit={sendChat}>
                 <input
-                    value={chatInput}
+                    value={content}
                     placeholder={`Message #${channel.title}`}
-                    onChange={updateChatInput}
+                    onChange={(e) => setContent(e.target.value)}
                 />
                 <button type="submit">Send</button>
             </form>
