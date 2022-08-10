@@ -8,6 +8,8 @@ const ChannelChat = () => {
     const { channelId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
     const channel = useSelector((state) => state.channels[channelId]);
+    const channelMessages = useSelector((state) => state.channelMessages);
+    console.log('-----------channelMessages: ', channelMessages, '--------');
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
 
