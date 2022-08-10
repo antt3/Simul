@@ -37,7 +37,7 @@ const ChannelChat = () => {
 
     if (!currentUser) return <Redirect to="/login" />;
 
-    return (currentUser && (
+    return ((currentUser && channel) ? (
         <div>
             <div>
                 {messages.map((message, ind) => (
@@ -53,7 +53,7 @@ const ChannelChat = () => {
                 <button type="submit">Send</button>
             </form>
         </div>
-    ));
+    ) : <div></div>);
 };
 
 export default ChannelChat;

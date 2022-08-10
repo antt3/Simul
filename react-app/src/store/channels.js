@@ -1,7 +1,7 @@
 const GET_CHANNELS = "channels/GET_CHANNELS";
-const ADD_CHANNEL = "channels/ADD_CHANNEL";
-const EDIT_CHANNEL = "channels/EDIT_CHANNEL";
+const ADD_EDIT_CHANNEL = "channels/ADD_EDIT_CHANNEL";
 const DELETE_CHANNEL = "channels/DELETE_CHANNEL";
+
 
 const actionGetChannels = (channels) => {
 	return {
@@ -10,16 +10,9 @@ const actionGetChannels = (channels) => {
 	};
 };
 
-const actionAddChannel = (channel) => {
+const actionAddEditChannel = (channel) => {
 	return {
-		type: ADD_CHANNEL,
-		channel
-	};
-};
-
-const actionEditChannel = (channel) => {
-	return {
-		type: EDIT_CHANNEL,
+		type: ADD_EDIT_CHANNEL,
 		channel
 	};
 };
@@ -30,6 +23,7 @@ const actionDeleteChannel = (channelId) => {
 		channelId
 	};
 };
+
 
 export const thunkGetChannels = () => async (dispatch) => {
 	// console.log('Being Called.')
@@ -48,12 +42,12 @@ export const thunkAddChannel = (channel) => async (dispatch) => {
 		body: JSON.stringify(channel),
 	});
 	const data = await response.json();
-	dispatch(actionAddChannel(data));
+	dispatch(actionAddEditChannel(data));
 	return data;
 };
 
 export const thunkEditChannel = (channel) => async (dispatch) => {
-	console.log('----------Channel(Thunk): ', channel, '-------------');
+	// console.log('----------Channel(Thunk): ', channel, '-------------');
 	const response = await fetch(`/api/channels/${channel.id}`, {
 		method: "PUT",
 		headers: {
@@ -63,7 +57,7 @@ export const thunkEditChannel = (channel) => async (dispatch) => {
 	});
 
 	const data = await response.json();
-	dispatch(actionEditChannel(data));
+	dispatch(actionAddEditChannel(data));
 	return data;
 };
 
@@ -75,6 +69,7 @@ export const thunkDeleteChannel = (channelId) => async (dispatch) => {
 	return response;
 };
 
+
 const channelReducer = (state = {}, action) => {
 	const newState = { ...state };
 	switch (action.type) {
@@ -85,14 +80,8 @@ const channelReducer = (state = {}, action) => {
 			});
 			return newState;
 
-		case ADD_CHANNEL:
+		case ADD_EDIT_CHANNEL:
 			newState[action.channel.id] = action.channel;
-			return newState;
-
-		case EDIT_CHANNEL:
-			newState[action.channel.id] = action.channel;
-			// const eventList = newState.map(id => newState[id]);
-			// eventList.push(action.payload)
 			return newState;
 
 		case DELETE_CHANNEL:
