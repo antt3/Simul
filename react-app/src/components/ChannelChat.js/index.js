@@ -47,6 +47,7 @@ const ChannelChat = () => {
             <form onSubmit={sendChat}>
                 <input
                     value={chatInput}
+                    placeholder={`Message #${channel.title}`}
                     onChange={updateChatInput}
                 />
                 <button type="submit">Send</button>

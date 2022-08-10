@@ -2,13 +2,13 @@ from app.models import db, Channel
 
 def seed_channels():
     demo_team = Channel(
-        title='Demo Team', description='The first team on Simul.', user_id=1)
+        title='demo-team', description='The first team on Simul.', user_id=1)
     money_team = Channel(
-        title='Money Team', description='Get Money Or Get Out!', user_id=2)
+        title='money-team', description='Get Money Or Get Out!', user_id=2)
     tp_management = Channel(
-        title='Trailer Park Management', description='The Few, The Proud.', user_id=3)
+        title='trailer-park-management', description='The Few, The Proud.', user_id=3)
     bobby_boys = Channel(
-        title='Bobby Boys', description='', user_id=4)
+        title='bobby-boys', description='', user_id=4)
 
     db.session.add(demo_team)
     db.session.add(money_team)
