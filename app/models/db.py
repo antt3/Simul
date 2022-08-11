@@ -80,7 +80,7 @@ class Channel_message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(255), nullable=False)
     edited = db.Column(db.Boolean, nullable=True)
-    created_at = db.Column(db.String(100, nullable=False))
+    created_at = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'), nullable=False)
 

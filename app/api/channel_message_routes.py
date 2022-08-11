@@ -30,16 +30,16 @@ def get_messages(channel_id):
 @channel_message_routes.route("/", methods=["POST"])
 @login_required
 def new_message():
-    print('--------Here----------')
+    # print('--------Here----------')
     form = ChannelMessageForm()
-    print('--------Here2----------')
+    # print('--------Here2----------')
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('--------Here3----------')
+    # print('--------Here3----------')
     if form.validate_on_submit():
-        print('--------Here4----------')
+        # print('--------Here4----------')
         form_message = form.data["message"]
         data = request.json
-        print('-----------data: ', data, '--------')
+        # print('-----------data: ', data, '--------')
         channelId = data['channel_id']
         newMessage = Channel_message(
             message = form_message,
@@ -52,7 +52,7 @@ def new_message():
         return{
             "channel_message": newMessage.to_dict()
         }
-    print('--------Here (Failed) RIP----------')
+    # print('--------Here(Failed) ----------')
     return {'Message Failed To Post'}, 401
 
 

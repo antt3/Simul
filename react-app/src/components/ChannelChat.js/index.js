@@ -22,27 +22,28 @@ const ChannelChat = () => {
         // create websocket
         socket = io();
 
-
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
         })
-    }, [channelMessages])
+    }, [])
 
     useEffect(() => {
-        dispatch(channelMessagesReducer.thunkGetMessages(channelId));
-    }, [dispatch, channelId]);
+        (async() => {
+        const res = await dispatch(channelMessagesReducer.thunkGetMessages(channelId));
+        // console.log('----------res: ', res, '----------');
+        setMessages(res);
+        })()
+    }, [dispatch, channelId, content]);
 
     const sendChat = async(e) => {
         e.preventDefault();
 
         const res = await dispatch(channelMessagesReducer.thunkAddMessage(content, channelId));
-        if (res.ok) {
+        if (res === 'All Good') {
             setMessages(channelMessages);
             setContent("")
-        } else {
-            alert('Get gud scrublord XD')
-        }
+        };
     };
 
     if (!currentUser) return <Redirect to="/login" />;
@@ -51,7 +52,7 @@ const ChannelChat = () => {
         <div>
             <div>
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user.full_name}: ${message.message}`}</div>
+                    <div key={ind}>{`${message.user.nickname ? message.user.nickname : message.user.full_name}: ${message.message}`}</div>
                 ))}
             </div>
             <form onSubmit={sendChat}>
