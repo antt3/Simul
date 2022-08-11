@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../../context/Modal';
 import DeleteChat from '../DeleteChat';
 
-const DeleteChatModal = ({message, socket}) => {
+const DeleteChatModal = ({message, socket }) => {
     const [showModal, setShowModal] = useState(false);
   
     return (

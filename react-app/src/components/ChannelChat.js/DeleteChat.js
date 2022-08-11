@@ -12,8 +12,9 @@ const DeleteChat = ({setShowModal, socket, message}) => {
         e.preventDefault();
         const res = await dispatch(channelMessagesReducer.thunkRemoveMessage(message.id));
         if (res) {
-            setShowModal(false);
             history.push(`/channels/${message.channel.id}`);
+            setShowModal(false);
+            // console.log('-------Delete Chat Res: ', res, '----------');
             socket.emit("delete", res);
         };
     };
