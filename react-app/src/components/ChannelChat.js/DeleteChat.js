@@ -1,17 +1,21 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as channelMessagesReducer from "../../store/channelMessages";
 
 
 const DeleteChat = ({setShowModal, socket, message}) => {
     const dispatch = useDispatch();
-
+    const history = useHistory();
 
     const handleClick = async(e) => {
         e.preventDefault();
         const res = await dispatch(channelMessagesReducer.thunkRemoveMessage(message.id));
-        socket.emit("delete", res);
-        setShowModal(false);
+        if (res) {
+            setShowModal(false);
+            history.push(`/channels/${message.channel.id}`);
+            socket.emit("delete", res);
+        };
     };
 
     const handleClick2 = async(e) => {

@@ -8,13 +8,13 @@ const EditChat = ({ socket, setShowModal, message }) => {
     const history = useHistory();
     const [content, setContent] = useState(message.message);
     const [validationErrors, setValidationErrors] = useState([]);
-    const [hasSubmitted,setHasSubmitted] = useState(false)
+    const [hasSubmitted, setHasSubmitted] = useState(false)
 
     useEffect(() => {
 		const errors = [];
 
 		if (!content) errors.push("A message is required.");
-        if (content.length > 100) errors.push("The message must be less than 250 characters.")
+        if (content.length > 255) errors.push("The message must be less than 250 characters long.")
 
 		setValidationErrors(errors);
 	}, [content]);
@@ -27,7 +27,7 @@ const EditChat = ({ socket, setShowModal, message }) => {
             setHasSubmitted(false);
 
             const res = await dispatch(channelMessagesReducer.thunkEditMessage(content, message.created_at, message.id));
-            console.log('--------EditRes: ', res, '-----------');
+            // console.log('--------EditRes: ', res, '-----------');
             if (res) {
                 setContent("");
                 setShowModal(false);

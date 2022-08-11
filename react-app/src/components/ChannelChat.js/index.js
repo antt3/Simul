@@ -16,7 +16,19 @@ const ChannelChat = () => {
     const channelMessages = useSelector((state) => Object.values(state.channelMessages));
     const [content, setContent] = useState("");
     const [messages, setMessages] = useState(channelMessages);
-    console.log('--------messages: ', messages, '------------')
+    // console.log('--------messages: ', messages, '------------')
+    const [validationErrors, setValidationErrors] = useState([]);
+    const [hasSubmitted, setHasSubmitted] = useState(false)
+
+    useEffect(() => {
+		const errors = [];
+
+		if (!content) errors.push("A message is required.");
+        if (content.length > 255) errors.push("The message must be less than 250 characters long.")
+
+		setValidationErrors(errors);
+	}, [content]);
+
 
     useEffect(() => {
         
@@ -27,13 +39,13 @@ const ChannelChat = () => {
         // listen for chat events
         socket.on("chat", async(res) => {
             // when we recieve a chat, add it into our messages array in state
-            await dispatch(channelMessagesReducer.actionAddEditMessage(res))
+            await dispatch(channelMessagesReducer.actionAddEditMessage(res));
             const response = await dispatch(channelMessagesReducer.thunkGetMessages(channelId))
             setMessages(response);
         })
 
-        socket.on("delete", async (messageId) => {
-            await dispatch(channelMessagesReducer.actionDeleteMessage(messageId));
+        socket.on("delete", async (res) => {
+            await dispatch(channelMessagesReducer.actionDeleteMessage(res));
             const response = await dispatch(channelMessagesReducer.thunkGetMessages(channelId))
             setMessages(response);
           });
@@ -57,11 +69,15 @@ const ChannelChat = () => {
     const sendChat = async(e) => {
         e.preventDefault();
 
-        const res = await dispatch(channelMessagesReducer.thunkAddMessage(content, channelId));
-        if (res) {
-            socket.emit("chat", res)
-            setMessages(channelMessages);
-            setContent("")
+        setHasSubmitted(true);
+
+        if (!validationErrors.length) {
+            const res = await dispatch(channelMessagesReducer.thunkAddMessage(content, channelId));
+            if (res) {
+                socket.emit("chat", res)
+                setMessages(channelMessages);
+                setContent("")
+            };
         };
     };
 
@@ -84,7 +100,7 @@ const ChannelChat = () => {
                     placeholder={`Message #${channel.title}`}
                     onChange={(e) => setContent(e.target.value)}
                 />
-                <button type="submit">Send</button>
+                {(255 > content.length && content.length > 0) && <button type="submit">Send</button>}
             </form>
         </div>
     ) : <div></div>);

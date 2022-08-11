@@ -59,13 +59,13 @@ def new_message():
 @channel_message_routes.route("/<int:message_id>", methods=["PUT"])
 @login_required
 def edit_message(message_id):
-    print('--------Here: ', message_id,'----------')
-    print('--------Here2----------')
+    # print('--------Here: ', message_id,'----------')
+    # print('--------Here2----------')
     form = EditChannelMessageForm()
-    print('--------Here4----------')
+    # print('--------Here4----------')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('--------Here5----------')
+        # print('--------Here5----------')
         edit_message = Channel_message.query.get(message_id)
         edit_message.message = form.data["message"]
         edit_message.edited=True

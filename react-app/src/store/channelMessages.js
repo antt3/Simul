@@ -74,7 +74,7 @@ export const thunkEditMessage = (message, created_at, message_id) => async () =>
 	});
 	if (res.ok) {
 		const data = await res.json();
-		console.log("----------EditData: ", data, '----------');
+		// console.log("----------EditData: ", data, '----------');
 		return {message: data}
 
 	} else {
@@ -85,7 +85,7 @@ export const thunkEditMessage = (message, created_at, message_id) => async () =>
 	}
 };
 
-export const thunkRemoveMessage = (messageId) => async (dispatch) => {
+export const thunkRemoveMessage = (messageId) => async () => {
 	const res = await fetch(`/api/channel-messages/${messageId}`, {
 		method: "DELETE",
 	});
