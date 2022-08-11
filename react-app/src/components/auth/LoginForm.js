@@ -58,7 +58,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='form_div content'>
+    <div className='form_div logged_out'>
       <div className='website'>
         <img src={logo} alt='Simul'></img>
         <p>simul</p>

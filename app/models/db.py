@@ -6,12 +6,12 @@ from flask_login import UserMixin
 db = SQLAlchemy()
 
 
-Users_Channels = db.Table(
-  'users_channels',
-  db.Model.metadata,
-  db.Column('users', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-  db.Column('channels', db.Integer, db.ForeignKey('channels.id'), primary_key=True)
-)
+# Users_Channels = db.Table(
+#   'users_channels',
+#   db.Model.metadata,
+#   db.Column('users', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+#   db.Column('channels', db.Integer, db.ForeignKey('channels.id'), primary_key=True)
+# )
 
 
 class User(db.Model, UserMixin):
@@ -26,7 +26,7 @@ class User(db.Model, UserMixin):
     status = db.Column(db.Boolean, nullable=True)
     profile_pic = db.Column(db.String(2000), nullable=True)
 
-    channels = db.relationship("Channel", secondary=Users_Channels, back_populates='user')
+    channels = db.relationship("Channel", back_populates='user')
     channel_messages = db.relationship('Channel_message', back_populates='user')
 
     @property
@@ -54,40 +54,48 @@ class User(db.Model, UserMixin):
 
 class Channel(db.Model):
     __tablename__ = 'channels'
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(100), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
   
-    user = db.relationship('User', secondary=Users_Channels, back_populates='channels')
+    user = db.relationship('User', back_populates='channels')
     channel_messages = db.relationship('Channel_message', back_populates='channels')
   
   
     def to_dict(self):
+        # print('---------Channel.user: ', self.user, '-----------')
         return{
             "id": self.id,
             "title": self.title,
             "description": self.description,
-            "userId": self.user_id
+            "user": self.user.to_dict()
         }
 
 
 class Channel_message(db.Model):
     __tablename__ = 'channel_messages'
+
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(255), nullable=False)
+    edited = db.Column(db.Boolean, nullable=True)
+    created_at = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'), nullable=False)
-
 
     user = db.relationship('User', back_populates='channel_messages')
     channels = db.relationship('Channel', back_populates='channel_messages')
   
   
     def to_dict(self):
+        # print('---------Channel_messages.user: ', self.user, '-----------')
+        # print('---------Channel_messages.user: ', self.channels, '-----------')
         return{
             "id": self.id,
             "message": self.message,
+            "edited": self.edited,
+            "created_at": self.created_at,
             "user": self.user.to_dict(),
-            "channel": self.channel.to_dict()
+            "channel": self.channels.to_dict()
         }

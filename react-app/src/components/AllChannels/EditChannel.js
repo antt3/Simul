@@ -17,7 +17,7 @@ const EditChannelForm = ({setShowModal, channel}) => {
 		const errors = [];
 
 		if (!title) errors.push("Title is required.");
-        if (title.length > 100) errors.push("Title must be less than 100 cahracters.")
+        if (title.length > 100) errors.push("Title must be less than 100 characters.")
 		if (description.length > 100) errors.push("Description must be less than 100 cahracters.");
 
 		setValidationErrors(errors);

@@ -25,7 +25,9 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-      dispatch(channelsReducer.thunkGetChannels());
+    (async() => {
+      await dispatch(channelsReducer.thunkGetChannels());
+    })()
 }, [dispatch]);
 
   if (!loaded) {
