@@ -20,6 +20,7 @@ export const actionAddEditMessage = (message) => {
 };
 
 export const actionDeleteMessage = (messageId) => {
+	console.log('----------messageId: ', messageId, '-------------');
 	return {
 		type: DELETE_MESSAGE,
 		payload: messageId
@@ -74,8 +75,9 @@ export const thunkEditMessage = (message, created_at, message_id) => async () =>
 	});
 	if (res.ok) {
 		const data = await res.json();
+		actionAddEditMessage(data);
 		// console.log("----------EditData: ", data, '----------');
-		return {message: data}
+		return data
 
 	} else {
 		const data = await res.json();
@@ -85,14 +87,16 @@ export const thunkEditMessage = (message, created_at, message_id) => async () =>
 	}
 };
 
-export const thunkRemoveMessage = (messageId) => async () => {
+export const thunkRemoveMessage = (messageId) => async (dispatch) => {
 	const res = await fetch(`/api/channel-messages/${messageId}`, {
 		method: "DELETE",
 	});
 	if (res.ok) {
 		// const data = await res.json();
 		// dispatch(actionDeleteMessage(messageId));
-		return messageId
+		const response = await res.json();
+		await dispatch(actionDeleteMessage(response.message));
+		return response.message;
 
 	} else {
 		const data = await res.json();
