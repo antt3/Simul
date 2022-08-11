@@ -20,7 +20,7 @@ export const actionAddEditMessage = (message) => {
 };
 
 export const actionDeleteMessage = (messageId) => {
-	console.log('----------messageId: ', messageId, '-------------');
+	// console.log('----------messageId: ', messageId, '-------------');
 	return {
 		type: DELETE_MESSAGE,
 		payload: messageId
@@ -102,7 +102,6 @@ export const thunkRemoveMessage = (messageId) => async (dispatch) => {
 		const data = await res.json();
 		if (data.errors) {
 			return data.errors;
-
 		}
 	}
 };
@@ -129,7 +128,6 @@ const channelMessagesReducer = (state = {}, action) => {
 		case DELETE_MESSAGE:
             newState = { ...state };
                 delete newState[action.payload];
-
             return newState;
 
 		default:

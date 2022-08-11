@@ -27,14 +27,14 @@ const ChannelChat = () => {
         // listen for chat events
         socket.on("chat", async(res) => {
             // when we recieve a chat, add it into our messages array in state
-            console.log('-------Add/Edit Socket Res: ', res, '----------');
+            // console.log('-------Add/Edit Socket Res: ', res, '----------');
             // await dispatch(channelMessagesReducer.actionAddEditMessage(res));
             await dispatch(channelMessagesReducer.thunkGetMessages(channelId))
             // setMessages(response);
         })
 
         socket.on("delete", async (res) => {
-            console.log('-------Delete Socket Res: ', res, '----------');
+            // console.log('-------Delete Socket Res: ', res, '----------');
             
             await dispatch(channelMessagesReducer.thunkGetMessages(channelId))
             // setMessages(response);
@@ -49,7 +49,7 @@ const ChannelChat = () => {
     useEffect(() => {
         (async() => {
             await dispatch(channelMessagesReducer.thunkGetMessages(channelId));
-            console.log('---------- UseEffect Running ----------');
+            // console.log('---------- UseEffect Running ----------');
             // setMessages(res);
         })()
     }, [dispatch, channelId, content, currentUser]);
@@ -72,7 +72,6 @@ const ChannelChat = () => {
             { channelMessages && <div>
                 {channelMessages.map((message, ind) => (
                     <div key={ind}>
-                        {console.log("----------------------Message6556865: ", message, '--------------')}
                         <div>{`${message.user.nickname ? message.user.nickname : message.user.full_name}: ${message.message} (${message.created_at})`}</div>
                         {(message.user.id === currentUser.id) && <DeleteChatModal message={message} socket={socket} />}
                         {(message.user.id === currentUser.id) && <EditChatModal message={message} socket={socket} />}

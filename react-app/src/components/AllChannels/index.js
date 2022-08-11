@@ -28,10 +28,15 @@ const AllChannels = () => {
                 <CreateChannelModal currentUser={currentUser} />
                 {channels && channelsArr.map((channel) => 
                     <div className='channel' key={channel.id}>
+                        {console.log('------------Channel: ', channel, '------------------')}
                         <div onClick={(e)=> onClick(e, channel)}># {channel.title}</div>
-                        { currentUser.id === channel.userId && <EditChannelModal channel={channel} /> }
-                        { currentUser.id === channel.userId && <DeleteChannelModal channel={channel} /> }
-                        </div>
+                        { currentUser.id === channel.user.id ?
+                            <div>
+                                <EditChannelModal channel={channel} />
+                                <DeleteChannelModal channel={channel} />
+                            </div>
+                        : <div></div> }
+                    </div>
                 )}
         </div>
     );
