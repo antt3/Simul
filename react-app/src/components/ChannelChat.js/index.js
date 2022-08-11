@@ -88,7 +88,7 @@ const ChannelChat = () => {
             { messages && <div>
                 {messages.map((message, ind) => (
                     <div key={ind}>
-                        <div>{`${message.user.nickname ? message.user.nickname : message.user.full_name}: ${message.message}`}</div>
+                        <div>{`${message.user.nickname ? message.user.nickname : message.user.full_name}: ${message.message} (${message.created_at})`}</div>
                         {(message.user.id === currentUser.id) && <DeleteChatModal message={message} socket={socket} />}
                         {(message.user.id === currentUser.id) && <EditChatModal message={message} socket={socket} />}
                     </div>
