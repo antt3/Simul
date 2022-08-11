@@ -3,6 +3,7 @@ import { Redirect, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
 import DeleteChatModal from './modals/DeleteChatModal';
+import EditChatModal from './modals/EditChatModal';
 import * as channelMessagesReducer from '../../store/channelMessages';
 
 let socket;
@@ -12,7 +13,7 @@ const ChannelChat = () => {
     const { channelId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
     const channel = useSelector((state) => state.channels[channelId]);
-    let channelMessages = useSelector((state) => Object.values(state.channelMessages));
+    const channelMessages = useSelector((state) => Object.values(state.channelMessages));
     const [content, setContent] = useState("");
     const [messages, setMessages] = useState(channelMessages);
     console.log('--------messages: ', messages, '------------')
@@ -24,11 +25,11 @@ const ChannelChat = () => {
         socket = io();
 
         // listen for chat events
-        socket.on("chat", (res) => {
+        socket.on("chat", async(res) => {
             // when we recieve a chat, add it into our messages array in state
-            dispatch(channelMessagesReducer.actionAddEditMessage(res))
-                .then(dispatch(channelMessagesReducer.thunkGetMessages(channelId)))
-                .then((res) => setMessages(res));
+            await dispatch(channelMessagesReducer.actionAddEditMessage(res))
+            const response = await dispatch(channelMessagesReducer.thunkGetMessages(channelId))
+            setMessages(response);
         })
 
         socket.on("delete", (messageId) => {
@@ -56,7 +57,7 @@ const ChannelChat = () => {
 
         const res = await dispatch(channelMessagesReducer.thunkAddMessage(content, channelId));
         if (res) {
-            socket.emit("chat")
+            socket.emit("chat", res)
             setMessages(channelMessages);
             setContent("")
         };
@@ -71,6 +72,7 @@ const ChannelChat = () => {
                     <div key={ind}>
                         <div>{`${message.user.nickname ? message.user.nickname : message.user.full_name}: ${message.message}`}</div>
                         {(message.user.id === currentUser.id) && <DeleteChatModal message={message} socket={socket} />}
+                        {(message.user.id === currentUser.id) && <EditChatModal message={message} socket={socket} />}
                     </div>
                 ))}
             </div> }

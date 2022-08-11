@@ -45,8 +45,8 @@ export const thunkGetMessages = (channelId) => async (dispatch) => {
 	}
 };
 
-export const thunkAddMessage = (message, channel_id) => async (dispatch) => {
-	console.log('---------Params: ', JSON.stringify({message, channel_id}), '-----------')
+export const thunkAddMessage = (message, channel_id) => async () => {
+	// console.log('---------Params: ', JSON.stringify({message, channel_id}), '-----------')
 	
 	const res = await fetch(`/api/channel-messages/`, {
 		method: "POST",
@@ -58,19 +58,22 @@ export const thunkAddMessage = (message, channel_id) => async (dispatch) => {
 		return data.channel_message
 
 	} else {
-		return 'All Bad'
+		const data = await res.json();
+		if (data.errors) {
+			return data.errors;
+		}
 	}
 };
 
-export const thunkEditMessage = (message) => async (dispatch) => {
+export const thunkEditMessage = (message, channel_id) => async () => {
+	console.log('---------Params: ', JSON.stringify({message, channel_id}), '-----------')
 	const res = await fetch(`/api/channel-messages/${message.id}`, {
 		method: "PUT",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(message),
+		body: JSON.stringify(message, channel_id),
 	});
 	if (res.ok) {
 		const data = await res.json();
-		dispatch(actionAddEditMessage(data.channel_message));
 		return data.channel_message;
 
 	} else {
@@ -87,7 +90,7 @@ export const thunkRemoveMessage = (messageId) => async (dispatch) => {
 	});
 	if (res.ok) {
 		// const data = await res.json();
-		dispatch(actionDeleteMessage(messageId));
+		// dispatch(actionDeleteMessage(messageId));
 		return messageId
 
 	} else {
