@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
+import DeleteChatModal from './modals/DeleteChatModal';
 import * as channelMessagesReducer from '../../store/channelMessages';
 
 let socket;
@@ -31,7 +32,7 @@ const ChannelChat = () => {
         })
 
         socket.on("delete", (messageId) => {
-            dispatch(channelMessagesReducer.deleteMessage(messageId));
+            dispatch(channelMessagesReducer.actionDeleteMessage(messageId));
           });
 
         // when component unmounts, disconnect
@@ -67,9 +68,9 @@ const ChannelChat = () => {
         <div>
             { messages && <div>
                 {messages.map((message, ind) => (
-                    <div>
-                        <div key={ind}>{`${message.user.nickname ? message.user.nickname : message.user.full_name}: ${message.message}`}</div>
-                        {message.user_id === currentUser.id && <EditMessage message={message} />}
+                    <div key={ind}>
+                        <div>{`${message.user.nickname ? message.user.nickname : message.user.full_name}: ${message.message}`}</div>
+                        {(message.user.id === currentUser.id) && <DeleteChatModal message={message} socket={socket} />}
                     </div>
                 ))}
             </div> }
