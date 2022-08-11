@@ -65,16 +65,17 @@ export const thunkAddMessage = (message, channel_id) => async () => {
 	}
 };
 
-export const thunkEditMessage = (message, channel_id) => async () => {
-	console.log('---------Params: ', JSON.stringify({message, channel_id}), '-----------')
-	const res = await fetch(`/api/channel-messages/${message.id}`, {
+export const thunkEditMessage = (message, created_at, message_id) => async () => {
+	// console.log('---------Params: ', JSON.stringify({message}), '-----------')
+	const res = await fetch(`/api/channel-messages/${message_id}`, {
 		method: "PUT",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(message, channel_id),
+		body: JSON.stringify({message, created_at}),
 	});
 	if (res.ok) {
 		const data = await res.json();
-		return data.channel_message;
+		console.log("----------EditData: ", data, '----------');
+		return {message: data}
 
 	} else {
 		const data = await res.json();

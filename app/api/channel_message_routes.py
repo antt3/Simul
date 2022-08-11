@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import db, User, Channel, Channel_message
-from app.forms import ChannelMessageForm
+from app.forms import ChannelMessageForm, EditChannelMessageForm
 import datetime
 
 channel_message_routes = Blueprint("channel_messages", __name__)
@@ -56,24 +56,29 @@ def new_message():
     return {'Message Failed To Post'}, 401
 
 
-@channel_message_routes.route("/<int:messageId>", methods=["PUT", "DELETE"])
+@channel_message_routes.route("/<int:message_id>", methods=["PUT"])
 @login_required
-def edit_delete_message(messageId):
+def edit_message(message_id):
+    print('--------Here: ', message_id,'----------')
+    print('--------Here2----------')
+    form = EditChannelMessageForm()
+    print('--------Here4----------')
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        print('--------Here5----------')
+        edit_message = Channel_message.query.get(message_id)
+        edit_message.message = form.data["message"]
+        edit_message.edited=True
+        edit_message.created_at=form.data["created_at"]
+        db.session.commit()
+        return {'channel_message': edit_message.to_dict()}
+    # print('--------Here3----------')
+    return {'errors': errors_list(form.errors)}, 401
 
-    if request.method == "PUT":
-        form = ChannelMessageForm()
-        form['csrf_token'].data = request.cookies['csrf_token']
-        if form.validate_on_submit():
-            edit_message = Channel_message.query.get(messageId)
-            edit_message.message = form.data["message"]
-            edit_message.edited=True
-            db.session.commit()
-            return { "message": edit_message.to_dict() }
-
-        return {'errors': errors_list(form.errors)}, 401
-
-    if request.method == "DELETE":
-        message = Channel_message.query.get(messageId)
+@channel_message_routes.route("/<int:message_id>", methods=["DELETE"])
+@login_required
+def delete_message(message_id):
+        message = Channel_message.query.get(message_id)
 
         db.session.delete(message)
         db.session.commit()

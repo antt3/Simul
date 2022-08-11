@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import * as channelMessagesReducer from '../../store/channelMessages';
 
 const EditChat = ({ socket, setShowModal, message }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [content, setContent] = useState(message.message);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted,setHasSubmitted] = useState(false)
@@ -24,11 +26,13 @@ const EditChat = ({ socket, setShowModal, message }) => {
         if (!validationErrors.length) {
             setHasSubmitted(false);
 
-            const res = await dispatch(channelMessagesReducer.thunkEditMessage(content, message.channel.id));
+            const res = await dispatch(channelMessagesReducer.thunkEditMessage(content, message.created_at, message.id));
+            console.log('--------EditRes: ', res, '-----------');
             if (res) {
-                socket.emit("chat", res)
-                setContent("")
+                setContent("");
                 setShowModal(false);
+                history.push(`/channels/${message.channel.id}`);
+                socket.emit("chat", res);
             };
         };
     };
