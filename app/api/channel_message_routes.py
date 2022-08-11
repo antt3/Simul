@@ -30,23 +30,29 @@ def get_messages(channel_id):
 @channel_message_routes.route("/", methods=["POST"])
 @login_required
 def new_message():
+    print('--------Here----------')
     form = ChannelMessageForm()
+    print('--------Here2----------')
     form['csrf_token'].data = request.cookies['csrf_token']
+    print('--------Here3----------')
     if form.validate_on_submit():
+        print('--------Here4----------')
         form_message = form.data["message"]
         data = request.json
         print('-----------data: ', data, '--------')
         channelId = data['channel_id']
-        new_message = Channel_message(
+        newMessage = Channel_message(
             message = form_message,
             user_id = current_user.id,
             channel_id = channelId,
-            createdAt = datetime.datetime.now())
-        db.session.add(new_message)
+            edited=False,
+            created_at = datetime.datetime.now())
+        db.session.add(newMessage)
         db.session.commit()
         return{
-            "channel_message": new_message.to_dict()
+            "channel_message": newMessage.to_dict()
         }
+    print('--------Here (Failed) RIP----------')
     return {'Message Failed To Post'}, 401
 
 
@@ -59,7 +65,8 @@ def edit_delete_message(messageId):
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
             edit_message = Channel_message.query.get(messageId)
-            edit_message.content = form.data["message"]
+            edit_message.message = form.data["message"]
+            edit_message.edited=True
             db.session.commit()
             return { "message": edit_message.to_dict() }
 

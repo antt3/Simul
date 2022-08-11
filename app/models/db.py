@@ -79,6 +79,8 @@ class Channel_message(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(255), nullable=False)
+    edited = db.Column(db.Boolean, nullable=True)
+    created_at = db.Column(db.String(100, nullable=False))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'), nullable=False)
 
@@ -92,6 +94,8 @@ class Channel_message(db.Model):
         return{
             "id": self.id,
             "message": self.message,
+            "edited": self.edited,
+            "created_at": self.created_at,
             "user": self.user.to_dict(),
             "channel": self.channels.to_dict()
         }

@@ -45,13 +45,13 @@ export const thunkGetMessages = (channelId) => async (dispatch) => {
 	}
 };
 
-export const thunkAddMessage = (content, channel_id) => async (dispatch) => {
-	console.log('---------Params: ', JSON.stringify({content, channel_id}), '-----------')
+export const thunkAddMessage = (message, channel_id) => async (dispatch) => {
+	console.log('---------Params: ', JSON.stringify({message, channel_id}), '-----------')
 	
 	const res = await fetch(`/api/channel-messages/`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({content, channel_id})
+		body: JSON.stringify({message, channel_id})
 	});
 	if (res.ok) {
 		const data = await res.json();
