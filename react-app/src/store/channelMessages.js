@@ -11,7 +11,7 @@ export const actionGetMessages = (messages) => {
 };
 
 export const actionAddEditMessage = (message) => {
-	console.log('---------ActionMessage: ', message, '--------');
+	// console.log('---------ActionMessage: ', message, '--------');
 
 	return {
 		type: ADD_EDIT_MESSAGE,
@@ -55,8 +55,7 @@ export const thunkAddMessage = (message, channel_id) => async (dispatch) => {
 	});
 	if (res.ok) {
 		const data = await res.json();
-		dispatch(actionAddEditMessage(data.channel_message));
-		return 'All Good'
+		return data.channel_message
 
 	} else {
 		return 'All Bad'

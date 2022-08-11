@@ -11,7 +11,7 @@ const ChannelChat = () => {
     const { channelId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
     const channel = useSelector((state) => state.channels[channelId]);
-    const channelMessages = useSelector((state) => Object.values(state.channelMessages));
+    let channelMessages = useSelector((state) => Object.values(state.channelMessages));
     const [content, setContent] = useState("");
     const [messages, setMessages] = useState(channelMessages);
     console.log('--------messages: ', messages, '------------')
@@ -22,25 +22,40 @@ const ChannelChat = () => {
         // create websocket
         socket = io();
 
+        // listen for chat events
+        socket.on("chat", (res) => {
+            // when we recieve a chat, add it into our messages array in state
+            dispatch(channelMessagesReducer.actionAddEditMessage(res))
+                .then(dispatch(channelMessagesReducer.thunkGetMessages(channelId)))
+                .then((res) => setMessages(res));
+        })
+
+        socket.on("delete", (messageId) => {
+            dispatch(channelMessagesReducer.deleteMessage(messageId));
+          });
+
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, [dispatch, channelId])
 
     useEffect(() => {
         (async() => {
-        const res = await dispatch(channelMessagesReducer.thunkGetMessages(channelId));
-        // console.log('----------res: ', res, '----------');
-        setMessages(res);
+            if (currentUser) {
+                const res = await dispatch(channelMessagesReducer.thunkGetMessages(channelId));
+                // console.log('----------res: ', res, '----------');
+                setMessages(res);
+            }
         })()
-    }, [dispatch, channelId, content]);
+    }, [dispatch, channelId, content, currentUser]);
 
     const sendChat = async(e) => {
         e.preventDefault();
 
         const res = await dispatch(channelMessagesReducer.thunkAddMessage(content, channelId));
-        if (res === 'All Good') {
+        if (res) {
+            socket.emit("chat")
             setMessages(channelMessages);
             setContent("")
         };
@@ -50,11 +65,14 @@ const ChannelChat = () => {
 
     return ((currentUser && channel) ? (
         <div>
-            <div>
+            { messages && <div>
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user.nickname ? message.user.nickname : message.user.full_name}: ${message.message}`}</div>
+                    <div>
+                        <div key={ind}>{`${message.user.nickname ? message.user.nickname : message.user.full_name}: ${message.message}`}</div>
+                        {message.user_id === currentUser.id && <EditMessage message={message} />}
+                    </div>
                 ))}
-            </div>
+            </div> }
             <form onSubmit={sendChat}>
                 <input
                     value={content}
