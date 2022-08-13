@@ -4,11 +4,17 @@ import { logout } from '../../store/session';
 
 const LogoutButton = () => {
   const dispatch = useDispatch()
+
   const onLogout = async (e) => {
+    e.stopPropagation();
     await dispatch(logout());
   };
 
-  return <p className='nav_p NavLink' onClick={onLogout}>Logout</p>;
+  return (
+    <li>
+      <p className='NavLink' onClick={onLogout}>Logout</p>
+    </li>
+  )
 };
 
 export default LogoutButton;

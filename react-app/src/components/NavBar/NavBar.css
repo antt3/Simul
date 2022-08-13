@@ -1,11 +1,31 @@
 nav {
-    display: flex;
-    justify-content: center;
+    z-index: 1;
 }
 
+
 .nav_div {
-    display: flex;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    max-height: 50px;
 }
+
+
+.nav_divs_1 {
+    grid-column: 1;
+    max-height: 50px;
+}
+
+
+.nav_divs_2 {
+    grid-column: 2;
+    max-height: 50px;
+}
+
+
+.nav_divs_3 {
+    grid-column: 3;
+}
+
 
 .NavLink {
     color: black;
@@ -15,9 +35,53 @@ nav {
     margin-right: 50px;
 }
 
+
+.pic_name {
+    display: flex;
+}
+
+
+.menu_name {
+    margin-left: 25px;
+    font-size: 20px;
+}
+
+
 .NavLink:hover {
     color: darkgray;
+    cursor: pointer;
 }
+
+
+.profile_menu {
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 5%;
+    padding: 20px;
+}
+
+
+.menu_img {
+    height: 40px;
+    width: 40px;
+    border-radius: 10%;
+}
+
+
+.menu_item {
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+
+.menu_item:hover {
+    background-color: mediumturquoise;
+    cursor: pointer;
+}
+
 
 .navlink_divs {
     display: flex;
@@ -25,6 +89,9 @@ nav {
     align-items: center;
 }
 
-.nav_p:hover {
-    cursor: pointer;
+
+.nav_bar_user_img {
+    height: 30px;
+    width: 30px;
+    border-radius: 10%;
 }
