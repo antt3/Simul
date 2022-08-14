@@ -1,5 +1,6 @@
 nav {
     z-index: 1;
+    background-color: dimgrey;
 }
 
 
@@ -28,7 +29,6 @@ nav {
 
 
 .NavLink {
-    color: black;
     font-size: 20px;
     text-decoration: none;
     margin-left: 50px;
@@ -54,9 +54,10 @@ nav {
 
 
 .profile_menu {
-    width: 200px;
+    background-color: dimgrey;
+    width: 300px;
     border: 1px solid black;
-    border-radius: 5%;
+    border-radius: 10%;
     padding: 20px;
 }
 
@@ -69,7 +70,6 @@ nav {
 
 
 .menu_item {
-    color: black;
     font-size: 20px;
     text-decoration: none;
     padding-top: 3px;
@@ -78,7 +78,7 @@ nav {
 
 
 .menu_item:hover {
-    background-color: mediumturquoise;
+    background-color:steelblue;
     cursor: pointer;
 }
 

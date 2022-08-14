@@ -4,6 +4,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import CreateChannelModal from './Modals/CreateChannelModal';
 import DeleteChannelModal from './Modals/DeleteChannelModal';
 import EditChannelModal from './Modals/EditChannelModal';
+import './AllChannels.css';
 
 const AllChannels = () => {
     const currentUser = useSelector((state) => state.session.user);

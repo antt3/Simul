@@ -29,9 +29,25 @@ const NavBar = () => {
     await dispatch(logout());
   };
 
-  return (
-    <nav className='navbar'>
-      {currentUser && <div className='nav_div'>
+  const displayName = (user) => {
+    if (user.nickname) {
+      if (user.nickname.length > 13) {
+        return user.nickname.slice(0, 13) + '...';
+      } else {
+        return user.nickname;
+      }
+    } else {
+      if (user.full_name.length > 13) {
+        return user.full_name.slice(0, 13) + '...';
+      } else {
+        return user.full_name;
+      }
+    }
+  };
+
+  if (currentUser) {
+    return ( <nav className='navbar'>
+      <div className='nav_div'>
         <div className='nav_divs_1'>
           <NavLink to='/' className='NavLink' exact={true} activeClassName='active'>
             Home
@@ -58,7 +74,7 @@ const NavBar = () => {
                       src={currentUser.profile_pic ? currentUser.profile_pic : defaultProfileImage}
                       alt='navbar profile'
                     />
-										<div className='menu_name'>{currentUser.nickname ? currentUser.nickname : currentUser.full_name}</div>
+										<div className='menu_name'>{displayName(currentUser)}</div>
                   </div>
 										<div className="menu_item" onClick={e => onClick2(e)}>Account</div>
                     <div className='menu_item' onClick={e => onLogout(e)}>Log out</div>
@@ -66,9 +82,11 @@ const NavBar = () => {
 							)}
 						</div>
 					</div>
-      </div>}
-    </nav>
-  );
+      </div>
+    </nav> );
+  } else {
+    return <></>
+  }
 };
 
 export default NavBar;

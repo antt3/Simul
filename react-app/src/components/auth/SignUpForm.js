@@ -76,13 +76,13 @@ const SignUpForm = () => {
     <div className='form_div logged_out'>
       <div className='website'>
         <img src={logo} alt='Simul'></img>
-        <p>simul</p>
+        <p style={{color: "black"}}>simul</p>
       </div>
       <div className='devlinks_div'>
         <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
         <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
       </div>
-      <p className='form_action'>Sign up for Simul</p>
+      <p  style={{color: "black"}} className='form_action'>Sign up for Simul</p>
       <form className='form' onSubmit={onSignUp}>
         {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
           {errors.map((error, ind) => (
@@ -90,7 +90,7 @@ const SignUpForm = () => {
           ))}
         </div>}
         <div className='form_divs'>
-          <div className='form_label'><label>Email</label></div>
+          <div className='form_label'><label style={{color: "black"}}>Email</label></div>
           <input
             type='text'
             name='email'
@@ -100,7 +100,7 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className='form_divs'>
-          <div className='form_label'><label>Full Name</label></div>
+          <div className='form_label'><label  style={{color: "black"}}>Full Name</label></div>
           <input
             type='text'
             name='fullName'
@@ -110,7 +110,7 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className='form_divs'>
-          <div className='form_label'><label>Password</label></div>
+          <div className='form_label'><label style={{color: "black"}}>Password</label></div>
           <input
             type='password'
             name='password'
@@ -120,7 +120,7 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className='form_divs'>
-          <div className='form_label'><label>Repeat Password</label></div>
+          <div className='form_label'><label style={{color: "black"}}>Repeat Password</label></div>
           <input
             type='password'
             name='repeat_password'
@@ -133,14 +133,14 @@ const SignUpForm = () => {
       </form>
       <div className='form_links'>
         <div className='navlink_divs form_link'>
-          <p>Already have a Simul account?</p>
-          <p><NavLink to='/login' className='NavLink' exact={true} activeClassName='active'>
+          <p style={{color: "black"}}>Already have a Simul account?</p>
+          <p style={{color: "black"}}><NavLink to='/login' style={{color: "black"}} className='NavLink' exact={true} activeClassName='active'>
             Sign in
           </NavLink></p>
         </div>
         <div className='navlink_divs form_link'>
-          <p>Or skip sign up and use the demo login!</p>
-          <p className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
+          <p style={{color: "black"}}>Or skip sign up and use the demo login!</p>
+          <p  style={{color: "black"}} className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
         </div>
       </div>
     </div>

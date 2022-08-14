@@ -5,6 +5,7 @@ import { io } from 'socket.io-client';
 import DeleteChatModal from './modals/DeleteChatModal';
 import EditChatModal from './modals/EditChatModal';
 import * as channelMessagesReducer from '../../store/channelMessages';
+import './ChannelChat.css';
 
 let socket;
 
@@ -68,7 +69,7 @@ const ChannelChat = () => {
     if (!currentUser) return <Redirect to="/login" />;
 
     return ((currentUser && channel) ? (
-        <div>
+        <div className='channels'>
             { channelMessages && <div>
                 {channelMessages.map((message, ind) => (
                     <div key={ind}>

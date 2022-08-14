@@ -61,13 +61,13 @@ const LoginForm = () => {
     <div className='form_div logged_out'>
       <div className='website'>
         <img src={logo} alt='Simul'></img>
-        <p>simul</p>
+        <p style={{color: "black"}}>simul</p>
       </div>
       <div className='devlinks_div'>
         <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
         <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
       </div>
-      <p className='form_action'>Sign in to Simul</p>
+      <p style={{color: "black"}} className='form_action'>Sign in to Simul</p>
       <form className='form' onSubmit={onLogin}>
         {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
           {errors.map((error, ind) => (
@@ -75,7 +75,7 @@ const LoginForm = () => {
           ))}
         </div>}
         <div className='form_divs'>
-          <div className='form_label'><label htmlFor='email'>Email</label></div>
+          <div className='form_label'><label style={{color: "black"}} htmlFor='email'>Email</label></div>
           <input
             name='email'
             type='text'
@@ -85,7 +85,7 @@ const LoginForm = () => {
           />
         </div>
         <div className='form_divs'>
-          <div className='form_label'><label htmlFor='password'>Password</label></div>
+          <div className='form_label'><label style={{color: "black"}} htmlFor='password'>Password</label></div>
           <input
             name='password'
             type='password'
@@ -98,14 +98,14 @@ const LoginForm = () => {
       </form>
       <div className='form_links'>
         <div className='navlink_divs form_link'>
-          <p className='form_link_p'>New to Simul?</p>
-          <p><NavLink to='/sign-up' className='NavLink' exact={true} activeClassName='active'>
+          <p  style={{color: "black"}} className='form_link_p'>New to Simul?</p>
+          <p  style={{color: "black"}}><NavLink to='/sign-up' style={{color: "black"}} className='NavLink' exact={true} activeClassName='active'>
             Sign Up
           </NavLink></p>
         </div>
         <div className='navlink_divs form_link'>
-          <p className='form_link_p'>Or skip sign in and use the demo login!</p>
-          <p className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
+          <p style={{color: "black"}} className='form_link_p'>Or skip sign in and use the demo login!</p>
+          <p style={{color: "black"}} className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
         </div>
       </div>
     </div>

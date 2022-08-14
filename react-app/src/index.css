@@ -9,14 +9,16 @@ label,
 input,
 button,
 ul,
-li {
+li,
+.NavLink {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
 }
 
 
 #root {
-    height: 90vh;
-    width: 90vw;
+    height: 98vh;
+    width: 98vw;
     display: grid;
     grid-template-columns: minmax(150px,17%) minmax(83%,93%);
     grid-template-rows: 9% 91%;
@@ -31,7 +33,6 @@ li {
     min-width: 150px;
     /* background-color: #050203; */
     /* overflow-y: scroll; */
-    margin-bottom: 80px;
     /* border: 2px solid white; */
     position: relative;
     overflow-x: hidden;
