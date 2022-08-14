@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, NavLink, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 
 import logo from "../../logo.png";
@@ -14,6 +14,7 @@ const SignUpForm = () => {
   const [firstSubmit, setFirstSubmit] = useState(false);
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const validateEmail = (email) => {
     let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,6 +53,11 @@ const SignUpForm = () => {
     }
   };
 
+  const onClick = (e) => {
+    e.stopPropagation();
+    history.push("/splash")
+  };
+
   const updateFullName = (e) => {
     setFullName(e.target.value);
   };
@@ -74,7 +80,7 @@ const SignUpForm = () => {
 
   return (
     <div className='form_div logged_out'>
-      <div className='website'>
+      <div className='website' onClick={e => onClick(e)}>
         <img src={logo} alt='Simul'></img>
         <p style={{color: "black"}}>simul</p>
       </div>
@@ -140,7 +146,7 @@ const SignUpForm = () => {
         </div>
         <div className='navlink_divs form_link'>
           <p style={{color: "black"}}>Or skip sign up and use the demo login!</p>
-          <p  style={{color: "black"}} className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
+          <p style={{color: "black"}} className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
         </div>
       </div>
     </div>

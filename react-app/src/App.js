@@ -10,6 +10,7 @@ import AllChannels from './components/AllChannels';
 import PageNotFound from './components/PageNotFound';
 import ChannelChat from './components/ChannelChat.js';
 import User from './components/User';
+import SplashPage from './components/SplashPage';
 import { authenticate } from './store/session';
 import * as channelsReducer from './store/channels';
 
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/splash' exact={true}>
+          <SplashPage />
         </Route>
         <ProtectedRoute path='/channels/:channelId' exact={true} >
           <ChannelChat />

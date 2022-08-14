@@ -41,6 +41,7 @@ li,
 
 .logged_out {
     grid-area: 1 / 1 / 3 / 3;
+    background-color: white;
 }
 
 
@@ -69,6 +70,11 @@ li,
     display: flex;
     align-items: center;
     flex-direction: row;
+}
+
+
+.website:hover {
+    cursor: pointer;
 }
 
 
@@ -150,7 +156,6 @@ li,
     outline: none;
     border: 1px solid blue;
     box-shadow: 0 0 1px 3px lightblue;
-  
 }
 
 
