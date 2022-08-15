@@ -53,7 +53,7 @@ const EditChannelForm = ({setShowModal, channel}) => {
 
 	return (
 		<div className="c_div">
-            <h1>Create A New Channel</h1>
+            <h1>Edit Your Channel</h1>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div className='form_errors'>
                     <ul>
