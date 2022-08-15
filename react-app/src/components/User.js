@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import defaultProfileImage from '../default_profile_image.jpg';
+import './Profiles.css';
 
 function User() {
   const [user, setUser] = useState({});
@@ -21,23 +23,29 @@ function User() {
   }
 
   return (
-    <ul className='content'>
-      <li>
-        <strong>User Id: </strong> {userId}
-      </li>
-      <li>
-        <strong>Email: </strong> {user.email}
-      </li>
-      <li>
-        <strong>Full Name: </strong> {user.full_name}
-      </li>
-      <li>
-        <strong>Nickname: </strong> {user.nickname}
-      </li>
-      <li>
-        <strong>Bio: </strong> {user.bio}
-      </li>
-    </ul>
+    <div className='content profile_div'>
+      <img
+        className='user_prof_img'
+        src={user.profile_pic ? user.profile_pic : defaultProfileImage}
+        alt='Profile'
+      />
+      <div>
+        <strong>Email:</strong>
+        <div>{user.email}</div>
+      </div>
+      <div>
+        <strong>Full Name:</strong>
+        <div>{user.full_name}</div>
+      </div>
+      <div>
+        <strong>Nickname:</strong>
+        <div>{user.nickname}</div>
+      </div>
+      <div>
+        <strong>Bio:</strong>
+        <div>{user.bio}</div>
+      </div>
+    </div>
   );
 }
 export default User;

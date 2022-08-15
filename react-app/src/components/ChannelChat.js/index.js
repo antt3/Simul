@@ -100,7 +100,11 @@ const ChannelChat = () => {
                             />
                             <div className='chat_tm'>
                                 <div className='timestamp'>{createdAt(message.created_at)}</div>
-                                <div onClick={(e) => onClick(e, message.user.id)} className='user_name'>{`${message.user.nickname ? message.user.nickname : message.user.full_name}:`}</div>
+                                <div
+                                    onClick={(e) => onClick(e, message.user.id)}
+                                    className='user_name'>
+                                        {`${message.user.nickname ? message.user.nickname : message.user.full_name}:`}
+                                </div>
                             </div>
                         </div>
                         <div className='message_content'>{`${message.message}`}</div>
