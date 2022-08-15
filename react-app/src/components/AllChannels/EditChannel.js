@@ -16,8 +16,18 @@ const EditChannelForm = ({setShowModal, channel}) => {
 		const errors = [];
 
 		if (!title) errors.push("The title is required.");
-        if (title.length > 100) errors.push("The title must be less than 100 characters long.")
+        if (title.length > 100) errors.push("The title must be less than 100 characters long.");
 		if (description.length > 100) errors.push("The description must be less than 100 characters long.");
+        if (title) {
+            const lowered = title.toLowerCase();
+            setTitle(lowered);
+        }
+
+        if (title.includes(' ')) {
+            const titleArr = title.split(' ');
+            const dashedTitle = titleArr.join('-');
+            setTitle(dashedTitle)
+        }
 
 		setValidationErrors(errors);
 	}, [title, description]);
