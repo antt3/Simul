@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
-
 import logo from "../../logo.png";
+import '../NavBar/NavBar.css';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);

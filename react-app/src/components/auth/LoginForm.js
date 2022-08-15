@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import logo from '../../logo.png';
+import '../NavBar/NavBar.css';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -98,8 +99,8 @@ const LoginForm = () => {
       </form>
       <div className='form_links'>
         <div className='navlink_divs form_link'>
-          <p  style={{color: "black"}} className='form_link_p'>New to Simul?</p>
-          <p  style={{color: "black"}}><NavLink to='/sign-up' style={{color: "black"}} className='NavLink' exact={true} activeClassName='active'>
+          <p style={{color: "black"}} className='form_link_p'>New to Simul?</p>
+          <p style={{color: "black"}}><NavLink to='/sign-up' style={{color: "black"}} className='NavLink' exact={true} activeClassName='active'>
             Sign Up
           </NavLink></p>
         </div>
