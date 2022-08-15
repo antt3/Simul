@@ -21,7 +21,7 @@ const AllChannels = () => {
         history.push(`/channels/${channel.id}`)
     };
 
-    if (!currentUser) return <Redirect to="/login" />;
+    if (!currentUser) return <Redirect to="/splash" />;
 
     return (
         <div className='sidebar'>

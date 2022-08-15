@@ -106,13 +106,13 @@ const LoginForm = () => {
       <div className='form_links'>
         <div className='navlink_divs form_link'>
           <p style={{color: "black"}} className='form_link_p'>New to Simul?</p>
-          <p style={{color: "black"}}><NavLink to='/sign-up' style={{color: "black"}} className='NavLink' exact={true} activeClassName='active'>
+          <p><NavLink to='/sign-up' className='NavLink' id='nav_p' exact={true} activeClassName='active'>
             Sign Up
           </NavLink></p>
         </div>
         <div className='navlink_divs form_link'>
           <p style={{color: "black"}} className='form_link_p'>Or skip sign in and use the demo login!</p>
-          <p style={{color: "black"}} className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
+          <p className='NavLink' id='nav_p' onClick={handleDemo}>Demo Login</p>
         </div>
       </div>
     </div>

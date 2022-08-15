@@ -140,13 +140,13 @@ const SignUpForm = () => {
       <div className='form_links'>
         <div className='navlink_divs form_link'>
           <p style={{color: "black"}}>Already have a Simul account?</p>
-          <p style={{color: "black"}}><NavLink to='/login' style={{color: "black"}} className='NavLink' exact={true} activeClassName='active'>
-            Sign in
+          <p><NavLink to='/login' className='NavLink' id='nav_p' exact={true} activeClassName='active'>
+            Sign In
           </NavLink></p>
         </div>
         <div className='navlink_divs form_link'>
           <p style={{color: "black"}}>Or skip sign up and use the demo login!</p>
-          <p style={{color: "black"}} className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
+          <p className='NavLink' id='nav_p' onClick={handleDemo}>Demo Login</p>
         </div>
       </div>
     </div>

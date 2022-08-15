@@ -43,14 +43,14 @@ function App() {
         <ProtectedRoute path='/' exact={true}>
           <h1 className='content'>Home Page</h1>
         </ProtectedRoute>
+        <Route path='/splash' exact={true}>
+          <SplashPage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
-        </Route>
-        <Route path='/splash' exact={true}>
-          <SplashPage />
         </Route>
         <ProtectedRoute path='/channels/:channelId' exact={true} >
           <ChannelChat />

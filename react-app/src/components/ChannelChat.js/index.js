@@ -66,7 +66,7 @@ const ChannelChat = () => {
         };
     };
 
-    if (!currentUser) return <Redirect to="/login" />;
+    if (!currentUser) return <Redirect to="/splash" />;
 
     return ((currentUser && channel) ? (
         <div className='channels'>
