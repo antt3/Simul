@@ -1,4 +1,32 @@
-# Flask React Project
+# Simul
+
+
+## Index
+[Feature List Documentation](https://github.com/antt3/Simul/wiki/Feature-List)
+
+[Database Schema](https://github.com/antt3/Simul/wiki/DB-Schema)
+
+[User Stories](https://github.com/antt3/Simul/wiki/User-Stories)
+
+[Wireframes](https://github.com/antt3/Simul/wiki/Wireframes)
+
+## Live site hosted by Heroku
+
+[Simul](https://t3-simul.herokuapp.com/splash
+
+## Link to project Repo
+
+[EarFruit Repo](https://github.com/mipresley23/EarFruitGroupProjectRepo)
+
+## Technologies Used
+
+> [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" height=50px width=50px/>](https://reactjs.org/)   [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=50px width=50px />](https://redux.js.org/)   [
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original-wordmark.svg" height=50px width=50px />](https://flask.palletsprojects.com/en/2.1.x/)   [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original-wordmark.svg" height=50px width=50px />](https://docs.sqlalchemy.org/en/14/)   [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg" height=50px width=50px />](https://docs.python.org/3/)   [<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" height=50px width=50px />](https://developer.mozilla.org/en-US/docs/Web/JavaScript)   [Alembic](https://alembic.sqlalchemy.org/en/latest/)   [WTForms](https://wtforms.readthedocs.io/en/3.0.x/)
+
+
+## Description
+Simul is a Slack clone featuring Channels, Channel Messages with Live Chat, and User Profiles. Simul uses a Python Flask backend, a Postgresql database, and a JavaScrypt React/Redux frontend. 
+
 
 This is the starter for the Flask React project.
 
@@ -127,3 +155,6 @@ each of the following variables:
 | `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
 | `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
+
+
+## Wireframe guides
