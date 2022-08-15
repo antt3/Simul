@@ -6,11 +6,11 @@ def seed_users():
     demo = User(
         email='demo@aa.io', password='password', full_name='Demo Lition', nickname='Demo', bio='Just A Quirky Guy!', status=True, profile_pic='https://i.pinimg.com/originals/99/ba/c1/99bac1dab2b7567ca3012b3c3ce89cdc.jpg')
     marnie = User(
-        email='marnie@aa.io', password='password', full_name='Marnie Moe Money', nickname='Marnie', bio='I\'m A Fictional Character!', status=True, profile_pic='')
+        email='marnie@aa.io', password='password', full_name='Marnie Moe', nickname='Marnie', bio='I\'m A Fictional Character!', status=True, profile_pic='https://image.shutterstock.com/image-photo/pure-youth-crazy-english-cocker-260nw-1424153078.jpg')
     randy = User(
-        email='randy@aa.io', password='password', full_name='Randy Bobandy', nickname='Randy', bio='I Like Cheeseburgers!', status=True, profile_pic='')
+        email='randy@aa.io', password='password', full_name='Randy Bobandy', nickname='', bio='I Like Cheeseburgers!', status=True, profile_pic='https://wallpaperaccess.com/full/2004483.jpg')
     bobbie = User(
-        email='bobbie@aa.io', password='password', full_name='Bobby Boyle', nickname='', bio='', status=False, profile_pic='')
+        email='bobbie@aa.io', password='password', full_name='Bobby Boyle', nickname='Bobby', bio='', status=False, profile_pic='')
 
     db.session.add(demo)
     db.session.add(marnie)
