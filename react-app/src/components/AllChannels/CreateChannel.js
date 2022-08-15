@@ -79,6 +79,7 @@ const CreateChannelForm = ({currentUser, setShowModal}) => {
                         name="title"
                         type="text"
                         className="dark"
+                        placeholder="Title"
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
@@ -88,6 +89,7 @@ const CreateChannelForm = ({currentUser, setShowModal}) => {
 					<textarea
                         name="description"
                         className="dark"
+                        placeholder="Description"
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />

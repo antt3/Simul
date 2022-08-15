@@ -7,7 +7,7 @@ const DeleteChatModal = ({message, socket }) => {
   
     return (
         <div className='chat_modal' onClick={(e)=> e.stopPropagation()} >
-            <button className='delete_chat' onClick={() => setShowModal(true)}>Delete</button>
+            <button className='chat_modal_button' onClick={() => setShowModal(true)}>Delete</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <DeleteChat message={message} socket={socket} setShowModal={setShowModal} />

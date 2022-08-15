@@ -88,7 +88,7 @@ const SignUpForm = () => {
         <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
         <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
       </div>
-      <p  style={{color: "black"}} className='form_action'>Sign up for Simul</p>
+      <p style={{color: "black"}} className='form_action'>Sign up for Simul</p>
       <form className='form' onSubmit={onSignUp}>
         {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
           {errors.map((error, ind) => (
