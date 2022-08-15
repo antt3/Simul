@@ -48,13 +48,8 @@ const NavBar = () => {
   if (currentUser) {
     return ( <nav className='navbar'>
       <div className='nav_div'>
-        <div className='nav_divs_1'>
-          <NavLink to='/' className='NavLink' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </div>
         <div className='nav_divs_2'>
-          <NavLink to='/users' className='NavLink' exact={true} activeClassName='active'>
+          <NavLink to='/users' className='NavLink nav_c' exact={true} activeClassName='active'>
             Users
           </NavLink>
         </div>
@@ -76,8 +71,8 @@ const NavBar = () => {
                     />
 										<div className='menu_name'>{displayName(currentUser)}</div>
                   </div>
-										<div className="menu_item" onClick={e => onClick2(e)}>Account</div>
-                    <div className='menu_item' onClick={e => onLogout(e)}>Log out</div>
+									<div className="menu_item m_i_1" onClick={e => onClick2(e)}>Account</div>
+                  <div className='menu_item m_i_2' onClick={e => onLogout(e)}>Log out</div>
 								</div>
 							)}
 						</div>

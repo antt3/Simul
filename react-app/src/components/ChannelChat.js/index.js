@@ -69,7 +69,7 @@ const ChannelChat = () => {
     if (!currentUser) return <Redirect to="/splash" />;
 
     return ((currentUser && channel) ? (
-        <div className='channels'>
+        <div className=' content channels'>
             { channelMessages && <div>
                 {channelMessages.map((message, ind) => (
                     <div key={ind}>
