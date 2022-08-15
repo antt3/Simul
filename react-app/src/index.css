@@ -47,6 +47,7 @@ li,
 
 .content {
     grid-area: content;
+    background-color: rgb(75, 75, 75);
 }
 
 
@@ -79,8 +80,7 @@ li,
     width: 50px;
 }
 
-.website > img:hover, 
-.website > p:hover {
+.website_s:hover {
     cursor: pointer;
 }
 
@@ -172,7 +172,6 @@ li,
     height: 50px;
     width: 370px;
     transition: 0.3s ease;
-
 }
 
 
