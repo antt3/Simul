@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
 import DeleteChatModal from './modals/DeleteChatModal';
@@ -14,6 +14,7 @@ import '../NavBar/NavBar.css';
 let socket;
 
 const ChannelChat = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const { channelId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
@@ -26,6 +27,11 @@ const ChannelChat = () => {
     const createdAt = (timestamp) => {
         return timestamp.split('.')[0];
     }
+
+    const onClick = (e, id) => {
+        e.preventDefault();
+        history.push(`/users/${id}`);
+    };
 
     useEffect(() => {
         
@@ -78,18 +84,23 @@ const ChannelChat = () => {
 
     return ((currentUser && channel) ? (
         <div className='content'>
+            <div className='title_div'>This is the very beginning of the #{channel.title} channel</div>
+            {channel.description ?
+                <div className='description_div'>{channel.description}</div>
+            : <></>}
             { channelMessages && <div>
                 {channelMessages.map((message, ind) => (
                     <div className='message_div' key={ind}>
                         <div className='pic_name'>
                             <img
-                              className='menu_img'
+                              className='menu_img chat_img'
+                              onClick={(e) => onClick(e, message.user.id)}
                               src={message.user.profile_pic ? message.user.profile_pic : defaultProfileImage}
                               alt='navbar profile'
                             />
                             <div className='chat_tm'>
                                 <div className='timestamp'>{createdAt(message.created_at)}</div>
-                                <div className='user_name'>{`${message.user.nickname ? message.user.nickname : message.user.full_name}:`}</div>
+                                <div onClick={(e) => onClick(e, message.user.id)} className='user_name'>{`${message.user.nickname ? message.user.nickname : message.user.full_name}:`}</div>
                             </div>
                         </div>
                         <div className='message_content'>{`${message.message}`}</div>

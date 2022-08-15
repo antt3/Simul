@@ -30,8 +30,13 @@
 
 .message_div {
     word-break: break-all;
-    margin-bottom: 10px;
-    margin-left: 20px;
+    margin: 20px;
+    border-top: 1px solid grey;
+}
+
+
+.chat_img:hover {
+    cursor: pointer;
 }
 
 
@@ -39,6 +44,11 @@
     font-size: 20px;
 }
 
+
+.user_name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .timestamp {
     font-size: 15px;
@@ -114,4 +124,45 @@
 
 .message_length {
     font-size: 30px;
+}
+
+
+.edit_chat_textarea {
+    padding-left: 9px;
+    border: 1px solid grey;
+    width: 70vw;
+    height: 100px;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: 0.1s ease;
+    resize: none;
+}
+
+
+.edit_chat_textarea:hover {
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+
+.edit_chat_textarea:active {
+    color: rgb(200, 200, 200);
+    border: 1px solid rgb(200, 200, 200);
+}
+
+
+.title_div {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 3px;
+}
+
+
+.description_div {
+    font-size: 18px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
