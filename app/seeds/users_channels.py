@@ -41,5 +41,5 @@ def seed_users_channels():
 
 
 def undo_users_channels():
-  db.session.execute('TRUNCATE playlist_songs RESTART IDENTITY CASCADE;')
+  db.session.execute('TRUNCATE users_channels RESTART IDENTITY CASCADE;')
   db.session.commit()

@@ -45,7 +45,7 @@ const EditChat = ({ socket, setShowModal, message }) => {
     };
 
     return (
-        <div>
+        <div className='c_div'>
             <h1>Edit Your Message</h1>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div className='form_errors'>
@@ -57,13 +57,16 @@ const EditChat = ({ socket, setShowModal, message }) => {
                 </div>
             )}
             { message && <form className="form" onSubmit={onSubmit}>
-                <input
+                <textarea
                     value={content}
+                    className='dark edit_chat_textarea'
                     placeholder={`Message #${message.channel.title}`}
                     onChange={(e) => setContent(e.target.value)}
                 />
-                <button className="form_divs form_submit" type="submit">Confirm Edit</button>
-                <button onClick={(e) => handleClick(e)}>Cancel Edit</button>
+                <div>
+                    <button className='form_divs other_cancel' onClick={(e) => handleClick(e)}>Cancel</button>
+                    <button className="form_divs other_submit" type="submit">Confirm</button>
+                </div>
             </form> }
         </div>
     );

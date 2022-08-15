@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 const PageNotFound = () => {
     const currentUser = useSelector((state) => state.session.user)
 
-    if (!currentUser) return <Redirect to="/login" />;
-
-    return (
-        <h1 className='content'>Page Not Found</h1>
-    );
+    if (!currentUser) {
+        return <Redirect to="/splash" />;
+    } else {
+        return <Redirect to="/channels/1" />
+    }
 };
 
 export default PageNotFound;

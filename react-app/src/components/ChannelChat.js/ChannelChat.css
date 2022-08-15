@@ -1,0 +1,169 @@
+.chat_modal_button {
+    background-color: rgb(75, 75, 75);
+    font-size: 15px;
+    border: none;
+    padding: 3px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+
+.chat_modal_button:hover {
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+
+.chat_modal_button:active {
+    border: 1px solid rgb(200, 200, 200);
+    color: rgb(200, 200, 200);
+}
+
+
+.edit_delete_chat {
+    display: flex;
+}
+
+
+.message_div {
+    word-break: break-all;
+    margin: 20px;
+    border-top: 1px solid grey;
+}
+
+
+.chat_img:hover {
+    cursor: pointer;
+}
+
+
+.user_name {
+    font-size: 20px;
+}
+
+
+.user_name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.timestamp {
+    font-size: 15px;
+}
+
+
+.chat_tm {
+    margin-top: 9px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.message_content {
+    font-size: 18px;
+}
+
+
+.chat_textarea {
+    padding-left: 9px;
+    margin-left: 10px;
+    border: 1px solid grey;
+    width: 90%;
+    height: 100px;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: 0.1s ease;
+    resize: none;
+}
+
+
+.chat_textarea:hover {
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+
+.chat_textarea:active {
+    color: rgb(200, 200, 200);
+    border: 1px solid rgb(200, 200, 200);
+}
+
+.chat_form {
+    display: flex;
+    flex-direction: row;
+    position: sticky;
+    bottom: 0px;
+    background-color: rgb(75, 75, 75);
+}
+
+.chat_submit {
+    background-color: #007a5a;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 23px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all .06s ease-in;
+    height: 100px;
+    width: 6%;
+    transition: 0.3s ease;
+}
+
+
+.chat_submit:hover {
+    background-color: #0b946f;
+}
+
+
+.message_length {
+    font-size: 30px;
+}
+
+
+.edit_chat_textarea {
+    padding-left: 9px;
+    border: 1px solid grey;
+    width: 70vw;
+    height: 100px;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: 0.1s ease;
+    resize: none;
+}
+
+
+.edit_chat_textarea:hover {
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+
+.edit_chat_textarea:active {
+    color: rgb(200, 200, 200);
+    border: 1px solid rgb(200, 200, 200);
+}
+
+
+.title_div {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 3px;
+}
+
+
+.description_div {
+    font-size: 18px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}

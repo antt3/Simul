@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, NavLink, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import logo from '../../logo.png';
+import '../NavBar/NavBar.css';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -11,15 +12,21 @@ const LoginForm = () => {
   const [firstSubmit, setFirstSubmit] = useState(false);
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const validateEmail = (email) => {
     let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
-  }
+  };
+
+  const onClick = (e) => {
+    e.stopPropagation();
+    history.push("/splash")
+  };
 
   const handleDemo = () => {
 		return dispatch(sessionActions.demoLogin());
-	}
+	};
 
   useEffect(() => {
     const errors = [];
@@ -30,7 +37,7 @@ const LoginForm = () => {
     if (password.length > 50) errors.push('Password must be under 50 characters.');
 
     setErrors(errors);
-  }, [email, password])
+  }, [email, password]);
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -60,14 +67,14 @@ const LoginForm = () => {
   return (
     <div className='form_div logged_out'>
       <div className='website'>
-        <img src={logo} alt='Simul'></img>
-        <p>simul</p>
+        <img className='website_s' onClick={e => onClick(e)} src={logo} alt='Simul'></img>
+        <p className='website_s' onClick={e => onClick(e)} style={{color: "black"}}>simul</p>
       </div>
       <div className='devlinks_div'>
         <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
         <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
       </div>
-      <p className='form_action'>Sign in to Simul</p>
+      <p style={{color: "black"}} className='form_action'>Sign in to Simul</p>
       <form className='form' onSubmit={onLogin}>
         {(errors.length > 0 && firstSubmit) && <div className='form_errors'>
           {errors.map((error, ind) => (
@@ -75,7 +82,7 @@ const LoginForm = () => {
           ))}
         </div>}
         <div className='form_divs'>
-          <div className='form_label'><label htmlFor='email'>Email</label></div>
+          <div className='form_label'><label style={{color: "black"}} htmlFor='email'>Email</label></div>
           <input
             name='email'
             type='text'
@@ -85,7 +92,7 @@ const LoginForm = () => {
           />
         </div>
         <div className='form_divs'>
-          <div className='form_label'><label htmlFor='password'>Password</label></div>
+          <div className='form_label'><label style={{color: "black"}} htmlFor='password'>Password</label></div>
           <input
             name='password'
             type='password'
@@ -98,14 +105,14 @@ const LoginForm = () => {
       </form>
       <div className='form_links'>
         <div className='navlink_divs form_link'>
-          <p className='form_link_p'>New to Simul?</p>
-          <p><NavLink to='/sign-up' className='NavLink' exact={true} activeClassName='active'>
+          <p style={{color: "black"}} className='form_link_p'>New to Simul?</p>
+          <p><NavLink to='/sign-up' className='NavLink' id='nav_p' exact={true} activeClassName='active'>
             Sign Up
           </NavLink></p>
         </div>
         <div className='navlink_divs form_link'>
-          <p className='form_link_p'>Or skip sign in and use the demo login!</p>
-          <p className='nav_p NavLink' onClick={handleDemo}>Demo Login</p>
+          <p style={{color: "black"}} className='form_link_p'>Or skip sign in and use the demo login!</p>
+          <p className='NavLink' id='nav_p' onClick={handleDemo}>Demo Login</p>
         </div>
       </div>
     </div>

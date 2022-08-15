@@ -28,12 +28,14 @@ function DeleteChannel({setShowModal, channel}) {
 
     return (
         <div className='modal'>
-            <div className='confirm_del'>
+            <div className='c_div'>
                 <h3>
                     Are you sure you want to delete your channel?
                 </h3>
-                <button onClick={(e)=> handleClick(e)}>Confirm</button>
-                <button onClick={(e)=> handleClick2(e)}>Cancel</button>
+                <div>
+                    <button className="form_divs other_cancel" onClick={(e)=> handleClick2(e)}>Cancel</button>
+                    <button className='form_divs other_submit' onClick={(e)=> handleClick(e)}>Confirm</button>
+                </div>
             </div>
         </div>
     );

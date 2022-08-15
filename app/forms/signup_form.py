@@ -10,7 +10,7 @@ def user_exists(form, field):
     email = field.data
     user = User.query.filter(User.email == email).first()
     if user:
-        raise ValidationError('already in use.')
+        raise ValidationError('already in use')
 
 
 # def username_exists(form, field):
@@ -26,3 +26,6 @@ class SignUpForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(message='required'), user_exists])
     password = StringField('password', validators=[DataRequired(message='required')])
     full_name = StringField('full_name', validators=[DataRequired(message='required')])
+    nickname = StringField('nickname')
+    profile_pic = StringField('profile pic')
+    bio = StringField('bio')

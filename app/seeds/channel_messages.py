@@ -55,5 +55,5 @@ def seed_channel_messages():
 
 
 def undo_channel_messages():
-    db.session.execute('TRUNCATE songs RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE channel_messages RESTART IDENTITY CASCADE;')
     db.session.commit()

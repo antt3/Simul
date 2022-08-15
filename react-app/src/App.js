@@ -10,6 +10,7 @@ import AllChannels from './components/AllChannels';
 import PageNotFound from './components/PageNotFound';
 import ChannelChat from './components/ChannelChat.js';
 import User from './components/User';
+import SplashPage from './components/SplashPage';
 import { authenticate } from './store/session';
 import * as channelsReducer from './store/channels';
 
@@ -39,9 +40,9 @@ function App() {
       <NavBar />
       <AllChannels />
       <Switch>
-        <ProtectedRoute path='/' exact={true}>
-          <h1 className='content'>Home Page</h1>
-        </ProtectedRoute>
+        <Route path='/splash' exact={true}>
+          <SplashPage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
