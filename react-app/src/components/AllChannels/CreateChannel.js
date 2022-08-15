@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as channelReducer from "../../store/channels";
 
@@ -13,12 +13,19 @@ const CreateChannelForm = ({currentUser, setShowModal}) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
+    const handleClick = async(e) => {
+
+        e.preventDefault();
+        setShowModal(false);
+
+    };
+
 	useEffect(() => {
 		const errors = [];
 
-		if (!title) errors.push("Title is required.");
-        if (title.length > 100) errors.push("Title must be less than 100 cahracters.");
-		if (description.length > 100) errors.push("Description must be less than 100 characters.");
+		if (!title) errors.push("The title is required.");
+        if (title.length > 100) errors.push("The title must be less than 100 characters 100 long.");
+		if (description.length > 100) errors.push("The description must be less than 100 characters long.");
         if (title) {
             const lowered = title.toLowerCase();
             setTitle(lowered);
@@ -54,7 +61,7 @@ const CreateChannelForm = ({currentUser, setShowModal}) => {
     };
 
 	return (
-		<div>
+		<div className="cc_div">
             <h1>Create A New Channel</h1>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div className='form_errors'>
@@ -71,6 +78,7 @@ const CreateChannelForm = ({currentUser, setShowModal}) => {
 					<input
                         name="title"
                         type="text"
+                        className="dark"
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
@@ -79,11 +87,15 @@ const CreateChannelForm = ({currentUser, setShowModal}) => {
                     <div className='form_label'><label htmlFor="description">Description</label></div>
 					<textarea
                         name="description"
+                        className="dark"
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
 				</div>
-				<button className="form_divs form_submit" type="submit">Submit</button>
+                <div>
+                    <button className="form_divs other_cancel" onClick={(e)=> handleClick(e)}>Cancel</button>
+				    <button className="form_divs other_submit" type="submit">Submit</button>
+                </div>
 			</form>
 		</div>
 	);

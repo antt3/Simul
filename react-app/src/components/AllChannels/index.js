@@ -25,19 +25,21 @@ const AllChannels = () => {
 
     return (
         <div className='sidebar'>
-            <h1>Channels</h1>
+            <div className='top_channels'>
+                <h1>Channels</h1>
                 <CreateChannelModal currentUser={currentUser} />
-                {channels && channelsArr.map((channel) => 
-                    <div className='channel' key={channel.id}>
-                        <div onClick={(e)=> onClick(e, channel)}># {channel.title}</div>
-                        { currentUser.id === channel.user.id ?
-                            <div>
-                                <EditChannelModal channel={channel} />
-                                <DeleteChannelModal channel={channel} />
-                            </div>
-                        : <div></div> }
-                    </div>
-                )}
+            </div>
+            {channels && channelsArr.map((channel) => 
+                <div className='channel' key={channel.id}>
+                    <div onClick={(e)=> onClick(e, channel)}># {channel.title}</div>
+                    { currentUser.id === channel.user.id ?
+                        <div>
+                            <EditChannelModal channel={channel} />
+                            <DeleteChannelModal channel={channel} />
+                        </div>
+                    : <div></div> }
+                </div>
+            )}
         </div>
     );
 };

@@ -7,7 +7,7 @@ const CreateChannelModal = ({currentUser}) => {
   
     return (
         <div className='channel_modal' onClick={(e)=> e.stopPropagation()} >
-            <button className='create_channel' onClick={() => setShowModal(true)}>+</button>
+            <button className='new_channel_modal' onClick={() => setShowModal(true)}>+</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <CreateChannel currentUser={currentUser} setShowModal={setShowModal} />

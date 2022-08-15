@@ -7,7 +7,7 @@ function EditChannelModal({channel}) {
   
     return (
         <div className='channel_modal' onClick={(e)=> e.stopPropagation()} >
-            <button onClick={() => setShowModal(true)}>Edit</button>
+            <button className='modal_button' onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <EditChannel setShowModal={setShowModal} channel={channel} />

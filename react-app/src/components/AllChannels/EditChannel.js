@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as channelReducer from "../../store/channels";
 
@@ -9,16 +9,15 @@ const EditChannelForm = ({setShowModal, channel}) => {
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted,setHasSubmitted] = useState(false)
 
-    // const channels = useSelector((state) => state.channels)
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	useEffect(() => {
 		const errors = [];
 
-		if (!title) errors.push("Title is required.");
-        if (title.length > 100) errors.push("Title must be less than 100 characters.")
-		if (description.length > 100) errors.push("Description must be less than 100 cahracters.");
+		if (!title) errors.push("The title is required.");
+        if (title.length > 100) errors.push("The title must be less than 100 characters long.")
+		if (description.length > 100) errors.push("The description must be less than 100 characters long.");
 
 		setValidationErrors(errors);
 	}, [title, description]);
@@ -70,6 +69,7 @@ const EditChannelForm = ({setShowModal, channel}) => {
 					<input
                         name="title"
                         type="text"
+                        className="dark"
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
@@ -78,6 +78,7 @@ const EditChannelForm = ({setShowModal, channel}) => {
                     <div className='form_label'><label htmlFor="description">Description</label></div>
 					<textarea
                         name="description"
+                        className="dark"
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />

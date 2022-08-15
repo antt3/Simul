@@ -71,7 +71,7 @@ const NavBar = () => {
                     />
 										<div className='menu_name'>{displayName(currentUser)}</div>
                   </div>
-									<div className="menu_item m_i_1" onClick={e => onClick2(e)}>Account</div>
+									<div className="menu_item" onClick={e => onClick2(e)}>Account</div>
                   <div className='menu_item m_i_2' onClick={e => onLogout(e)}>Log out</div>
 								</div>
 							)}
