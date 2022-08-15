@@ -73,17 +73,16 @@ li,
 }
 
 
-.website:hover {
-    cursor: pointer;
-}
-
-
 .website > img {
     margin-right: 7px;
     height: 50px;
     width: 50px;
 }
 
+.website > img:hover, 
+.website > p:hover {
+    cursor: pointer;
+}
 
 .form_action {
     font-size: 48px;

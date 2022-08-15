@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, NavLink, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import logo from '../../logo.png';
 import '../NavBar/NavBar.css';
@@ -12,15 +12,21 @@ const LoginForm = () => {
   const [firstSubmit, setFirstSubmit] = useState(false);
   const currentUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const validateEmail = (email) => {
     let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
-  }
+  };
+
+  const onClick = (e) => {
+    e.stopPropagation();
+    history.push("/splash")
+  };
 
   const handleDemo = () => {
 		return dispatch(sessionActions.demoLogin());
-	}
+	};
 
   useEffect(() => {
     const errors = [];
@@ -31,7 +37,7 @@ const LoginForm = () => {
     if (password.length > 50) errors.push('Password must be under 50 characters.');
 
     setErrors(errors);
-  }, [email, password])
+  }, [email, password]);
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -61,8 +67,8 @@ const LoginForm = () => {
   return (
     <div className='form_div logged_out'>
       <div className='website'>
-        <img src={logo} alt='Simul'></img>
-        <p style={{color: "black"}}>simul</p>
+        <img onClick={e => onClick(e)} src={logo} alt='Simul'></img>
+        <p onClick={e => onClick(e)} style={{color: "black"}}>simul</p>
       </div>
       <div className='devlinks_div'>
         <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
