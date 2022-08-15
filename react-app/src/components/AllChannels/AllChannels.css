@@ -44,27 +44,48 @@
 
 .modal_button {
     background-color: rgb(55, 55, 55);
-    font-size: 30px;
+    font-size: 15px;
     border: none;
     padding: 3px;
     border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 
 .modal_button:hover {
     cursor: pointer;
-    color: rgb(200, 200, 200);
-    border: 1px solid rgb(200, 200, 200);
+    border: 1px solid white;
 }
 
 
 .modal_button:active {
-    background-color: rgb(55, 55, 55);
+    border: 1px solid rgb(200, 200, 200);
+    color: rgb(200, 200, 200);
 }
 
 
-.cc_div {
+.c_div {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+
+.edit_delete_channel {
+    display: flex;
+
+}
+
+
+.channel_title {
+    font-size: 18px;
+}
+
+
+.channel_title:hover {
+    cursor: pointer;
+    background-color: steelblue;
 }

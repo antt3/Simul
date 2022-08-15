@@ -52,7 +52,7 @@ const EditChannelForm = ({setShowModal, channel}) => {
     };
 
 	return (
-		<div>
+		<div className="c_div">
             <h1>Create A New Channel</h1>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div className='form_errors'>
@@ -83,8 +83,10 @@ const EditChannelForm = ({setShowModal, channel}) => {
                         onChange={e => setDescription(e.target.value)}
                     />
 				</div>
-				<button className="form_divs form_submit" type="submit">Submit</button>
-                <button onClick={(e)=> handleClick(e)}>Cancel</button>
+                <div>
+                    <button className="form_divs other_cancel" onClick={(e)=> handleClick(e)}>Cancel</button>
+				    <button className="form_divs other_submit" type="submit">Submit</button>
+                </div>
 			</form>
 		</div>
 	);

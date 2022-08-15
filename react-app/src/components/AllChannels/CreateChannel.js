@@ -61,7 +61,7 @@ const CreateChannelForm = ({currentUser, setShowModal}) => {
     };
 
 	return (
-		<div className="cc_div">
+		<div className="c_div">
             <h1>Create A New Channel</h1>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div className='form_errors'>

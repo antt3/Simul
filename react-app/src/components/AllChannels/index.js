@@ -31,9 +31,9 @@ const AllChannels = () => {
             </div>
             {channels && channelsArr.map((channel) => 
                 <div className='channel' key={channel.id}>
-                    <div onClick={(e)=> onClick(e, channel)}># {channel.title}</div>
+                    <div className='channel_title' onClick={(e)=> onClick(e, channel)}># {channel.title}</div>
                     { currentUser.id === channel.user.id ?
-                        <div>
+                        <div className='edit_delete_channel'>
                             <EditChannelModal channel={channel} />
                             <DeleteChannelModal channel={channel} />
                         </div>
