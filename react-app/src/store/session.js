@@ -46,7 +46,7 @@ export const demoLogin = (email = 'demo@aa.io', password = 'password') => async(
 }
 
 export const login = (email, password) => async (dispatch) => {
-  console.log('------Email & Pass: ', email, password, '-------')
+  // console.log('------Email & Pass: ', email, password, '-------')
   const response = await fetch('/api/auth/login', {
     method: 'POST',
     headers: {
@@ -87,7 +87,7 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (email, full_name, password) => async (dispatch) => {
+export const signUp = (email, full_name, nickname, profile_pic, bio, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -96,7 +96,10 @@ export const signUp = (email, full_name, password) => async (dispatch) => {
     body: JSON.stringify({
       email,
       password,
-      full_name
+      full_name,
+      nickname,
+      profile_pic,
+      bio
     })
   });
   

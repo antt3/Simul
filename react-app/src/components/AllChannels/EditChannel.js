@@ -80,7 +80,7 @@ const EditChannelForm = ({setShowModal, channel}) => {
 					<textarea
                         name="description"
                         className="dark"
-                        placeholder="Description"
+                        placeholder="(Optional) Description"
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />

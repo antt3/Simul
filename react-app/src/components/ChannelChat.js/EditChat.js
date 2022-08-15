@@ -45,7 +45,7 @@ const EditChat = ({ socket, setShowModal, message }) => {
     };
 
     return (
-        <div>
+        <div className='c_div'>
             <h1>Edit Your Message</h1>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div className='form_errors'>

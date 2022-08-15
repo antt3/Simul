@@ -69,6 +69,7 @@
 
 .chat_textarea {
     padding-left: 9px;
+    margin-left: 10px;
     border: 1px solid grey;
     width: 90%;
     height: 100px;

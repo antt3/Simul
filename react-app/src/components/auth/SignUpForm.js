@@ -9,6 +9,9 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [photoURL, setPhotoURL] = useState('');
+  const [bio, setBio] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [firstSubmit, setFirstSubmit] = useState(false);
@@ -21,6 +24,11 @@ const SignUpForm = () => {
     return re.test(email);
   }
 
+  const validateImg = (url) => {
+    let re = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg|png)/i;
+    return re.test(url);
+}
+
   const handleDemo = () => {
 		return dispatch(sessionActions.demoLogin());
 	}
@@ -31,22 +39,25 @@ const SignUpForm = () => {
     if (!validateEmail(email)) errors.push('Must be a valid email address.');
     if (email.length > 50) errors.push('Email length must be under 50 characters.');
     if (!fullName) errors.push('Your name is required.');
-    if (fullName.length > 100) errors.push('Your name must be under 100 character.');
+    if (fullName.length > 100) errors.push('Your name must be under 100 characters.');
+    if (nickname.length > 40) errors.push('Your nickname must be under 40 characters.');
+    if (photoURL.length > 2000) errors.push('Photo URL must be under 2000 characters.');
+    if ((photoURL.length > 0) && !(validateImg(photoURL))) errors.push('Invalid photo URL, must end in png, jpg, or jpeg.');
+    if (bio.length > 255) errors.push('Bio must be under 255 characters.')
     if (password.length < 7) errors.push('Password must be more than 6 characters.');
     if (password.length > 50) errors.push('Password must be under 50 characters.');
     if (!repeatPassword) errors.push('Please repeat the password.');
     if (password !== repeatPassword) errors.push('Password and repeated password must match.');
 
-
     setErrors(errors);
-  }, [email, fullName, password, repeatPassword])
+  }, [email, fullName, password, repeatPassword, nickname, photoURL, bio]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
     setFirstSubmit(true);
 
     if (!errors.length) {
-      const data = await dispatch(sessionActions.signUp(email, fullName, password));
+      const data = await dispatch(sessionActions.signUp(email, fullName, nickname, photoURL, bio, password));
       if (data) {
         setErrors(data)
       }
@@ -64,6 +75,18 @@ const SignUpForm = () => {
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const updateNickname = (e) => {
+    setNickname(e.target.value);
+  };
+
+  const updatePhotoURL = (e) => {
+    setPhotoURL(e.target.value);
+  };
+
+  const updateBio = (e) => {
+    setBio(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -106,7 +129,7 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className='form_divs'>
-          <div className='form_label'><label  style={{color: "black"}}>Full Name</label></div>
+          <div className='form_label'><label style={{color: "black"}}>Full Name</label></div>
           <input
             type='text'
             name='fullName'
@@ -114,6 +137,38 @@ const SignUpForm = () => {
             placeholder='Full Name'
             value={fullName}
           ></input>
+        </div>
+        <div className='form_divs'>
+          <div className='form_label'><label style={{color: "black"}}>Nickname</label></div>
+          <input
+            type='text'
+            name='nickname'
+            onChange={updateNickname}
+            placeholder='(Optional) Nickname'
+            value={nickname}
+          ></input>
+        </div>
+        <div className='form_divs'>
+          <div className='form_label'><label style={{color: "black"}}>Profile Picture URL</label></div>
+          <input
+            type='text'
+            name='profile_pic'
+            onChange={updatePhotoURL}
+            placeholder='(Optional) Profile Photo URL'
+            value={photoURL}
+          ></input>
+        </div>
+        <div className='form_divs'>
+          <div className='form_label'><label style={{color: "black"}}>Bio</label></div>
+          <textarea
+            type='text'
+            name='bio'
+            style={{color: "black"}}
+            className='signup_textarea'
+            onChange={updateBio}
+            placeholder='(Optional) Bio'
+            value={bio}
+          />
         </div>
         <div className='form_divs'>
           <div className='form_label'><label style={{color: "black"}}>Password</label></div>

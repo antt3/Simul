@@ -24,7 +24,7 @@ const CreateChannelForm = ({currentUser, setShowModal}) => {
 		const errors = [];
 
 		if (!title) errors.push("The title is required.");
-        if (title.length > 100) errors.push("The title must be less than 100 characters 100 long.");
+        if (title.length > 100) errors.push("The title must be less than 100 characters long.");
 		if (description.length > 100) errors.push("The description must be less than 100 characters long.");
         if (title) {
             const lowered = title.toLowerCase();
@@ -89,7 +89,7 @@ const CreateChannelForm = ({currentUser, setShowModal}) => {
 					<textarea
                         name="description"
                         className="dark"
-                        placeholder="Description"
+                        placeholder="(Optional) Description"
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />

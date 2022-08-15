@@ -8,6 +8,7 @@ div,
 label,
 .dark,
 button,
+textarea,
 ul,
 li,
 .NavLink {
@@ -50,6 +51,7 @@ input {
 .logged_out {
     grid-area: 1 / 1 / 3 / 3;
     background-color: white;
+    min-height: 150vh;
 }
 
 
