@@ -12,11 +12,7 @@
 
 ## Live site hosted by Heroku
 
-[Simul](https://t3-simul.herokuapp.com/splash
-
-## Link to project Repo
-
-[EarFruit Repo](https://github.com/mipresley23/EarFruitGroupProjectRepo)
+[Simul](https://t3-simul.herokuapp.com/splash)
 
 ## Technologies Used
 
