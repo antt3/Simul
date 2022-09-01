@@ -97,7 +97,7 @@ def delete_channel(channel_id):
     #     return jsonify({'error': 'You do not have permission to delete this channel'})
     db.session.delete(channel)
     db.session.commit()
-    return("Channel Deleted")
+    return({ "message": channel })
 
 
 @channel_routes.route('/<int:channel_id>', methods=['PUT'])

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as channelReducer from "../../store/channels";
 
-function DeleteChannel({setShowModal, channel}) {
+function DeleteChannel({setShowModal, channel, socket}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -15,8 +15,9 @@ function DeleteChannel({setShowModal, channel}) {
 
         if (deleted) {
         setShowModal(false);
-
-        return history.push('/');
+        history.push('/');
+        console.log("-----------------deleted: ", deleted, '-------------')
+        socket.emit("chat", "channel");
         };
     };
 

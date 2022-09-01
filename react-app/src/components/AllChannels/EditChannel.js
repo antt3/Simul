@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as channelReducer from "../../store/channels";
 
-const EditChannelForm = ({setShowModal, channel}) => {
+const EditChannelForm = ({setShowModal, channel, socket}) => {
 	const [title, setTitle] = useState(channel.title);
 	const [description, setDescription] = useState(channel.description);
     const [validationErrors, setValidationErrors] = useState([]);
@@ -49,6 +49,7 @@ const EditChannelForm = ({setShowModal, channel}) => {
             const editedChannel = await dispatch(channelReducer.thunkEditChannel(channel2));
             if (editedChannel) {
                 setShowModal(false);
+                socket.emit("chat", "channel");
                 history.push(`/channels/${editedChannel.id}`);
             };
         };
