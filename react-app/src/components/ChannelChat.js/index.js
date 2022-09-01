@@ -47,14 +47,7 @@ const ChannelChat = () => {
             await dispatch(channelMessagesReducer.thunkGetMessages(channelId))
             // setMessages(response);
         })
-
-        socket.on("delete", async (res) => {
-            // console.log('-------Delete Socket Res: ', res, '----------');
-            
-            await dispatch(channelMessagesReducer.thunkGetMessages(channelId))
-            // setMessages(response);
-          });
-
+        
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
