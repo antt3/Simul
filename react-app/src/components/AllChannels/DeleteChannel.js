@@ -10,21 +10,19 @@ function DeleteChannel({setShowModal, channel, socket}) {
 
 
     const handleClick = async(e) => {
-        e.preventDefault();
+        e.stopPropagation();
         const deleted = await dispatch(channelReducer.thunkDeleteChannel(channel.id));
 
         if (deleted) {
+        socket.emit("chat", "channel");
         setShowModal(false);
         history.push('/');
-        console.log("-----------------deleted: ", deleted, '-------------')
-        socket.emit("chat", "channel");
         };
     };
 
     const handleClick2 = async(e) => {
-        e.preventDefault();
+        e.stopPropagation();
         setShowModal(false);
-
     };
 
     return (

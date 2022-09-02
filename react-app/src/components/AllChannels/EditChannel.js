@@ -48,8 +48,8 @@ const EditChannelForm = ({setShowModal, channel, socket}) => {
 
             const editedChannel = await dispatch(channelReducer.thunkEditChannel(channel2));
             if (editedChannel) {
-                setShowModal(false);
                 socket.emit("chat", "channel");
+                setShowModal(false);
                 history.push(`/channels/${editedChannel.id}`);
             };
         };

@@ -30,9 +30,9 @@ const EditChat = ({ socket, setShowModal, message }) => {
             // console.log('--------EditRes: ', res, '-----------');
             if (res) {
                 setContent("");
+                socket.emit("chat", res);
                 setShowModal(false);
                 history.push(`/channels/${message.channel.id}`);
-                socket.emit("chat", res);
             };
         };
     };

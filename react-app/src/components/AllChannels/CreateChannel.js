@@ -55,8 +55,8 @@ const CreateChannelForm = ({setShowModal, socket}) => {
             const newChannel = await dispatch(channelReducer.thunkAddChannel(channel));
             if (newChannel) {
                 history.push(`/channels/${newChannel.id}`);
-                setShowModal(false);
                 socket.emit("chat", "channel");
+                setShowModal(false);
             };
         };
     };

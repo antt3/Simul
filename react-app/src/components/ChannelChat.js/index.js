@@ -19,7 +19,9 @@ const ChannelChat = () => {
     const dispatch = useDispatch();
     const { channelId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
-    const channel = useSelector((state) => state.channels[channelId]);
+    // const channel = useSelector((state) => state.channels[channelId]);
+    const channelsState = useSelector((state) => state.channels);
+    const channel = channelsState[channelId];
     const channelMessages = Object.values(useSelector((state) => state.channelMessages));
     
     const [content, setContent] = useState("");
@@ -49,6 +51,7 @@ const ChannelChat = () => {
                 await dispatch(channelsReducer.thunkGetChannels());
             } else {
                 await dispatch(channelMessagesReducer.thunkGetMessages(channelId));
+                await dispatch(channelsReducer.thunkGetChannels());
             }
 
             // setMessages(response);
