@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../../context/Modal';
 import EditChannel from '../EditChannel';
 
-function EditChannelModal({channel}) {
+function EditChannelModal({channel, socket}) {
     const [showModal, setShowModal] = useState(false);
   
     return (
@@ -10,7 +10,7 @@ function EditChannelModal({channel}) {
             <button className='modal_button' onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <EditChannel setShowModal={setShowModal} channel={channel} />
+                    <EditChannel setShowModal={setShowModal} channel={channel} socket={socket} />
                 </Modal>
             )}
         </div>

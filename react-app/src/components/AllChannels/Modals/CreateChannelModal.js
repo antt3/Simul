@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../../context/Modal';
 import CreateChannel from '../CreateChannel';
 
-const CreateChannelModal = ({currentUser}) => {
+const CreateChannelModal = ({currentUser, socket}) => {
     const [showModal, setShowModal] = useState(false);
   
     return (
@@ -10,7 +10,7 @@ const CreateChannelModal = ({currentUser}) => {
             <button className='new_channel_modal' onClick={() => setShowModal(true)}>+</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <CreateChannel currentUser={currentUser} setShowModal={setShowModal} />
+                    <CreateChannel currentUser={currentUser} setShowModal={setShowModal} socket={socket} />
                 </Modal>
             )}
         </div>

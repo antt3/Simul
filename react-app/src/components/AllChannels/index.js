@@ -1,16 +1,22 @@
-import React from 'react';
-import { useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from 'react-router-dom';
 import CreateChannelModal from './Modals/CreateChannelModal';
 import DeleteChannelModal from './Modals/DeleteChannelModal';
 import EditChannelModal from './Modals/EditChannelModal';
+import * as channelsReducer from '../../store/channels';
+import { io } from 'socket.io-client';
 import './AllChannels.css';
+
+let socket;
+
 
 const AllChannels = () => {
     const currentUser = useSelector((state) => state.session.user);
     const channels = useSelector((state) => state.channels);
     const channelsArr = Object.values(channels);
     const history = useHistory();
+    const dispatch = useDispatch();
 
     // console.log('----------currentUser: ', currentUser, '-------');
     // console.log('----------Channels: ', channels, '-------');
@@ -20,6 +26,29 @@ const AllChannels = () => {
         e.stopPropagation();
         history.push(`/channels/${channel.id}`)
     };
+
+    useEffect(() => {
+        
+        // open socket connection
+        // create websocket
+        socket = io();
+
+        // listen for chat events
+        socket.on("channel", async(res) => {
+            // when we recieve a chat, add it into our messages array in state
+            // console.log('-------Add/Edit Socket Res: ', res, '----------');
+            // await dispatch(channelMessagesReducer.actionAddEditMessage(res));
+            if (res === "channel") await dispatch(channelsReducer.thunkGetChannels());
+
+            // setMessages(response);
+        })
+        
+        // when component unmounts, disconnect
+        return (() => {
+            socket.disconnect()
+        })
+    }, [dispatch])
+
 
     if (!currentUser) return <Redirect to="/splash" />;
 
@@ -31,15 +60,15 @@ const AllChannels = () => {
             </div>
             <div className='top_channels'>
                 <h1>Channels</h1>
-                <CreateChannelModal currentUser={currentUser} />
+                <CreateChannelModal socket={socket} currentUser={currentUser} />
             </div>
             {channels && channelsArr.map((channel) => 
                 <div className='channel' key={channel.id}>
                     <div className='channel_title' onClick={(e)=> onClick(e, channel)}># {channel.title}</div>
                     { currentUser.id === channel.user.id ?
                         <div className='edit_delete_channel'>
-                            <EditChannelModal channel={channel} />
-                            <DeleteChannelModal channel={channel} />
+                            <EditChannelModal socket={socket} channel={channel} />
+                            <DeleteChannelModal socket={socket} channel={channel} />
                         </div>
                     : <div></div> }
                 </div>

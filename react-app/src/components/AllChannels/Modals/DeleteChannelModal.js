@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../../context/Modal';
 import DeleteChannel from '../DeleteChannel';
 
-const DeleteChannelModal = ({channel}) => {
+const DeleteChannelModal = ({channel, socket}) => {
     const [showModal, setShowModal] = useState(false);
   
     return (
@@ -10,7 +10,7 @@ const DeleteChannelModal = ({channel}) => {
             <button className='modal_button' onClick={() => setShowModal(true)}>Delete</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <DeleteChannel channel={channel} setShowModal={setShowModal} />
+                    <DeleteChannel channel={channel} setShowModal={setShowModal} socket={socket} />
                 </Modal>
             )}
         </div>

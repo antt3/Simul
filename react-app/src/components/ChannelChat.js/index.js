@@ -5,20 +5,23 @@ import { io } from 'socket.io-client';
 import DeleteChatModal from './modals/DeleteChatModal';
 import EditChatModal from './modals/EditChatModal';
 import * as channelMessagesReducer from '../../store/channelMessages';
+import * as channelsReducer from '../../store/channels';
 import defaultProfileImage from '../../default_profile_image.jpg';
 import './ChannelChat.css';
 import '../AllChannels/AllChannels.css';
 import '../NavBar/NavBar.css';
 
-
 let socket;
+
 
 const ChannelChat = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { channelId } = useParams();
     const currentUser = useSelector((state) => state.session.user)
-    const channel = useSelector((state) => state.channels[channelId]);
+    // const channel = useSelector((state) => state.channels[channelId]);
+    const channelsState = useSelector((state) => state.channels);
+    const channel = channelsState[channelId];
     const channelMessages = Object.values(useSelector((state) => state.channelMessages));
     
     const [content, setContent] = useState("");
@@ -44,16 +47,15 @@ const ChannelChat = () => {
             // when we recieve a chat, add it into our messages array in state
             // console.log('-------Add/Edit Socket Res: ', res, '----------');
             // await dispatch(channelMessagesReducer.actionAddEditMessage(res));
-            await dispatch(channelMessagesReducer.thunkGetMessages(channelId))
+            if (res === "channel") {
+                await dispatch(channelsReducer.thunkGetChannels());
+            } else {
+                await dispatch(channelMessagesReducer.thunkGetMessages(channelId));
+                await dispatch(channelsReducer.thunkGetChannels());
+            }
+
             // setMessages(response);
         })
-
-        socket.on("delete", async (res) => {
-            // console.log('-------Delete Socket Res: ', res, '----------');
-            
-            await dispatch(channelMessagesReducer.thunkGetMessages(channelId))
-            // setMessages(response);
-          });
 
         // when component unmounts, disconnect
         return (() => {
