@@ -14,7 +14,7 @@ const EditChat = ({ socket, setShowModal, message }) => {
 		const errors = [];
 
 		if (!content) errors.push("A message is required.");
-        if (content.length > 255) errors.push("The message must be less than 250 characters long.")
+        if (content.length > 255) errors.push("The message must be less than 250 characters long.");
 
 		setValidationErrors(errors);
 	}, [content]);
