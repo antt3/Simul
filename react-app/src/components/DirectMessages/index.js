@@ -11,8 +11,10 @@ let socket;
 const DirectMessages = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const { otherUserId } = useParams();
+    const { refId } = useParams();
     const currentUser = useSelector((state) => state.session.user);
+    const directMessages = useSelector((state) => state.session.directMessages);
+    console.log('-----------Direct Messages: ', directMessages, '------------');
     const [content, setContent] = useState("");
 
     useEffect(() => {
@@ -33,7 +35,11 @@ const DirectMessages = () => {
 
 
     return (
-        <></>
+        <>
+            { directMessages ? Object.values(directMessages).map((directMessage, ind) => (
+                <div key={ind}>{directMessage}</div>
+            )) : <></>}
+        </>
     );
 };
 
