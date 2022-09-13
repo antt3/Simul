@@ -63,7 +63,7 @@ class Channel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
   
     user = db.relationship('User', back_populates='channels')
-    channel_messages = db.relationship('Channel_message', back_populates='channels')
+    channel_messages = db.relationship('Channel_message', back_populates='channels', cascade="all, delete")
   
   
     def to_dict(self):

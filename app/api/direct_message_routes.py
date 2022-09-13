@@ -19,11 +19,11 @@ def errors_list(validation_errors):
 @direct_message_routes.route("/<int:user_id>")
 @login_required
 def get_messages(user_id):
-    # print('-------------Here!!!!---------')
+    print('-------------Here!!!!---------')
     direct_messages = Direct_message.query.filter(Direct_message.user_id == user_id)
-    # print('-------------channel_messages: ', channel_messages, '---------')
+    print('-------------direct_messages: ', direct_messages, '---------')
     return {
-        "channel_messages":[message.to_dict() for message in direct_messages]
+        "direct_messages":[message.to_dict() for message in direct_messages]
     }
 
 
@@ -74,6 +74,7 @@ def edit_message(message_id):
         return {'direct_message': edit_message.to_dict()}
     # print('--------Here3----------')
     return {'errors': errors_list(form.errors)}, 401
+
 
 @direct_message_routes.route("/<int:message_id>", methods=["DELETE"])
 @login_required

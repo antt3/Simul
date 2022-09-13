@@ -1,11 +1,11 @@
-const GET_MESSAGES = "messages/GET_MESSAGES";
-const ADD_EDIT_MESSAGE = "messages/ADD_EDIT_MESSAGE";
-const DELETE_MESSAGE = "messages/DELETE_MESSAGE";
+const GET_DMS = "messages/GET_DMS";
+const ADD_EDIT_DM = "messages/ADD_EDIT_DM";
+const DELETE_DM = "messages/DELETE_DM";
 
 
 export const actionGetMessages = (messages) => {
 	return {
-		type: GET_MESSAGES,
+		type: GET_DMS,
 		messages
 	};
 };
@@ -14,7 +14,7 @@ export const actionAddEditMessage = (message) => {
 	// console.log('---------ActionMessage: ', message, '--------');
 
 	return {
-		type: ADD_EDIT_MESSAGE,
+		type: ADD_EDIT_DM,
 		message
 	};
 };
@@ -22,7 +22,7 @@ export const actionAddEditMessage = (message) => {
 export const actionDeleteMessage = (messageId) => {
 	// console.log('----------messageId: ', messageId, '-------------');
 	return {
-		type: DELETE_MESSAGE,
+		type: DELETE_DM,
 		payload: messageId
 	};
 };
@@ -33,7 +33,7 @@ export const thunkGetMessages = (userId) => async (dispatch) => {
 	const res = await fetch(`/api/direct-messages/${userId}`);
 	if (res.ok) {
 		const data = await res.json();
-		// console.log('---------data1: ', data, '---------');
+		console.log('---------data1: ', data, '---------');
 		dispatch(actionGetMessages(data.direct_messages));
 		return data.direct_messages;
 
@@ -113,19 +113,19 @@ const directMessagesReducer = (state = {}, action) => {
 
 	switch (action.type) {
 
-		case GET_MESSAGES:
+		case GET_DMS:
 			newState = {};
 			action.messages.forEach((message) => {
 				newState[message.id] = message;
 			});
 			return newState;
 
-		case ADD_EDIT_MESSAGE:
+		case ADD_EDIT_DM:
 			newState = { ...state };
 			newState[action.message.id] = action.message;
 			return newState;
 
-		case DELETE_MESSAGE:
+		case DELETE_DM:
             newState = { ...state };
                 delete newState[action.payload];
             return newState;
