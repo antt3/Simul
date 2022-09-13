@@ -8,7 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import AllChannels from './components/AllChannels';
 import PageNotFound from './components/PageNotFound';
-import ChannelChat from './components/ChannelChat.js';
+import ChannelChat from './components/ChannelChat';
 import DirectMessages from './components/DirectMessages';
 import User from './components/User';
 import SplashPage from './components/SplashPage';

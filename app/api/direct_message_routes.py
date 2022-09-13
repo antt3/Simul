@@ -19,9 +19,9 @@ def errors_list(validation_errors):
 @direct_message_routes.route("/<int:user_id>")
 @login_required
 def get_messages(user_id):
-    print('-------------Here!!!!---------')
+    # print('-------------Here!!!!---------')
     direct_messages = Direct_message.query.filter(Direct_message.user_id == user_id)
-    print('-------------direct_messages: ', direct_messages, '---------')
+    # print('-------------direct_messages: ', direct_messages, '---------')
     return {
         "direct_messages":[message.to_dict() for message in direct_messages]
     }

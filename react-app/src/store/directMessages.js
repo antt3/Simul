@@ -33,7 +33,7 @@ export const thunkGetMessages = (userId) => async (dispatch) => {
 	const res = await fetch(`/api/direct-messages/${userId}`);
 	if (res.ok) {
 		const data = await res.json();
-		console.log('---------data1: ', data, '---------');
+		// console.log('---------data1: ', data, '---------');
 		dispatch(actionGetMessages(data.direct_messages));
 		return data.direct_messages;
 

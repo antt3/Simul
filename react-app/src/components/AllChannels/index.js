@@ -5,7 +5,6 @@ import CreateChannelModal from './Modals/CreateChannelModal';
 import DeleteChannelModal from './Modals/DeleteChannelModal';
 import EditChannelModal from './Modals/EditChannelModal';
 import * as channelsReducer from '../../store/channels';
-import * as dmReducer from '../../store/directMessages';
 import { io } from 'socket.io-client';
 import './AllChannels.css';
 
@@ -69,8 +68,17 @@ const AllChannels = () => {
         })
     }, [dispatch, currentUser])
 
+    useEffect(() => {
+        (async() => {
+            await dispatch(channelsReducer.thunkGetChannels());
+
+            // console.log('---------- UseEffect Running ----------');
+            // setMessages(res);
+        })()
+    }, [dispatch]);
 
     if (!currentUser) return <Redirect to="/splash" />;
+
 
     return (
         <div className='sidebar sidebar_main_div'>
