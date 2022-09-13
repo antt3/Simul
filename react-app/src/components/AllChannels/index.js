@@ -42,7 +42,7 @@ const AllChannels = () => {
           setUsers(responseData.users);
         }
         fetchData();
-      }, []);
+    }, []);
 
     useEffect(() => {
         

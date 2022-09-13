@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
+
 import DeleteChatModal from './Modals/DeleteChatModal';
 import EditChatModal from './Modals/EditChatModal';
 import * as channelMessagesReducer from '../../store/channelMessages';
 import * as channelsReducer from '../../store/channels';
 import * as dmReducer from '../../store/directMessages';
 import defaultProfileImage from '../../default_profile_image.jpg';
+
 import './ChannelChat.css';
 import '../AllChannels/AllChannels.css';
 import '../NavBar/NavBar.css';
