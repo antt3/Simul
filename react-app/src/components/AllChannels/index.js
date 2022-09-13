@@ -5,6 +5,7 @@ import CreateChannelModal from './Modals/CreateChannelModal';
 import DeleteChannelModal from './Modals/DeleteChannelModal';
 import EditChannelModal from './Modals/EditChannelModal';
 import * as channelsReducer from '../../store/channels';
+import * as dmReducer from '../../store/directMessages';
 import { io } from 'socket.io-client';
 import './AllChannels.css';
 
@@ -49,16 +50,18 @@ const AllChannels = () => {
         socket = io();
 
         // listen for chat events
-        // socket.on("channel", async(res) => {
-        //     // when we recieve a chat, add it into our messages array in state
-        //     // console.log('-------Add/Edit Socket Res: ', res, '----------');
-        //     // await dispatch(channelMessagesReducer.actionAddEditMessage(res));
-        //     if (res === "channel") {
-        //         await dispatch(channelsReducer.thunkGetChannels());
-        //         await dispatch(dmReducer.thunkGetMessages(currentUser.id));
-        //     }
-        //     // setMessages(response);
-        // })
+        socket.on("chat", async(res) => {
+            // when we recieve a chat, add it into our messages array in state
+            // console.log('-------Add/Edit Socket Res: ', res, '----------');
+            // await dispatch(channelMessagesReducer.actionAddEditMessage(res));
+            if (res === "channel") {
+                await dispatch(channelsReducer.thunkGetChannels());
+                await dispatch(dmReducer.thunkGetMessages(currentUser.id));
+            } else {
+                await dispatch(dmReducer.thunkGetMessages(currentUser.id));
+                await dispatch(channelsReducer.thunkGetChannels());
+            }
+        })
         
         // when component unmounts, disconnect
         return (() => {

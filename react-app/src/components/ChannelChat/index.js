@@ -53,7 +53,6 @@ const ChannelChat = () => {
             if (res === "channel") {
                 await dispatch(channelsReducer.thunkGetChannels());
                 await dispatch(dmReducer.thunkGetMessages(currentUser.id));
-                await dispatch(dmReducer.thunkGetMessages(currentUser.id));
             } else {
                 await dispatch(channelMessagesReducer.thunkGetMessages(channelId));
                 await dispatch(channelsReducer.thunkGetChannels());

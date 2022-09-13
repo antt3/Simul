@@ -6,6 +6,7 @@ import { io } from 'socket.io-client';
 import DeleteMessageModal from './Modals/DeleteMessageModal';
 import EditMessageModal from './Modals/EditMessageModal';
 import * as dmReducer from '../../store/directMessages';
+import * as channelsReducer from '../../store/channels';
 import defaultProfileImage from '../../default_profile_image.jpg';
 
 import './DirectMessages.css';
@@ -23,7 +24,7 @@ const DirectMessages = () => {
     console.log('------------------.--.- All Messages: ', allMessages, '--------.-.-.-.-.-.-')
     const [content, setContent] = useState("");
     const [ref, setRef] = useState(null);
-    if (ref) console.log('------------------.--.- Ref Nickname: ', ref[0].nickname, '--------.-.-.-.-.-.-')
+    // if (ref) console.log('------------------.--.- Ref Nickname: ', ref[0].nickname, '--------.-.-.-.-.-.-')
 
     const createdAt = (timestamp) => {
         return timestamp.split('.')[0];
@@ -52,6 +53,18 @@ const DirectMessages = () => {
         socket = io();
 
         // listen for chat events
+        socket.on("chat", async(res) => {
+            // when we recieve a chat, add it into our messages array in state
+            // console.log('-------Add/Edit Socket Res: ', res, '----------');
+            // await dispatch(channelMessagesReducer.actionAddEditMessage(res));
+            if (res === "channel") {
+                await dispatch(channelsReducer.thunkGetChannels());
+                await dispatch(dmReducer.thunkGetMessages(currentUser.id));
+            } else {
+                await dispatch(dmReducer.thunkGetMessages(currentUser.id));
+                await dispatch(channelsReducer.thunkGetChannels());
+            }
+        })
 
         // when component unmounts, disconnect
         return (() => {

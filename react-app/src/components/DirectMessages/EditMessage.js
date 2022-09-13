@@ -32,7 +32,6 @@ const EditMessage = ({ socket, setShowModal, message }) => {
                 setContent("");
                 socket.emit("chat", res);
                 setShowModal(false);
-                history.push(`/direct-messages/${message.ref.id}`);
             };
         };
     };

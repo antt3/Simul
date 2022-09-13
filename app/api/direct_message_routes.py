@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
+from sqlalchemy import or_
 from app.models import db, User, Direct_message
 from app.forms import ChannelMessageForm, EditChannelMessageForm
 import datetime
@@ -20,7 +21,7 @@ def errors_list(validation_errors):
 @login_required
 def get_messages(user_id):
     # print('-------------Here!!!!---------')
-    direct_messages = Direct_message.query.filter(Direct_message.user_id == user_id or Direct_message.ref_id == user_id)
+    direct_messages = Direct_message.query.filter(or_(Direct_message.user_id == user_id, Direct_message.ref_id == user_id))
     # print('-------------direct_messages: ', direct_messages, '---------')
     return {
         "direct_messages":[message.to_dict() for message in direct_messages]
