@@ -21,7 +21,7 @@ const DirectMessages = () => {
     const { refId } = useParams();
     const currentUser = useSelector((state) => state.session.user);
     const allMessages = useSelector((state) => state.directMessages);
-    console.log('------------------.--.- All Messages: ', allMessages, '--------.-.-.-.-.-.-')
+    // console.log('------------------.--.- All Messages: ', allMessages, '--------.-.-.-.-.-.-')
     const [content, setContent] = useState("");
     const [ref, setRef] = useState(null);
     // if (ref) console.log('------------------.--.- Ref Nickname: ', ref[0].nickname, '--------.-.-.-.-.-.-')
@@ -70,7 +70,7 @@ const DirectMessages = () => {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, [dispatch, currentUser])
 
     useEffect(() => {
         async function fetchData() {
