@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from 'react-router-dom';
 import CreateChannelModal from './Modals/CreateChannelModal';
 import DeleteChannelModal from './Modals/DeleteChannelModal';
 import EditChannelModal from './Modals/EditChannelModal';
 import * as channelsReducer from '../../store/channels';
+import * as dmReducer from '../../store/directMessages';
 import { io } from 'socket.io-client';
 import './AllChannels.css';
 
@@ -15,6 +16,7 @@ const AllChannels = () => {
     const currentUser = useSelector((state) => state.session.user);
     const channels = useSelector((state) => state.channels);
     const channelsArr = Object.values(channels);
+    const [users, setUsers] = useState([]);
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -27,6 +29,20 @@ const AllChannels = () => {
         history.push(`/channels/${channel.id}`)
     };
 
+    const onClick2 = (e, user) => {
+        e.stopPropagation();
+        history.push(`/direct-messages/${user.id}`)
+    };
+
+    useEffect(() => {
+        async function fetchData() {
+          const response = await fetch('/api/users/');
+          const responseData = await response.json();
+          setUsers(responseData.users);
+        }
+        fetchData();
+    }, []);
+
     useEffect(() => {
         
         // open socket connection
@@ -34,23 +50,36 @@ const AllChannels = () => {
         socket = io();
 
         // listen for chat events
-        socket.on("channel", async(res) => {
+        socket.on("chat", async(res) => {
             // when we recieve a chat, add it into our messages array in state
             // console.log('-------Add/Edit Socket Res: ', res, '----------');
             // await dispatch(channelMessagesReducer.actionAddEditMessage(res));
-            if (res === "channel") await dispatch(channelsReducer.thunkGetChannels());
-
-            // setMessages(response);
+            if (res === "channel") {
+                await dispatch(channelsReducer.thunkGetChannels());
+                await dispatch(dmReducer.thunkGetMessages(currentUser.id));
+            } else {
+                await dispatch(dmReducer.thunkGetMessages(currentUser.id));
+                await dispatch(channelsReducer.thunkGetChannels());
+            }
         })
         
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
         })
-    }, [dispatch])
+    }, [dispatch, currentUser])
 
+    useEffect(() => {
+        (async() => {
+            await dispatch(channelsReducer.thunkGetChannels());
+
+            // console.log('---------- UseEffect Running ----------');
+            // setMessages(res);
+        })()
+    }, [dispatch]);
 
     if (!currentUser) return <Redirect to="/splash" />;
+
 
     return (
         <div className='sidebar sidebar_main_div'>
@@ -71,6 +100,18 @@ const AllChannels = () => {
                             <DeleteChannelModal socket={socket} channel={channel} />
                         </div>
                     : <div></div> }
+                </div>
+            )}
+            <div className='top_channels'>
+                <h1>Direct Messages</h1>
+            </div>
+            {users && users.map((user) => 
+                <div className='channel' key={user.id}>
+                    <div
+                        className='channel_title'
+                        onClick={(e)=> onClick2(e, user)}>
+                            {`${user.nickname ? user.nickname : user.full_name}`}
+                    </div>
                 </div>
             )}
         </div>

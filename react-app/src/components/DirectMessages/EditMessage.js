@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import * as channelMessagesReducer from '../../store/channelMessages';
+import * as dmReducer from '../../store/directMessages';
 
-const EditChat = ({ socket, setShowModal, message }) => {
+const EditMessage = ({ socket, setShowModal, message }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [content, setContent] = useState(message.message);
@@ -14,7 +14,7 @@ const EditChat = ({ socket, setShowModal, message }) => {
 		const errors = [];
 
 		if (!content) errors.push("A message is required.");
-        if (content.length > 255) errors.push("The message must be less than 250 characters long.")
+        if (content.length > 255) errors.push("The message must be less than 250 characters long.");
 
 		setValidationErrors(errors);
 	}, [content]);
@@ -26,13 +26,12 @@ const EditChat = ({ socket, setShowModal, message }) => {
         if (!validationErrors.length) {
             setHasSubmitted(false);
 
-            const res = await dispatch(channelMessagesReducer.thunkEditMessage(content, message.created_at, message.id));
+            const res = await dispatch(dmReducer.thunkEditMessage(content, message.created_at, message.id));
             // console.log('--------EditRes: ', res, '-----------');
             if (res) {
                 setContent("");
                 socket.emit("chat", res);
                 setShowModal(false);
-                history.push(`/channels/${message.channel.id}`);
             };
         };
     };
@@ -60,7 +59,7 @@ const EditChat = ({ socket, setShowModal, message }) => {
                 <textarea
                     value={content}
                     className='dark edit_chat_textarea'
-                    placeholder={`Message #${message.channel.title}`}
+                    placeholder={`Message ${message.ref.nickname ? message.ref.nickname : message.ref.full_name}`}
                     onChange={(e) => setContent(e.target.value)}
                 />
                 <div>
@@ -72,4 +71,4 @@ const EditChat = ({ socket, setShowModal, message }) => {
     );
 };
 
-export default EditChat;
+export default EditMessage;

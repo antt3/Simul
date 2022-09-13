@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
-import DeleteChatModal from './modals/DeleteChatModal';
-import EditChatModal from './modals/EditChatModal';
+
+import DeleteChatModal from './Modals/DeleteChatModal';
+import EditChatModal from './Modals/EditChatModal';
 import * as channelMessagesReducer from '../../store/channelMessages';
 import * as channelsReducer from '../../store/channels';
+import * as dmReducer from '../../store/directMessages';
 import defaultProfileImage from '../../default_profile_image.jpg';
+
 import './ChannelChat.css';
 import '../AllChannels/AllChannels.css';
 import '../NavBar/NavBar.css';
@@ -49,9 +52,11 @@ const ChannelChat = () => {
             // await dispatch(channelMessagesReducer.actionAddEditMessage(res));
             if (res === "channel") {
                 await dispatch(channelsReducer.thunkGetChannels());
+                await dispatch(dmReducer.thunkGetMessages(currentUser.id));
             } else {
                 await dispatch(channelMessagesReducer.thunkGetMessages(channelId));
                 await dispatch(channelsReducer.thunkGetChannels());
+                await dispatch(dmReducer.thunkGetMessages(currentUser.id));
             }
 
             // setMessages(response);
@@ -61,11 +66,12 @@ const ChannelChat = () => {
         return (() => {
             socket.disconnect()
         })
-    }, [dispatch, channelId])
+    }, [dispatch, channelId, currentUser])
 
     useEffect(() => {
         (async() => {
             await dispatch(channelMessagesReducer.thunkGetMessages(channelId));
+
             // console.log('---------- UseEffect Running ----------');
             // setMessages(res);
         })()

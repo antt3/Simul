@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from sqlalchemy.orm import backref
 
 db = SQLAlchemy()
 
@@ -28,6 +28,8 @@ class User(db.Model, UserMixin):
 
     channels = db.relationship("Channel", back_populates='user')
     channel_messages = db.relationship('Channel_message', back_populates='user')
+    # user = db.relationship("Direct_message", foreign_keys='direct_messages.user_id', back_populates="dm_user")
+    # ref = db.relationship("Direct_message", foreign_keys='direct_messages.ref_id', back_populates="dm_ref")
 
     @property
     def password(self):
@@ -58,10 +60,10 @@ class Channel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(100), nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
   
     user = db.relationship('User', back_populates='channels')
-    channel_messages = db.relationship('Channel_message', back_populates='channels')
+    channel_messages = db.relationship('Channel_message', back_populates='channels', cascade="all, delete")
   
   
     def to_dict(self):
@@ -81,8 +83,8 @@ class Channel_message(db.Model):
     message = db.Column(db.String(255), nullable=False)
     edited = db.Column(db.Boolean, nullable=True)
     created_at = db.Column(db.String(100), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    channel_id = db.Column(db.Integer, db.ForeignKey('channels.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
+    channel_id = db.Column(db.Integer, db.ForeignKey(Channel.id), nullable=False)
 
     user = db.relationship('User', back_populates='channel_messages')
     channels = db.relationship('Channel', back_populates='channel_messages')
@@ -98,4 +100,31 @@ class Channel_message(db.Model):
             "created_at": self.created_at,
             "user": self.user.to_dict(),
             "channel": self.channels.to_dict()
+        }
+
+
+class Direct_message(db.Model):
+    __tablename__ = 'direct_messages'
+
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(255), nullable=False)
+    edited = db.Column(db.Boolean, nullable=True)
+    created_at = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
+    ref_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
+
+    dm_user = db.relationship("User", backref = backref("user", uselist=False), foreign_keys=[user_id])
+    dm_ref = db.relationship("User", backref = backref("ref", uselist=False), foreign_keys=[ref_id])
+  
+  
+    def to_dict(self):
+        # print('---------Channel_messages.user: ', self.user, '-----------')
+        # print('---------Channel_messages.user: ', self.channels, '-----------')
+        return{
+            "id": self.id,
+            "message": self.message,
+            "edited": self.edited,
+            "created_at": self.created_at,
+            "user": self.dm_user.to_dict(),
+            "ref": self.dm_ref.to_dict()
         }
