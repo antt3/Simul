@@ -15,8 +15,6 @@ const AllChannels = () => {
     const currentUser = useSelector((state) => state.session.user);
     const channels = useSelector((state) => state.channels);
     const channelsArr = Object.values(channels);
-    const directMessages = useSelector((state) => state.directMessages);
-    console.log('-----------Direct Messages: ', directMessages, '------------');
     const [users, setUsers] = useState([]);
     const history = useHistory();
     const dispatch = useDispatch();

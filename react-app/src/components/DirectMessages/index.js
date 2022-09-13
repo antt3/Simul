@@ -18,11 +18,12 @@ const DirectMessages = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { refId } = useParams();
-    console.log('------------', refId, +refId, '----------------');
     const currentUser = useSelector((state) => state.session.user);
-    const allMessages = useSelector((state) => state.session.directMessages);
+    const allMessages = useSelector((state) => state.directMessages);
+    console.log('------------------.--.- All Messages: ', allMessages, '--------.-.-.-.-.-.-')
     const [content, setContent] = useState("");
     const [ref, setRef] = useState(null);
+    if (ref) console.log('------------------.--.- Ref Nickname: ', ref[0].nickname, '--------.-.-.-.-.-.-')
 
     const createdAt = (timestamp) => {
         return timestamp.split('.')[0];
@@ -81,42 +82,80 @@ const DirectMessages = () => {
     if (!currentUser) return <Redirect to="/splash" />;
 
 
-    return ((currentUser && allMessages) ? (
+    return ((currentUser && allMessages && ref) ? (
         <div className='content'>
-            <div className='title_div'>
-                This is the very beginning of your direct message history with @{`${ref.nickname ? ref.nickname : ref.full_name}`}. Only the two of you are in this conversation.</div>
-            { allMessages && <div>
+                { currentUser.id !== ref[0].id ? 
+                    <div className='title_div'>
+                        This is the very beginning of your direct message history with @{`${ref[0].nickname ? ref[0].nickname : ref[0].full_name}`}. Only the two of you are in this conversation.
+                    </div>
+                :
+                    <div className='title_div'>
+                        This is your space. Draft messages, list your to-dos, or keep links and files handy. You can also talk to yourself here, but please bear in mind you'll have to supply both sides of the conversation.
+                    </div>
+                }
+            { currentUser.id !== ref[0].id ? <div>
                 {Object.values(allMessages).map((message, ind) => (
-                    <div className='message_div' key={ind}>
-                        <div className='pic_name'>
-                            <img
-                                className='menu_img chat_img'
-                                onClick={(e) => onClick(e, message.user.id)}
-                                src={message.user.profile_pic ? message.user.profile_pic : defaultProfileImage}
-                                alt='navbar profile'
-                            />
-                            <div className='chat_tm'>
-                                <div className='timestamp'>{createdAt(message.created_at)}</div>
-                                <div
+                    message.user.id === ref[0].id || message.ref.id === ref[0].id ? 
+                        <div className='message_div' key={ind}>
+                            <div className='pic_name'>
+                                <img
+                                    className='menu_img chat_img'
                                     onClick={(e) => onClick(e, message.user.id)}
-                                    className='user_name'>
-                                        {`${message.user.nickname ? message.user.nickname : message.user.full_name}:`}
+                                    src={message.user.profile_pic ? message.user.profile_pic : defaultProfileImage}
+                                    alt='navbar profile'
+                                />
+                                <div className='chat_tm'>
+                                    <div className='timestamp'>{createdAt(message.created_at)}</div>
+                                    <div
+                                        onClick={(e) => onClick(e, message.user.id)}
+                                        className='user_name'>
+                                            {`${message.user.nickname ? message.user.nickname : message.user.full_name}:`}
+                                    </div>
                                 </div>
                             </div>
+                            <div className='message_content'>{`${message.message}`}</div>
+                            <div className='edit_delete_chat'>
+                                {(message.user.id === currentUser.id) && <EditMessageModal message={message} socket={socket} />}
+                                {(message.user.id === currentUser.id) && <DeleteMessageModal message={message} socket={socket} />}
+                            </div>
                         </div>
-                        <div className='message_content'>{`${message.message}`}</div>
-                        <div className='edit_delete_chat'>
-                            {(message.user.id === currentUser.id) && <EditMessageModal message={message} socket={socket} />}
-                            {(message.user.id === currentUser.id) && <DeleteMessageModal message={message} socket={socket} />}
-                        </div>
-                    </div>
+                    : <></>
                 ))}
-            </div> }
+            </div> : <div>
+                {Object.values(allMessages).map((message, ind) => (
+                    message.user.id === ref[0].id && message.ref.id === ref[0].id ? 
+                        <div className='message_div' key={ind}>
+                            <div className='pic_name'>
+                                <img
+                                    className='menu_img chat_img'
+                                    onClick={(e) => onClick(e, message.user.id)}
+                                    src={message.user.profile_pic ? message.user.profile_pic : defaultProfileImage}
+                                    alt='navbar profile'
+                                />
+                                <div className='chat_tm'>
+                                    <div className='timestamp'>{createdAt(message.created_at)}</div>
+                                    <div
+                                        onClick={(e) => onClick(e, message.user.id)}
+                                        className='user_name'>
+                                            {`${message.user.nickname ? message.user.nickname : message.user.full_name}:`}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='message_content'>{`${message.message}`}</div>
+                            <div className='edit_delete_chat'>
+                                {(message.user.id === currentUser.id) && <EditMessageModal message={message} socket={socket} />}
+                                {(message.user.id === currentUser.id) && <DeleteMessageModal message={message} socket={socket} />}
+                            </div>
+                        </div>
+                    : <></>
+                ))}
+            </div>
+            }
             <form className='chat_form' onSubmit={sendChat}>
                 <textarea
                     value={content}
                     className='dark chat_textarea'
-                    placeholder={`Message ${ref.nickname ? ref.nickname : ref.full_name}`}
+                    placeholder={currentUser.id !== ref[0].id ? `Message ${ref[0].nickname ? ref[0].nickname : ref[0].full_name}` : 'Jot something down'}
                     onChange={(e) => setContent(e.target.value)}
                 />
                 { 254 < content.length && <div className='form_label message_length' style={{color: "red"}}>
