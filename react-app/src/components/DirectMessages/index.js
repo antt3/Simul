@@ -97,6 +97,21 @@ const DirectMessages = () => {
 
     return ((currentUser && allMessages && ref) ? (
         <div className='content'>
+                <div className='dm_pic_name'>
+                    <img
+                        className='dm_menu_img dm_chat_img'
+                        onClick={(e) => onClick(e, ref[0].id)}
+                        src={ref[0].profile_pic ? ref[0].profile_pic : defaultProfileImage}
+                        alt='navbar profile'
+                    />
+                    <div className='dm_chat_tm'>
+                        <div
+                            onClick={(e) => onClick(e, ref[0].id)}
+                            className='dm_user_name'>
+                                {`${ref[0].nickname ? ref[0].nickname : ref[0].full_name} ${currentUser.id === ref[0].id ? '(you)' : <></>}`}
+                        </div>
+                    </div>
+                </div>
                 { currentUser.id !== ref[0].id ? 
                     <div className='title_div'>
                         This is the very beginning of your direct message history with @{`${ref[0].nickname ? ref[0].nickname : ref[0].full_name}`}. Only the two of you are in this conversation.
