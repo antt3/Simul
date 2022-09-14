@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
 import * as dmReducer from '../../store/directMessages';
 
 const EditMessage = ({ socket, setShowModal, message }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const [content, setContent] = useState(message.message);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -14,10 +12,11 @@ const EditMessage = ({ socket, setShowModal, message }) => {
 		const errors = [];
 
 		if (!content) errors.push("A message is required.");
+        if (content === message.message) errors.push("The edited message must be different than the original.");
         if (content.length > 255) errors.push("The message must be less than 250 characters long.");
 
 		setValidationErrors(errors);
-	}, [content]);
+	}, [content, message]);
 
     const onSubmit = async(e) => {
         e.preventDefault();
@@ -64,7 +63,7 @@ const EditMessage = ({ socket, setShowModal, message }) => {
                 />
                 <div>
                     <button className='form_divs other_cancel' onClick={(e) => handleClick(e)}>Cancel</button>
-                    <button className="form_divs other_submit" type="submit">Confirm</button>
+                    <button className="form_divs other_submit" type="submit">Save</button>
                 </div>
             </form> }
         </div>

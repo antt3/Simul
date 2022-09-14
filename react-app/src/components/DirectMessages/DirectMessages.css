@@ -1,0 +1,38 @@
+.dm_pic_name {
+    display: flex;
+    flex-direction: row;
+    word-break: break-all;
+    margin: 20px;
+
+}
+
+
+.dm_chat_img {
+    height: 80px;
+    width: 80px;
+    border-radius: 10px;
+}
+
+
+.dm_chat_img:hover {
+    cursor: pointer;
+}
+
+
+.dm_user_name {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+
+.dm_user_name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.dm_chat_tm {
+    margin-top: 9px;
+    display: flex;
+    flex-direction: column;
+}

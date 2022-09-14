@@ -21,7 +21,7 @@ const DirectMessages = () => {
     const { refId } = useParams();
     const currentUser = useSelector((state) => state.session.user);
     const allMessages = useSelector((state) => state.directMessages);
-    console.log('------------------.--.- All Messages: ', allMessages, '--------.-.-.-.-.-.-')
+    // console.log('------------------.--.- All Messages: ', allMessages, '--------.-.-.-.-.-.-')
     const [content, setContent] = useState("");
     const [ref, setRef] = useState(null);
     // if (ref) console.log('------------------.--.- Ref Nickname: ', ref[0].nickname, '--------.-.-.-.-.-.-')
@@ -70,7 +70,7 @@ const DirectMessages = () => {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, [dispatch, currentUser])
 
     useEffect(() => {
         async function fetchData() {
@@ -97,6 +97,21 @@ const DirectMessages = () => {
 
     return ((currentUser && allMessages && ref) ? (
         <div className='content'>
+                <div className='dm_pic_name'>
+                    <img
+                        className='dm_menu_img dm_chat_img'
+                        onClick={(e) => onClick(e, ref[0].id)}
+                        src={ref[0].profile_pic ? ref[0].profile_pic : defaultProfileImage}
+                        alt='navbar profile'
+                    />
+                    <div className='dm_chat_tm'>
+                        <div
+                            onClick={(e) => onClick(e, ref[0].id)}
+                            className='dm_user_name'>
+                                {`${ref[0].nickname ? ref[0].nickname : ref[0].full_name} ${currentUser.id === ref[0].id ? '(you)' : <></>}`}
+                        </div>
+                    </div>
+                </div>
                 { currentUser.id !== ref[0].id ? 
                     <div className='title_div'>
                         This is the very beginning of your direct message history with @{`${ref[0].nickname ? ref[0].nickname : ref[0].full_name}`}. Only the two of you are in this conversation.
@@ -126,7 +141,7 @@ const DirectMessages = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='message_content'>{`${message.message}`}</div>
+                            <div className='message_content'>{`${message.message}`} { message.edited ? <p className="message_edited">(edited)</p> : <></> }</div>
                             <div className='edit_delete_chat'>
                                 {(message.user.id === currentUser.id) && <EditMessageModal message={message} socket={socket} />}
                                 {(message.user.id === currentUser.id) && <DeleteMessageModal message={message} socket={socket} />}
@@ -154,7 +169,7 @@ const DirectMessages = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='message_content'>{`${message.message}`}</div>
+                            <div className='message_content'>{`${message.message}`} { message.edited ? <p className="message_edited">(edited)</p> : <></> }</div>
                             <div className='edit_delete_chat'>
                                 {(message.user.id === currentUser.id) && <EditMessageModal message={message} socket={socket} />}
                                 {(message.user.id === currentUser.id) && <DeleteMessageModal message={message} socket={socket} />}
