@@ -15,6 +15,20 @@
 }
 
 
+.nav_dev_links > a {
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 10px;
+    margin-left: 10px;
+    color: grey;
+}
+
+
+.nav_dev_links > a:hover {
+    color: rgb(220, 220, 220);
+}
+
+
 .top_channels {
     margin-top: 20px;
     display: flex;
@@ -37,6 +51,8 @@
     padding-right: 10px;
     padding-left: 10px;
     border-radius: 35px;
+    border: 1px solid rgb(55, 55, 55);
+    transition: all .1s ease-in;
 }
 
 
@@ -55,7 +71,7 @@
 
 .modal_button {
     background-color: rgb(55, 55, 55);
-    font-size: 15px;
+    font-size: 16px;
     border: none;
     padding: 3px;
     border-radius: 5px;
@@ -67,13 +83,13 @@
 
 .modal_button:hover {
     cursor: pointer;
-    border: 1px solid white;
+    color: rgb(220, 220, 220);
+    transition: all .1s ease-in;
 }
 
 
 .modal_button:active {
-    border: 1px solid rgb(200, 200, 200);
-    color: rgb(200, 200, 200);
+    color:rgb(5, 5, 5);
 }
 
 

@@ -115,7 +115,7 @@ const ChannelChat = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='message_content'>{`${message.message}`}</div>
+                        <div className='message_content'>{`${message.message}`} { message.edited ? <p className="message_edited">(edited)</p> : <></> }</div>
                         <div className='edit_delete_chat'>
                             {(message.user.id === currentUser.id) && <EditChatModal message={message} socket={socket} />}
                             {(message.user.id === currentUser.id) && <DeleteChatModal message={message} socket={socket} />}

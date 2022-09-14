@@ -83,7 +83,7 @@ const AllChannels = () => {
 
     return (
         <div className='sidebar sidebar_main_div'>
-            <div className='devlinks_div nav_dev_links'>
+            <div className='nav_dev_links'>
                 <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
                 <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
             </div>
