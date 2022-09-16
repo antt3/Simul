@@ -27,6 +27,15 @@ def get_messages(channel_id):
     }
 
 
+@channel_message_routes.route('/<string:search_value>')
+# @login_required
+def channel_messages(search_value):
+    # print(search_value)
+    search_results = Channel_message.query.filter(Channel_message.name.ilike(f'%{search_value}%')).all()
+    # print('---------------------------------',search_results,'---------------------------------')
+    return {'channel_messages': [channel_message.to_dict() for channel_message in search_results]}
+
+
 @channel_message_routes.route("/", methods=["POST"])
 @login_required
 def new_message():
