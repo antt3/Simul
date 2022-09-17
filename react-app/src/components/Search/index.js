@@ -45,7 +45,41 @@ const Search = () => {
 	}
 
     return (
-        <></>
+        <div className="search-container">
+			<form className="search-bar" onSubmit={onSubmit}>
+				<i class="search-icon fa fa-search"></i>
+				<input
+					type="text"
+					id="search"
+					name="search"
+					placeholder="Artists, songs, or playlists"
+					onChange={(e) => setSearch(e.target.value)}
+				/>
+				{/* <button>Search</button> */}
+			</form>
+			{resultsArray.length > 0 && (
+				<>
+					<h2>Playlists: </h2>
+					<div className="chan-mes-container">{searchResults}</div>
+				</>
+			)}
+			{searchSongs.length > 0 && (
+				<>
+					<h2>Songs: </h2>
+					<table className="search-table">
+						<thead>
+							<tr className="border-white">
+								<th className="search-song-number">#</th>
+								<th className="">Chanels</th>
+								<th className="">DIrect Messages</th>
+								<th className=""></th>
+							</tr>
+						</thead>
+						<tbody>{SearchResults}</tbody>
+					</table>
+				</>
+			)}
+		</div>
     );
 };
 
