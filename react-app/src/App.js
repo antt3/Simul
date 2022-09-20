@@ -12,6 +12,7 @@ import ChannelChat from './components/ChannelChat';
 import DirectMessages from './components/DirectMessages';
 import User from './components/User';
 import SplashPage from './components/SplashPage';
+import Search from './components/Search';
 import { authenticate } from './store/session';
 import * as channelsReducer from './store/channels';
 
@@ -61,6 +62,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/search/:searchTerm' exact={true} >
+          <Search />
         </ProtectedRoute>
         <Route>
           <PageNotFound />

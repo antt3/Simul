@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
+import { useSearch } from '../../context/SearchContext';
 import * as dmReducer from '../../store/directMessages';
 import * as channelsReducer from '../../store/channels';
 import defaultProfileImage from '../../default_profile_image.jpg';
@@ -17,12 +18,11 @@ const Search = () => {
     const channels = useSelector((state) => state.channels);
     const dmsArray = Object.values(directMessages);
     const channelsArray = Object.values(channels);
-    const { searchTerm } = useParams();
+    const { search } = useSearch();
     const dispatch = useDispatch();
     const history = useHistory();
 
     const [users, setUsers] = useState([]);
-    const [search, setSearch] = useState(searchTerm);
     const [searchedDMS, setSearchedDMS] = useState([]);
     const [searchedCMS, setSearchedCMS] = useState([]);
     const [searchedUsers, setSearchedUsers] = useState([]);
@@ -64,20 +64,10 @@ const Search = () => {
         ));
 
         setSearchedChannels(channelsArray.filter(
-            (channel) => channel.toLowerCase().includes(search.toLowerCase())
+            (channel) => channel.title.toLowerCase().includes(search.toLowerCase())
         ));
 
 	}, [search, dmsArray, users, channelsArray]);
-
-    async function onSubmit(e) {
-		e.preventDefault();
-		async function fetchData() {
-			const response = await fetch(`/api/channel-messages/${search}`);
-			const responseData = await response.json();
-			setSearchedCMS(responseData.channel_messages);
-		}
-		fetchData();
-	}
 
     const onClickUser = (e, user) => {
         e.stopPropagation();
@@ -103,16 +93,6 @@ const Search = () => {
 
     return (
         <div className="search-container">
-			<form className="search-bar" onSubmit={onSubmit}>
-				<input
-					type="text"
-					id="search"
-					name="search"
-					placeholder="Search Channels Or Messages"
-					onChange={(e) => setSearch(e.target.value)}
-				/>
-                <button>Search</button>
-			</form>
 
             {searchedChannels.length > 0 && (
 				<div className='users_div'>

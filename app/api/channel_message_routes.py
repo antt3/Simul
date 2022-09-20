@@ -31,7 +31,7 @@ def get_messages(channel_id):
 # @login_required
 def channel_messages(search_value):
     # print(search_value)
-    search_results = Channel_message.query.filter(Channel_message.name.ilike(f'%{search_value}%')).all()
+    search_results = Channel_message.query.filter(Channel_message.message.ilike(f'%{search_value}%')).all()
     # print('---------------------------------',search_results,'---------------------------------')
     return {'channel_messages': [channel_message.to_dict() for channel_message in search_results]}
 
