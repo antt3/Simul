@@ -63,7 +63,7 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/search/:searchTerm' exact={true} >
+        <ProtectedRoute path='/search/:searchedTerm' exact={true} >
           <Search />
         </ProtectedRoute>
         <Route>

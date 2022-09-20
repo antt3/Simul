@@ -5,18 +5,15 @@ import './index.css';
 import { ModalProvider } from './context/Modal';
 import App from './App';
 import configureStore from './store';
-import SearchProvider from './context/SearchContext';
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <SearchProvider>
-        <ModalProvider>
-          <App />
-        </ModalProvider>
-      </SearchProvider> 
+      <ModalProvider>
+        <App />
+      </ModalProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

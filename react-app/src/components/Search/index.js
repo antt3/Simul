@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 
-import { useSearch } from '../../context/SearchContext';
 import * as dmReducer from '../../store/directMessages';
 import * as channelsReducer from '../../store/channels';
 import defaultProfileImage from '../../default_profile_image.jpg';
@@ -18,24 +17,24 @@ const Search = () => {
     const channels = useSelector((state) => state.channels);
     const dmsArray = Object.values(directMessages);
     const channelsArray = Object.values(channels);
-    const { search } = useSearch();
+    const { searchedTerm } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
     const [searchedDMS, setSearchedDMS] = useState([]);
     const [searchedCMS, setSearchedCMS] = useState([]);
     const [searchedUsers, setSearchedUsers] = useState([]);
     const [searchedChannels, setSearchedChannels] = useState([]);
 
-    useEffect(() => {
-        async function fetchData() {
-          const response = await fetch('/api/users/');
-          const responseData = await response.json();
-          setUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     async function fetchUsers() {
+    //       const response = await fetch('/api/users/');
+    //       const responseData = await response.json();
+    //       setUsers(responseData.users);
+    //     }
+    //     fetchUsers();
+    // }, []);
 
     useEffect(() => {
         (async() => {
@@ -45,29 +44,31 @@ const Search = () => {
     }, [dispatch, currentUser]);
 
     useEffect(() => {
-		async function fetchData() {
-			const response = await fetch(`/api/channel-messages/${search}`);
-			const responseData = await response.json();
-			setSearchedCMS(responseData.channel_messages);
-		}
+		(async() => {
 
-		fetchData();
+		    	const cmResponse = await fetch(`/api/channel-messages/${searchedTerm}`);
+		    	const cmResponseData = await cmResponse.json();
+		    	setSearchedCMS(cmResponseData.channel_messages);
+            
+                const usersResponse = await fetch('/api/users/');
+                const usersResponseData = await usersResponse.json();
+                const users = usersResponseData.users;
 
-        setSearchedDMS(dmsArray.filter(
-            (dm) => dm.message.toLowerCase().includes(search.toLowerCase())
-        ));
-
-        setSearchedUsers(users.filter((user) => (
-                user.full_name.toLowerCase().includes(search.toLowerCase()) ||
-                user.nickname.toLowerCase().includes(search.toLowerCase())
-            )
-        ));
-
-        setSearchedChannels(channelsArray.filter(
-            (channel) => channel.title.toLowerCase().includes(search.toLowerCase())
-        ));
-
-	}, [search, dmsArray, users, channelsArray]);
+                setSearchedDMS(dmsArray.filter(
+                    (dm) => dm.message.toLowerCase().includes(searchedTerm.toLowerCase())
+                ));
+            
+                setSearchedUsers(users.filter((user) => (
+                        user.full_name.toLowerCase().includes(searchedTerm.toLowerCase()) ||
+                        user.nickname.toLowerCase().includes(searchedTerm.toLowerCase())
+                    )
+                ));
+            
+                setSearchedChannels(channelsArray.filter(
+                    (channel) => channel.title.toLowerCase().includes(searchedTerm.toLowerCase())
+                ));
+        })();
+	}, [searchedTerm]);
 
     const onClickUser = (e, user) => {
         e.stopPropagation();
@@ -94,20 +95,29 @@ const Search = () => {
     return (
         <div className="search-container">
 
-            {searchedChannels.length > 0 && (
+            {searchedChannels.length > 0 ? (
 				<div className='users_div'>
 					<h2>Channels: </h2>
 					<div className="users_divs">
-                        {searchedChannels.map((channel) => (
-                            <div className='user_div' onClick={(e, channel) => onClickChannel(e, channel)}>
+                        {searchedChannels.map((channel, ind) => (
+                            <div className='user_div' onClick={(e, channel) => onClickChannel(e, channel)} key={ind}>
                                 {channel.title}
                             </div>
                         ))}
                     </div>
 				</div>
-			)}
+			) : (
+                <div className='users_div'>
+					<h2>Channels: </h2>
+					<div className="users_divs">
+                        <div className='user_div'>
+                                No Results
+                        </div>
+                    </div>
+                </div>
+            )}
 
-            {searchedUsers.length > 0 && (
+            {searchedUsers.length > 0 ? (
 				<div className='users_div'>
 					<h2>People: </h2>
 					<div className="users_divs">
@@ -123,16 +133,25 @@ const Search = () => {
                                     <div
                                         onClick={(e, user) => onClickUser(e, user)}
                                         className='dm_user_name'>
-                                            {user.full_name.toLowerCase().includes(search.toLowerCase()) ? user.full_name : user.nickname}
+                                            {user.full_name.toLowerCase().includes(searchedTerm.toLowerCase()) ? user.full_name : user.nickname}
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
 				</div>
-			)}
+			) : (
+                <div className='users_div'>
+					<h2>People: </h2>
+					<div className="users_divs">
+                        <div className='user_div'>
+                                No Results
+                        </div>
+                    </div>
+                </div>
+            )}
 
-			{searchedCMS.length > 0 && (
+			{searchedCMS.length > 0 ? (
 				<div className='dms_div'>
 					<h2>Channel Messages: </h2>
 					<div className="dms_messages">
@@ -161,8 +180,17 @@ const Search = () => {
                         ))}
                     </div>
 				</div>
-			)}
-            {searchedDMS.length > 0 && (
+			) : (
+                <div className='users_div'>
+					<h2>Channel Messages: </h2>
+					<div className="users_divs">
+                        <div className='user_div'>
+                                No Results
+                        </div>
+                    </div>
+                </div>
+            )}
+            {searchedDMS.length > 0 ? (
 				<div className='dms_div'>
 					<h2>Direct Messages: </h2>
 					<div className="dms_messages">
@@ -191,7 +219,16 @@ const Search = () => {
                         ))}
                     </div>
 				</div>
-			)}
+			) : (
+                <div className='users_div'>
+					<h2>Direct Mesages: </h2>
+					<div className="users_divs">
+                        <div className='user_div'>
+                                No Results
+                        </div>
+                    </div>
+                </div>
+            )}
 		</div>
     );
 };

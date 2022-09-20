@@ -4,17 +4,17 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch} from 'react-redux';
 
 import { logout } from '../../store/session';
-import { useSearch } from '../../context/SearchContext';
 
 import './NavBar.css';
 import defaultProfileImage from '../../default_profile_image.jpg';
 
 const NavBar = () => {
-  const { search, setSearch } = useSearch();
   const dispatch = useDispatch();
   const history = useHistory();
   const currentUser = useSelector((state) => state.session.user);
   const [ showMenu, setShowMenu ] = useState(false);
+  const [ search, setSearch ] = useState('');
+
 
   async function onSubmit(e) {
 		e.preventDefault();
