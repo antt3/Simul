@@ -97,7 +97,7 @@ const Search = () => {
 
             {searchedChannels.length > 0 ? (
 				<div className='users_div'>
-					<h2>Channels: </h2>
+					<h1>Channels: </h1>
 					<div className="users_divs">
                         {searchedChannels.map((channel, ind) => (
                             <div className='user_div' onClick={(e, channel) => onClickChannel(e, channel)} key={ind}>
@@ -108,7 +108,7 @@ const Search = () => {
 				</div>
 			) : (
                 <div className='users_div'>
-					<h2>Channels: </h2>
+					<h1>Channels: </h1>
 					<div className="users_divs">
                         <div className='user_div'>
                                 No Results
@@ -119,7 +119,7 @@ const Search = () => {
 
             {searchedUsers.length > 0 ? (
 				<div className='users_div'>
-					<h2>People: </h2>
+					<h1>Users: </h1>
 					<div className="users_divs">
                         {searchedUsers.map((user, ind) => (
                             <div className='dm_pic_name' key={ind}>
@@ -142,7 +142,7 @@ const Search = () => {
 				</div>
 			) : (
                 <div className='users_div'>
-					<h2>People: </h2>
+					<h1>Users: </h1>
 					<div className="users_divs">
                         <div className='user_div'>
                                 No Results
@@ -153,7 +153,7 @@ const Search = () => {
 
 			{searchedCMS.length > 0 ? (
 				<div className='dms_div'>
-					<h2>Channel Messages: </h2>
+					<h1>Channel Messages: </h1>
 					<div className="dms_messages">
                         {searchedCMS.map((cm, ind) => (
                             <div className='message_div' key={ind}>
@@ -173,7 +173,7 @@ const Search = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='message_content' onClick={(e) => onClickChannel(e, cm.channel)}>
+                                <div className='message_content search_dm' onClick={(e) => onClickChannel(e, cm.channel)}>
                                     {`${cm.message}`} { cm.edited ? <p className="message_edited">(edited)</p> : <></> }
                                 </div>
                             </div>
@@ -182,7 +182,7 @@ const Search = () => {
 				</div>
 			) : (
                 <div className='users_div'>
-					<h2>Channel Messages: </h2>
+					<h1>Channel Messages: </h1>
 					<div className="users_divs">
                         <div className='user_div'>
                                 No Results
@@ -192,7 +192,7 @@ const Search = () => {
             )}
             {searchedDMS.length > 0 ? (
 				<div className='dms_div'>
-					<h2>Direct Messages: </h2>
+					<h1>Direct Messages: </h1>
 					<div className="dms_messages">
                         {searchedDMS.map((dm, ind) => (
                             <div className='message_div' key={ind}>
@@ -212,7 +212,7 @@ const Search = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='message_content' onClick={(e) => onClickDM(e, dm.user)}>
+                                <div className='message_content search_dm' onClick={(e) => onClickDM(e, dm.user)}>
                                     {`${dm.message}`} { dm.edited ? <p className="message_edited">(edited)</p> : <></> }
                                 </div>
                             </div>
@@ -221,7 +221,7 @@ const Search = () => {
 				</div>
 			) : (
                 <div className='users_div'>
-					<h2>Direct Mesages: </h2>
+					<h1>Direct Messages: </h1>
 					<div className="users_divs">
                         <div className='user_div'>
                                 No Results

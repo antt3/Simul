@@ -58,7 +58,7 @@ const NavBar = () => {
     return ( <nav className='navbar'>
       <div className='nav_div'>
         <div className='nav_divs_1'>
-          <form className="search-bar" onSubmit={onSubmit}>
+          <form className="search_bar" onSubmit={onSubmit}>
 				  <input
 				  	type="text"
 				  	id="search"
@@ -69,12 +69,12 @@ const NavBar = () => {
           <button>Search</button>
 			</form>
         </div>
-        <div className='nav_divs_2'>
-          <NavLink to='/users' className='NavLink nav_c' exact={true} activeClassName='active'>
+        <div className='nav_divs_3'>
+          <NavLink to='/users' className='nav_c' exact={true} activeClassName='active'>
             Users
           </NavLink>
         </div>
-        <div className='nav_divs_3'>
+        <div className='nav_divs_4'>
 						<div className='nav_bar_user_info'>
 								<img
                   className='nav_bar_user_img'
