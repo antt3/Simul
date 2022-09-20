@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 
 import * as dmReducer from '../../store/directMessages';
 import * as channelsReducer from '../../store/channels';
@@ -17,6 +18,13 @@ const Search = () => {
     const [resultsArray, setResultsArray] = useState([]);
     const [search, setSearch] = useState('');
     const dispatch = useDispatch();
+    const { searchTerm } = useParams();
+    const searchedDMS = dmsArray.filter(
+		(dm) =>
+			dm.user.full_name.toLowerCase().includes(search.toLowerCase()) ||
+			dm.message.toLowerCase().includes(search.toLowerCase()) ||
+            dm.user.nickname.toLowerCase().includes(search.toLowerCase())
+	);
 
     useEffect(() => {
         (async() => {
@@ -27,9 +35,9 @@ const Search = () => {
 
     useEffect(() => {
 		async function fetchData() {
-			const response = await fetch(`/api/direct-messages/${search}`);
+			const response = await fetch(`/api/channel-messages/${search}`);
 			const responseData = await response.json();
-			setResultsArray(responseData.direct_messages);
+			setResultsArray(responseData.channel_messages);
 		}
 		fetchData();
 	}, [search]);
@@ -37,12 +45,15 @@ const Search = () => {
     async function onSubmit(e) {
 		e.preventDefault();
 		async function fetchData() {
-			const response = await fetch(`/api/playlists/${search}`);
+			const response = await fetch(`/api/channel-messages/${search}`);
 			const responseData = await response.json();
 			setResultsArray(responseData.channel_messages);
 		}
 		fetchData();
 	}
+
+    if (!currentUser) return <Redirect to="/splash" />;
+
 
     return (
         <div className="search-container">
@@ -52,7 +63,7 @@ const Search = () => {
 					type="text"
 					id="search"
 					name="search"
-					placeholder="Artists, songs, or playlists"
+					placeholder="Search Channels Or Messages"
 					onChange={(e) => setSearch(e.target.value)}
 				/>
 				{/* <button>Search</button> */}
@@ -70,8 +81,8 @@ const Search = () => {
 						<thead>
 							<tr className="border-white">
 								<th className="search-song-number">#</th>
-								<th className="">Chanels</th>
-								<th className="">DIrect Messages</th>
+								<th className="">Channels</th>
+								<th className="">Direct Messages</th>
 								<th className=""></th>
 							</tr>
 						</thead>
