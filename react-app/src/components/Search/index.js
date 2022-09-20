@@ -15,16 +15,24 @@ const Search = () => {
     const channels = useSelector((state) => state.channels);
     const dmsArray = Object.values(directMessages);
     const channelsArray = Object.values(channels);
-    const [resultsArray, setResultsArray] = useState([]);
-    const [search, setSearch] = useState('');
-    const dispatch = useDispatch();
     const { searchTerm } = useParams();
-    const searchedDMS = dmsArray.filter(
-		(dm) =>
-			dm.user.full_name.toLowerCase().includes(search.toLowerCase()) ||
-			dm.message.toLowerCase().includes(search.toLowerCase()) ||
-            dm.user.nickname.toLowerCase().includes(search.toLowerCase())
-	);
+    const dispatch = useDispatch();
+
+    const [users, setUsers] = useState([]);
+    const [search, setSearch] = useState(searchTerm);
+    const [searchedDMS, setSearchedDMS] = useState([]);
+    const [searchedCMS, setSearchedCMS] = useState([]);
+    const [searchedUsers, setSearchedUsers] = useState([]);
+    const [searchedChannels, setSearchedChannels] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+          const response = await fetch('/api/users/');
+          const responseData = await response.json();
+          setUsers(responseData.users);
+        }
+        fetchData();
+    }, []);
 
     useEffect(() => {
         (async() => {
@@ -37,17 +45,33 @@ const Search = () => {
 		async function fetchData() {
 			const response = await fetch(`/api/channel-messages/${search}`);
 			const responseData = await response.json();
-			setResultsArray(responseData.channel_messages);
+			setSearchedCMS(responseData.channel_messages);
 		}
+
 		fetchData();
-	}, [search]);
+
+        setSearchedDMS(dmsArray.filter(
+            (dm) => dm.message.toLowerCase().includes(search.toLowerCase())
+        ));
+
+        setSearchedUsers(users.filter((user) => (
+                user.full_name.toLowerCase().includes(search.toLowerCase()) ||
+                user.nickname.toLowerCase().includes(search.toLowerCase())
+            )
+        ));
+
+        setSearchedChannels(channelsArray.filter(
+            (channel) => channel.toLowerCase().includes(search.toLowerCase())
+        ));
+
+	}, [search, dmsArray, users, channelsArray]);
 
     async function onSubmit(e) {
 		e.preventDefault();
 		async function fetchData() {
 			const response = await fetch(`/api/channel-messages/${search}`);
 			const responseData = await response.json();
-			setResultsArray(responseData.channel_messages);
+			setSearchedCMS(responseData.channel_messages);
 		}
 		fetchData();
 	}
@@ -58,7 +82,6 @@ const Search = () => {
     return (
         <div className="search-container">
 			<form className="search-bar" onSubmit={onSubmit}>
-				<i class="search-icon fa fa-search"></i>
 				<input
 					type="text"
 					id="search"
@@ -66,29 +89,31 @@ const Search = () => {
 					placeholder="Search Channels Or Messages"
 					onChange={(e) => setSearch(e.target.value)}
 				/>
-				{/* <button>Search</button> */}
+                <button>Search</button>
 			</form>
-			{resultsArray.length > 0 && (
-				<>
-					<h2>Playlists: </h2>
-					<div className="chan-mes-container">{searchResults}</div>
-				</>
+            {searchedUsers.length > 0 && (
+				<div className='users_div'>
+					<h2>Users: </h2>
+					<div className="users_divs">{searchedUsers}</div>
+				</div>
 			)}
-			{searchSongs.length > 0 && (
-				<>
-					<h2>Songs: </h2>
-					<table className="search-table">
-						<thead>
-							<tr className="border-white">
-								<th className="search-song-number">#</th>
-								<th className="">Channels</th>
-								<th className="">Direct Messages</th>
-								<th className=""></th>
-							</tr>
-						</thead>
-						<tbody>{SearchResults}</tbody>
-					</table>
-				</>
+            {searchedChannels.length > 0 && (
+				<div className='users_div'>
+					<h2>Channels: </h2>
+					<div className="users_divs">{searchedChannels}</div>
+				</div>
+			)}
+			{searchedCMS.length > 0 && (
+				<div className='dms_div'>
+					<h2>Channel Messages: </h2>
+					<div className="dms_messages">{searchedCMS}</div>
+				</div>
+			)}
+            {searchedDMS.length > 0 && (
+				<div className='dms_div'>
+					<h2>Direct Messages: </h2>
+					<div className="dms_messages">{searchedDMS}</div>
+				</div>
 			)}
 		</div>
     );
