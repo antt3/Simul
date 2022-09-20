@@ -35,15 +35,6 @@ const AllChannels = () => {
     };
 
     useEffect(() => {
-        async function fetchData() {
-          const response = await fetch('/api/users/');
-          const responseData = await response.json();
-          setUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
-
-    useEffect(() => {
         
         // open socket connection
         // create websocket
@@ -72,6 +63,9 @@ const AllChannels = () => {
     useEffect(() => {
         (async() => {
             await dispatch(channelsReducer.thunkGetChannels());
+            const response = await fetch('/api/users/');
+            const responseData = await response.json();
+            setUsers(responseData.users);
 
             // console.log('---------- UseEffect Running ----------');
             // setMessages(res);
