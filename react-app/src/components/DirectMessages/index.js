@@ -108,7 +108,7 @@ const DirectMessages = () => {
                         <div
                             onClick={(e) => onClick(e, ref[0].id)}
                             className='dm_user_name'>
-                                {`${ref[0].nickname ? ref[0].nickname : ref[0].full_name} ${currentUser.id === ref[0].id ? '(you)' : <></>}`}
+                                {`${ref[0].nickname ? ref[0].nickname : ref[0].full_name} ${currentUser.id === ref[0].id ? '(you)' : ''}`}
                         </div>
                     </div>
                 </div>

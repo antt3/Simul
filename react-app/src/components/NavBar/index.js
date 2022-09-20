@@ -2,15 +2,24 @@
 import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch} from 'react-redux';
+
 import { logout } from '../../store/session';
+
 import './NavBar.css';
 import defaultProfileImage from '../../default_profile_image.jpg';
 
 const NavBar = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const history = useHistory();
   const currentUser = useSelector((state) => state.session.user);
   const [ showMenu, setShowMenu ] = useState(false);
+  const [ search, setSearch ] = useState('');
+
+
+  async function onSubmit(e) {
+		e.preventDefault();
+		history.push(`/search/${search}`);
+	}
 
   const onClick = (e) => {
     e.stopPropagation();
@@ -48,12 +57,24 @@ const NavBar = () => {
   if (currentUser) {
     return ( <nav className='navbar'>
       <div className='nav_div'>
-        <div className='nav_divs_2'>
-          <NavLink to='/users' className='NavLink nav_c' exact={true} activeClassName='active'>
+        <div className='nav_divs_1'>
+          <form className="search_bar" onSubmit={onSubmit}>
+				  <input
+				  	type="text"
+				  	id="search"
+				  	name="search"
+				  	placeholder="Search Channels, Users, and Messages"
+				  	onChange={(e) => setSearch(e.target.value)}
+				  />
+          <button>Search</button>
+			</form>
+        </div>
+        <div className='nav_divs_3'>
+          <NavLink to='/users' className='nav_c' exact={true} activeClassName='active'>
             Users
           </NavLink>
         </div>
-        <div className='nav_divs_3'>
+        <div className='nav_divs_4'>
 						<div className='nav_bar_user_info'>
 								<img
                   className='nav_bar_user_img'

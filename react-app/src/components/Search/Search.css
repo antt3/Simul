@@ -1,0 +1,19 @@
+.users_div {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+
+.dms_div {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+
+.search_dm:hover {
+    cursor: pointer;
+}
