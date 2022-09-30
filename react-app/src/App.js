@@ -25,6 +25,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       setLoaded(true);
+      await dispatch(usersReducer.thunkGetUsers());
     })();
   }, [dispatch]);
 
