@@ -4,12 +4,14 @@ import session from './session';
 import channels from './channels';
 import channelMessages from './channelMessages';
 import directMessages from './directMessages';
+import users from './users';
 
 const rootReducer = combineReducers({
   session,
   channels,
   channelMessages,
-  directMessages
+  directMessages,
+  users
 });
 
 

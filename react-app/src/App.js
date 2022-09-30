@@ -15,6 +15,7 @@ import SplashPage from './components/SplashPage';
 import Search from './components/Search';
 import { authenticate } from './store/session';
 import * as channelsReducer from './store/channels';
+import * as usersReducer from './store/users';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,6 +31,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(channelsReducer.thunkGetChannels());
+      await dispatch(usersReducer.thunkGetUsers());
     })()
 }, [dispatch]);
 
