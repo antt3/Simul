@@ -6,6 +6,7 @@ import DeleteChannelModal from './Modals/DeleteChannelModal';
 import EditChannelModal from './Modals/EditChannelModal';
 import * as channelsReducer from '../../store/channels';
 import * as dmReducer from '../../store/directMessages';
+import * as usersReducer from '../../store/users';
 import { io } from 'socket.io-client';
 import './AllChannels.css';
 
@@ -33,6 +34,14 @@ const AllChannels = () => {
         e.stopPropagation();
         history.push(`/direct-messages/${user.id}`)
     };
+
+    useEffect(() => {
+        (async() => {
+          await dispatch(channelsReducer.thunkGetChannels());
+          await dispatch(usersReducer.thunkGetUsers());
+        })()
+    }, [dispatch]);
+    
 
     useEffect(() => {
         
