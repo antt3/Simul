@@ -27,7 +27,7 @@ const SignUpForm = () => {
   const validateImg = (url) => {
     let re = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg|png)/i;
     return re.test(url);
-}
+  }
 
   const handleDemo = () => {
 		return dispatch(sessionActions.demoLogin());
