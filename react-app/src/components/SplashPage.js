@@ -29,7 +29,7 @@ const SplashPage = () => {
             </div>
             <h1 style={{color: "black"}}>Welcome to Simul</h1>
             <h3 style={{color: "black"}}>Simul is a Slack clone featuring Channels, Channel Messages with Live Chat, and User Profiles.</h3>
-            <h3 style={{color: "black"}}>Simul uses a Python Flask/SQLAlchemy backend, a PostgreSQL database, and a JavaScrypt React/Redux frontend.</h3>
+            <h3 style={{color: "black"}}>Simul uses a Python Flask/SQLAlchemy backend API, a PostgreSQL database, and a JavaScript React/Redux frontend.</h3>
             <h3 style={{color: "black"}}>To access the site you can sign up, sign in, or use a demo login.</h3>
             <div className='navlink_divs form_link' id='splash_links'>
                 <p><NavLink to='/sign-up' className='NavLink' id='nav_p' exact={true} activeClassName='active'>
