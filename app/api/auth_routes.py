@@ -4,6 +4,8 @@ from app.models.db import User
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.s3_funcs import (
+    upload_file_to_s3, is_mp3, get_unique_filename, delete_object_from_bucket)
 
 auth_routes = Blueprint('auth', __name__)
 
