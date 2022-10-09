@@ -5,7 +5,7 @@ from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.s3_funcs import (
-    upload_file_to_s3, is_mp3, get_unique_filename, delete_object_from_bucket)
+    upload_file_to_s3, is_jpg, get_unique_filename, delete_object_from_bucket)
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -82,6 +82,37 @@ def sign_up():
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@auth_routes.route("/jpg", methods=["POST"])
+@login_required
+def upload_jpg():
+
+    if "jpg" not in request.files:
+        # print('----------error #1-----------')
+        return {"errors": "jpg required"}, 400
+
+    jpg = request.files["jpg"]
+
+    # print('--------jpg--------', jpg)
+
+    if not is_jpg(jpg.filename):
+        # print('----------error #2-----------')
+        return {"errors": "file type not permitted"}, 400
+
+    jpg.filename = get_unique_filename(jpg.filename)
+
+    upload = upload_file_to_s3(jpg)
+
+    if "url" not in upload:
+        # print('----------error #3-----------', upload, '--------')
+        return upload, 400
+
+    # print('-------upload-Working-------', upload, '-----------------')
+
+    url = upload["url"]
+
+    return {"source": url}
 
 
 @auth_routes.route('/unauthorized')
