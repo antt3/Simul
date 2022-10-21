@@ -13,7 +13,7 @@ const SignUpForm = () => {
   const [jpg, setJPG] = useState(null);
   const [isJPG, setIsJPG] = useState(true);
   const [jpgLoading, setJPGLoading] = useState(false);
-  const [bio, setBio] = useState();
+  const [bio, setBio] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [firstSubmit, setFirstSubmit] = useState(false);
@@ -66,7 +66,7 @@ const SignUpForm = () => {
 
     if (!errors.length) {
       const formData = new FormData();
-      formData.append("mp3", mp3);
+      formData.append("jpg", jpg);
 
       setJPGLoading(true);
       const res = await fetch('/api/auth/jpg', {
@@ -76,19 +76,18 @@ const SignUpForm = () => {
       if (res.ok) {
         const jsonRes = await res.json();
         setJPGLoading(false);
-
+        // console.log('--------------jsonRes: ', jsonRes, '--------------------------');
         const data = await dispatch(sessionActions.signUp(
           email,
           fullName,
           nickname,
-          photoURL: jsonRes.source,
+          jsonRes.source,
           bio,
           password
         ));
 
-        if (data) {
-          setErrors(data)
-        }
+        if (data) setErrors(data);
+
       } else {
         setJPGLoading(false);
         setIsJPG(false);
@@ -177,7 +176,7 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className='form_divs'>
-        <div className='form_label'><label htmlFor='source' style={{color: "black"}}>Upload</label></div>
+        <div className='form_label'><label htmlFor='source' style={{color: "black"}}>Profile Photo</label></div>
           <button onClick={(e)=> handleUpload(e)}>
             Upload jpg
           </button>
@@ -190,8 +189,7 @@ const SignUpForm = () => {
               onChange={(e) => setJPG(e.target.files[0])}
           />
         </div>
-        {jpg && <p className='form_p'>{jpg.name}</p>}
-        {(jpgLoading) && <p className='form_divs'>Uploading   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
+        {jpg && <p className='form_p' style={{color: "black"}}>{jpg.name}</p>}
         <div className='form_divs'>
           <div className='form_label'><label style={{color: "black"}}>Bio</label></div>
           <textarea
@@ -225,6 +223,7 @@ const SignUpForm = () => {
           ></input>
         </div>
         <button className='form_divs form_submit' type='submit'>Sign Up</button>
+        {(jpgLoading) && <p className='form_divs' style={{color: "black"}}>Creating Your Account   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
       </form>
       <div className='form_links'>
         <div className='navlink_divs form_link'>

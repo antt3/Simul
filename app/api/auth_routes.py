@@ -85,7 +85,6 @@ def sign_up():
 
 
 @auth_routes.route("/jpg", methods=["POST"])
-@login_required
 def upload_jpg():
 
     if "jpg" not in request.files:
