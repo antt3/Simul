@@ -177,7 +177,7 @@ const SignUpForm = () => {
         </div>
         <div className='form_divs'>
         <div className='form_label'><label htmlFor='source' style={{color: "black"}}>Profile Photo</label></div>
-          <button onClick={(e)=> handleUpload(e)}>
+          <button className='form_upload_btn' onClick={(e)=> handleUpload(e)}>
             Upload jpg
           </button>
           <input
