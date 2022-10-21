@@ -18,7 +18,7 @@ s3 = boto3.client(
 )
 
 
-def is_mp3(filename):
+def is_jpg(filename):
     print(filename)
     print("." in filename)
     return "." in filename and \

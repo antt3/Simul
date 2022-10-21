@@ -54,14 +54,44 @@ const SignUpForm = () => {
     setErrors(errors);
   }, [email, fullName, password, repeatPassword, nickname, bio, isJPG, jpg]);
 
+  const handleUpload = e => {
+    e.preventDefault();
+    setIsJPG(true);
+    hiddenFileInput.current.click();
+  };
+
   const onSignUp = async (e) => {
     e.preventDefault();
     setFirstSubmit(true);
 
     if (!errors.length) {
-      const data = await dispatch(sessionActions.signUp(email, fullName, nickname, photoURL, bio, password));
-      if (data) {
-        setErrors(data)
+      const formData = new FormData();
+      formData.append("mp3", mp3);
+
+      setJPGLoading(true);
+      const res = await fetch('/api/auth/jpg', {
+          method: "POST",
+          body: formData
+      });
+      if (res.ok) {
+        const jsonRes = await res.json();
+        setJPGLoading(false);
+
+        const data = await dispatch(sessionActions.signUp(
+          email,
+          fullName,
+          nickname,
+          photoURL: jsonRes.source,
+          bio,
+          password
+        ));
+
+        if (data) {
+          setErrors(data)
+        }
+      } else {
+        setJPGLoading(false);
+        setIsJPG(false);
       }
     }
   };
@@ -69,12 +99,6 @@ const SignUpForm = () => {
   const onClick = (e) => {
     e.stopPropagation();
     history.push("/splash")
-  };
-
-  const photoUpload = e => {
-    e.preventDefault();
-    setIsJPG(true);
-    hiddenFileInput.current.click();
   };
 
   const updateFullName = (e) => {
@@ -87,10 +111,6 @@ const SignUpForm = () => {
 
   const updateNickname = (e) => {
     setNickname(e.target.value);
-  };
-
-  const updatePhotoURL = (e) => {
-    setPhotoURL(e.target.value);
   };
 
   const updateBio = (e) => {
@@ -157,15 +177,21 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className='form_divs'>
-          <div className='form_label'><label style={{color: "black"}}>Profile Picture URL</label></div>
+        <div className='form_label'><label htmlFor='source' style={{color: "black"}}>Upload</label></div>
+          <button onClick={(e)=> handleUpload(e)}>
+            Upload jpg
+          </button>
           <input
-            type='text'
-            name='profile_pic'
-            onChange={updatePhotoURL}
-            placeholder='(Optional) Profile Photo URL'
-            value={photoURL}
-          ></input>
+              name='source'
+              type='file'
+              accept=''
+              ref={hiddenFileInput}
+              style={{ display: 'none' }}
+              onChange={(e) => setJPG(e.target.files[0])}
+          />
         </div>
+        {jpg && <p className='form_p'>{jpg.name}</p>}
+        {(jpgLoading) && <p className='form_divs'>Uploading   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
         <div className='form_divs'>
           <div className='form_label'><label style={{color: "black"}}>Bio</label></div>
           <textarea
