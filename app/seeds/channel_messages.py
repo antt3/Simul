@@ -16,7 +16,7 @@ def seed_channel_messages():
     money_team_3 = Channel_message(
         message='Third Message', edited=False, created_at='2018-08-10 10:3:25.473031', user_id=4, channel_id=2)
     money_team_4 = Channel_message(
-        message='Third Message', edited=False, created_at='2018-08-10 10:4:23.473031', user_id=1, channel_id=2)
+        message='Fourth Message', edited=False, created_at='2018-08-10 10:4:23.473031', user_id=1, channel_id=2)
     tp_management_1 = Channel_message(
         message='First Message', edited=False, created_at='2018-08-10 10:1:23.473031', user_id=3, channel_id=3)
     tp_management_2 = Channel_message(
