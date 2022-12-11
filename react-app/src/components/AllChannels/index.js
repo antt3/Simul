@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from 'react-router-dom';
 import CreateChannelModal from './Modals/CreateChannelModal';
@@ -6,6 +6,7 @@ import DeleteChannelModal from './Modals/DeleteChannelModal';
 import EditChannelModal from './Modals/EditChannelModal';
 import * as channelsReducer from '../../store/channels';
 import * as dmReducer from '../../store/directMessages';
+import * as usersReducer from '../../store/users';
 import { io } from 'socket.io-client';
 import './AllChannels.css';
 
@@ -15,8 +16,8 @@ let socket;
 const AllChannels = () => {
     const currentUser = useSelector((state) => state.session.user);
     const channels = useSelector((state) => state.channels);
+    const users = useSelector((state) => state.users);
     const channelsArr = Object.values(channels);
-    const [users, setUsers] = useState([]);
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -35,13 +36,12 @@ const AllChannels = () => {
     };
 
     useEffect(() => {
-        async function fetchData() {
-          const response = await fetch('/api/users/');
-          const responseData = await response.json();
-          setUsers(responseData.users);
-        }
-        fetchData();
-    }, []);
+        (async() => {
+          await dispatch(channelsReducer.thunkGetChannels());
+          await dispatch(usersReducer.thunkGetUsers());
+        })()
+    }, [dispatch]);
+    
 
     useEffect(() => {
         
@@ -68,15 +68,6 @@ const AllChannels = () => {
             socket.disconnect()
         })
     }, [dispatch, currentUser])
-
-    useEffect(() => {
-        (async() => {
-            await dispatch(channelsReducer.thunkGetChannels());
-
-            // console.log('---------- UseEffect Running ----------');
-            // setMessages(res);
-        })()
-    }, [dispatch]);
 
     if (!currentUser) return <Redirect to="/splash" />;
 
@@ -105,7 +96,7 @@ const AllChannels = () => {
             <div className='top_channels'>
                 <h1>Direct Messages</h1>
             </div>
-            {users && users.map((user) => 
+            {users ? ( Object.values(users).map((user) => 
                 <div className='channel' key={user.id}>
                     <div
                         className='channel_title'
@@ -113,7 +104,7 @@ const AllChannels = () => {
                             {`${user.nickname ? user.nickname : user.full_name}`}
                     </div>
                 </div>
-            )}
+            )) : <div></div>}
         </div>
     );
 };

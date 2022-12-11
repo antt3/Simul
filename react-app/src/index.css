@@ -181,6 +181,32 @@ input {
     box-shadow: 0 0 1px 3px lightblue;
 }
 
+.form_upload_btn {
+    margin-top: 2vh;
+    text-decoration: none;
+    background-color: #4a154b;
+    font-weight: bold;
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all .06s ease-in;
+    height: 40px;
+    width: 370px;
+    transition: 0.3s ease;
+}
+
+
+.form_upload_btn:hover {
+    background-color:#672868;
+}
+
+.form_p {
+    max-width: 370px;
+    min-height: fit-content;
+    font-size: 20px;
+}
 
 .form_submit {
     margin-top: 2vh;

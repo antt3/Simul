@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
@@ -10,12 +10,15 @@ const SignUpForm = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
-  const [photoURL, setPhotoURL] = useState('');
+  const [jpg, setJPG] = useState(null);
+  const [isJPG, setIsJPG] = useState(true);
+  const [jpgLoading, setJPGLoading] = useState(false);
   const [bio, setBio] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [firstSubmit, setFirstSubmit] = useState(false);
   const currentUser = useSelector(state => state.session.user);
+  const hiddenFileInput = useRef(null);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -24,10 +27,10 @@ const SignUpForm = () => {
     return re.test(email);
   }
 
-  const validateImg = (url) => {
-    let re = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg|png)/i;
-    return re.test(url);
-}
+  // const validateImg = (url) => {
+  //   let re = /(http[s]*:\/\/)([a-z\-_0-9\/.]+)\.([a-z.]{2,3})\/([a-z0-9\-_\/._~:?#\[\]@!$&'()*+,;=%]*)([a-z0-9]+\.)(jpg|jpeg|png)/i;
+  //   return re.test(url);
+  // }
 
   const handleDemo = () => {
 		return dispatch(sessionActions.demoLogin());
@@ -41,8 +44,7 @@ const SignUpForm = () => {
     if (!fullName) errors.push('Your name is required.');
     if (fullName.length > 100) errors.push('Your name must be under 100 characters.');
     if (nickname.length > 40) errors.push('Your nickname must be under 40 characters.');
-    if (photoURL.length > 2000) errors.push('Photo URL must be under 2000 characters.');
-    if ((photoURL.length > 0) && !(validateImg(photoURL))) errors.push('Invalid photo URL, must end in png, jpg, or jpeg.');
+    if (!isJPG && jpg) errors.push('Your profile photo must be a jpg.');
     if (bio.length > 255) errors.push('Bio must be under 255 characters.')
     if (password.length < 7) errors.push('Password must be more than 6 characters.');
     if (password.length > 50) errors.push('Password must be under 50 characters.');
@@ -50,16 +52,45 @@ const SignUpForm = () => {
     if (password !== repeatPassword) errors.push('Password and repeated password must match.');
 
     setErrors(errors);
-  }, [email, fullName, password, repeatPassword, nickname, photoURL, bio]);
+  }, [email, fullName, password, repeatPassword, nickname, bio, isJPG, jpg]);
+
+  const handleUpload = e => {
+    e.preventDefault();
+    setIsJPG(true);
+    hiddenFileInput.current.click();
+  };
 
   const onSignUp = async (e) => {
     e.preventDefault();
     setFirstSubmit(true);
 
     if (!errors.length) {
-      const data = await dispatch(sessionActions.signUp(email, fullName, nickname, photoURL, bio, password));
-      if (data) {
-        setErrors(data)
+      const formData = new FormData();
+      formData.append("jpg", jpg);
+
+      setJPGLoading(true);
+      const res = await fetch('/api/auth/jpg', {
+          method: "POST",
+          body: formData
+      });
+      if (res.ok) {
+        const jsonRes = await res.json();
+        setJPGLoading(false);
+        // console.log('--------------jsonRes: ', jsonRes, '--------------------------');
+        const data = await dispatch(sessionActions.signUp(
+          email,
+          fullName,
+          nickname,
+          jsonRes.source,
+          bio,
+          password
+        ));
+
+        if (data) setErrors(data);
+
+      } else {
+        setJPGLoading(false);
+        setIsJPG(false);
       }
     }
   };
@@ -79,10 +110,6 @@ const SignUpForm = () => {
 
   const updateNickname = (e) => {
     setNickname(e.target.value);
-  };
-
-  const updatePhotoURL = (e) => {
-    setPhotoURL(e.target.value);
   };
 
   const updateBio = (e) => {
@@ -149,15 +176,20 @@ const SignUpForm = () => {
           ></input>
         </div>
         <div className='form_divs'>
-          <div className='form_label'><label style={{color: "black"}}>Profile Picture URL</label></div>
+        <div className='form_label'><label htmlFor='source' style={{color: "black"}}>Profile Photo</label></div>
+          <button className='form_upload_btn' onClick={(e)=> handleUpload(e)}>
+            Upload jpg
+          </button>
           <input
-            type='text'
-            name='profile_pic'
-            onChange={updatePhotoURL}
-            placeholder='(Optional) Profile Photo URL'
-            value={photoURL}
-          ></input>
+              name='source'
+              type='file'
+              accept=''
+              ref={hiddenFileInput}
+              style={{ display: 'none' }}
+              onChange={(e) => setJPG(e.target.files[0])}
+          />
         </div>
+        {jpg && <p className='form_p' style={{color: "black"}}>{jpg.name}</p>}
         <div className='form_divs'>
           <div className='form_label'><label style={{color: "black"}}>Bio</label></div>
           <textarea
@@ -191,6 +223,7 @@ const SignUpForm = () => {
           ></input>
         </div>
         <button className='form_divs form_submit' type='submit'>Sign Up</button>
+        {(jpgLoading) && <p className='form_divs' style={{color: "black"}}>Creating Your Account   <img src='https://i.gifer.com/ZZ5H.gif' alt='Uploading' className='uploading_img'></img></p>}
       </form>
       <div className='form_links'>
         <div className='navlink_divs form_link'>
