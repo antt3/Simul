@@ -26,9 +26,13 @@ def seed_direct_messages():
     to_ref_2_1_2 = Direct_message(
         message='Fourth Message', edited=False, created_at='2022-12-28 01:4:04.473031', user_id=2, ref_id=1)
     to_ref_1_3_2 = Direct_message(
-        message='Third Message', edited=False, created_at='2022-09-12 12:3:07.473031', user_id=3, ref_id=4)
+        message='Third Message', edited=False, created_at='2022-09-12 12:3:07.473031', user_id=1, ref_id=3)
     to_ref_3_1_2 = Direct_message(
-        message='Fourth Message', edited=False, created_at='2022-11-10 10:4:09.473031', user_id=3, ref_id=4)
+        message='Fourth Message', edited=False, created_at='2022-11-10 10:4:09.473031', user_id=3, ref_id=1)
+    to_ref_1_4_2 = Direct_message(
+        message='Third Message', edited=False, created_at='2022-9-14 06:2:26.473031', user_id=1, ref_id=4)
+    to_ref_4_1_2 = Direct_message(
+        message='Fourth Message', edited=False, created_at='2022-12-01 04:3:12.473031', user_id=4, ref_id=1)
 
     db.session.add(to_ref_1_1)
     db.session.add(to_ref_1_1_2)
@@ -44,6 +48,8 @@ def seed_direct_messages():
     db.session.add(to_ref_2_1_2)
     db.session.add(to_ref_1_3_2)
     db.session.add(to_ref_3_1_2)
+    db.session.add(to_ref_1_4_2)
+    db.session.add(to_ref_4_1_2)
 
     db.session.commit()
 
