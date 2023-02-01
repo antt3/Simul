@@ -21,7 +21,7 @@ const SplashPage = () => {
         <div className='logged_out splash'>
             <div className='website'>
                 <img src={logo} alt='Simul'></img>
-                <p style={{color: "black"}}>simul</p>
+                <p style={{color: "black"}} id='logo_p'>simul</p>
             </div>
             <div className='devlinks_div'>
                 <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>

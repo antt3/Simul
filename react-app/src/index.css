@@ -348,3 +348,7 @@ input {
 #nav_p:hover {
     color: black;
 }
+
+#logo_p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
