@@ -1,5 +1,5 @@
 .chat_modal_button {
-    background-color: rgb(75, 75, 75);
+    background-color: rgb(26,29,33);
     font-size: 16px;
     border: none;
     padding: 3px;
@@ -63,7 +63,7 @@
 
 
 .message_content {
-    font-size: 18px;
+    font-size: 15px;
 }
 
 
@@ -102,7 +102,7 @@
     flex-direction: row;
     position: sticky;
     bottom: 0px;
-    background-color: rgb(26,29,33)
+    background-color: rgb(26,29,33);
 }
 
 .chat_submit {

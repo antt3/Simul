@@ -70,7 +70,7 @@
 
 
 .modal_button {
-    background-color: rgb(55, 55, 55);
+    background-color: rgb(25, 23, 29);
     font-size: 16px;
     border: none;
     padding: 3px;
@@ -107,7 +107,8 @@
 
 
 .channel_title {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 
