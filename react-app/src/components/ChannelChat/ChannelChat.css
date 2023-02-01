@@ -102,7 +102,7 @@
     flex-direction: row;
     position: sticky;
     bottom: 0px;
-    background-color: rgb(75, 75, 75);
+    background-color: rgb(26,29,33)
 }
 
 .chat_submit {
