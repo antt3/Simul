@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: rgb(55, 55, 55);
+    background-color: rgb(25, 23, 29);
     border-right: 1px solid grey;
 }
 
@@ -20,12 +20,12 @@
     font-size: 18px;
     margin-right: 10px;
     margin-left: 10px;
-    color: grey;
+    color: rgb(240, 240, 240);
 }
 
 
 .nav_dev_links > a:hover {
-    color: rgb(220, 220, 220);
+    color: white;
 }
 
 
