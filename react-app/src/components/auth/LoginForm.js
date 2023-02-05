@@ -68,7 +68,7 @@ const LoginForm = () => {
     <div className='form_div logged_out'>
       <div className='website'>
         <img className='website_s' onClick={e => onClick(e)} src={logo} alt='Simul'></img>
-        <p className='website_s' onClick={e => onClick(e)} style={{color: "black"}}>simul</p>
+        <p className='website_s' onClick={e => onClick(e)} style={{color: "black"}} id='logo_p'>simul</p>
       </div>
       <div className='devlinks_div'>
         <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
