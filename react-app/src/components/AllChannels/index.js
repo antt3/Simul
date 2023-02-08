@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useHistory } from 'react-router-dom';
+import { io } from 'socket.io-client';
+
 import CreateChannelModal from './Modals/CreateChannelModal';
 import DeleteChannelModal from './Modals/DeleteChannelModal';
 import EditChannelModal from './Modals/EditChannelModal';
 import * as channelsReducer from '../../store/channels';
 import * as dmReducer from '../../store/directMessages';
 import * as usersReducer from '../../store/users';
-import { io } from 'socket.io-client';
+
+import { useChannel } from '../../context/channelContext';
+
 import './AllChannels.css';
 
 let socket;
@@ -20,6 +24,8 @@ const AllChannels = () => {
     const channelsArr = Object.values(channels);
     const history = useHistory();
     const dispatch = useDispatch();
+
+    const { currentChannel } = useChannel();
 
     // console.log('----------currentUser: ', currentUser, '-------');
     // console.log('----------Channels: ', channels, '-------');
