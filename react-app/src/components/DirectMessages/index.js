@@ -26,11 +26,13 @@ const DirectMessages = () => {
     const [content, setContent] = useState("");
     const [ref, setRef] = useState(null);
     // if (ref) console.log('------------------.--.- Ref Nickname: ', ref[0].nickname, '--------.-.-.-.-.-.-')
-    console.log("-----------------refId", refId, "-----------------------");
+    // console.log("-----------------refId", refId, "-----------------------");
 
     const { setCurrentChannel } = useChannel();
 
-    setCurrentChannel([ "DM", null ]);
+    useEffect(()=> {
+        setCurrentChannel([ "DM", refId ]);
+    }, [ setCurrentChannel, refId ]);
 
     const createdAt = (timestamp) => {
         return timestamp.split('.')[0];
