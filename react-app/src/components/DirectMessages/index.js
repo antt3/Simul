@@ -3,6 +3,7 @@ import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
 
+import { useChannel } from '../../context/channelContext';
 import DeleteMessageModal from './Modals/DeleteMessageModal';
 import EditMessageModal from './Modals/EditMessageModal';
 import * as dmReducer from '../../store/directMessages';
@@ -25,6 +26,11 @@ const DirectMessages = () => {
     const [content, setContent] = useState("");
     const [ref, setRef] = useState(null);
     // if (ref) console.log('------------------.--.- Ref Nickname: ', ref[0].nickname, '--------.-.-.-.-.-.-')
+    console.log("-----------------refId", refId, "-----------------------");
+
+    const { setCurrentChannel } = useChannel();
+
+    setCurrentChannel([ "DM", null ]);
 
     const createdAt = (timestamp) => {
         return timestamp.split('.')[0];

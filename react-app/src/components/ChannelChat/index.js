@@ -29,10 +29,10 @@ const ChannelChat = () => {
     const channelMessages = Object.values(useSelector((state) => state.channelMessages));
     
     const [content, setContent] = useState("");
-    const { setCurrentChannel } = useChannel();
+    const { setCurrentChannel, currentChannel } = useChannel();
 
-    setCurrentChannel([ "C", channel.id ]);
-    // console.log('---------------CHANNEL:', channel.id, '-------------------');
+    // setCurrentChannel([ "C", channel?.id ]);
+    console.log('---------------CHANNEL:', channelId, '-------------------');
     // console.log('--------messages: ', messages, '------------')
 
     const createdAt = (timestamp) => {
