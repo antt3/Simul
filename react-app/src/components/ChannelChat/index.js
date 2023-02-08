@@ -29,10 +29,14 @@ const ChannelChat = () => {
     const channelMessages = Object.values(useSelector((state) => state.channelMessages));
     
     const [content, setContent] = useState("");
-    const { setCurrentChannel, currentChannel } = useChannel();
+    const { setCurrentChannel } = useChannel();
 
-    // setCurrentChannel([ "C", channel?.id ]);
-    console.log('---------------CHANNEL:', channelId, '-------------------');
+    useEffect(()=> {
+        setCurrentChannel([ "C", channelId ]);
+    }, [setCurrentChannel, channelId])
+        
+
+    // console.log('---------------CHANNEL:', channelId, '-------------------');
     // console.log('--------messages: ', messages, '------------')
 
     const createdAt = (timestamp) => {
