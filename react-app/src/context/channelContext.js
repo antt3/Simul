@@ -5,7 +5,7 @@ export const ChannelContext = createContext();
 export const useChannel = () => useContext(ChannelContext);
 
 export default function ChannelProvider({ children }) {
-    const [currentChannel, setCurrentChannel] = useState([ "Channel", 1 ]);
+    const [currentChannel, setCurrentChannel] = useState([ "C", 1 ]);
 
     return (
         <ChannelContext.Provider
