@@ -20,7 +20,7 @@
     font-size: 18px;
     margin-right: 10px;
     margin-left: 10px;
-    color: rgb(240, 240, 240);
+    color: rgb(243,247,250);
 }
 
 
@@ -58,13 +58,13 @@
 
 .new_channel_modal:hover {
     cursor: pointer;
-    border: 1px solid white;
+    border: 1px solid rgb(243,247,250);
 }
 
 
 .new_channel_modal:active {
-    color: rgb(200, 200, 200);
-    border: 1px solid rgb(200, 200, 200);
+    color: rgb(243,247,250);
+    border: 1px solid rgb(243,247,250);
 
 }
 
@@ -83,7 +83,7 @@
 
 .modal_button:hover {
     cursor: pointer;
-    color: rgb(220, 220, 220);
+    color: rgb(243,247,250);
     transition: all .1s ease-in;
 }
 
@@ -109,24 +109,33 @@
 .channel_title {
     font-size: 16px;
     font-weight: 400;
-    border-radius: 3px;
-    padding: 3px;
+    border-radius: 5px;
+    padding: 4px;
+    margin-right: 7px;
+    color: rgb(150,149,152);
 }
 
 
 .channel_title:hover {
     cursor: pointer;
-    background-color: grey;
+    background-color: rgb(56,55,60);
 }
 
 .current_channel_title {
     font-size: 16px;
     font-weight: 400;
-    border-radius: 3px;
-    padding: 3px;
+    border-radius: 5px;
+    padding: 4px;
+    margin-right: 7px;
     background-color: rgb(17,100,163);
+    color: rgb(243,247,250);
 }
 
 .current_channel_title:hover {
     cursor: pointer;
 }
+
+/* TBD 
+    Github & LinkedIn to Pics
+    Edit & Delete CSS
+*/
