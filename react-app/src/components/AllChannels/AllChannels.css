@@ -30,44 +30,52 @@
 
 
 .top_channels {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    margin-top: 40px;
+    margin-bottom: -15px
 }
 
 
-.top_channels > h1 {
-    font-size: 25px;
-    margin-left: 2px;
+.tc_title {
+    font-size: 16px;
+    color: rgb(150,149,152);
+    font-weight: 400;
+}
+
+.tc_add {
+    margin-top: -10px;
+    margin-bottom: 3px;
+    font-size: 16px;
+    color: rgb(150,149,152);
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+}
+
+.tc_add:hover {
+    cursor: pointer;
+}
+
+.tc_add > p {
+    margin-top: 3px;
+    color: rgb(150,149,152);
 }
 
 
 .new_channel_modal {
-    margin-left: 25px;
-    background-color: rgb(55, 55, 55);
-    font-size: 30px;
+    background-color: rgb(43,42,48);
+    font-size: 16px;
     border: none;
-    padding-right: 10px;
-    padding-left: 10px;
-    border-radius: 35px;
-    border: 1px solid rgb(55, 55, 55);
+    border-radius: 5px;
+    border: 1px solid rgb(43,42,48);
     transition: all .1s ease-in;
+    margin-right: 5px;
+    color: rgb(150,149,152);
 }
 
 
 .new_channel_modal:hover {
     cursor: pointer;
-    border: 1px solid rgb(243,247,250);
 }
-
-
-.new_channel_modal:active {
-    color: rgb(243,247,250);
-    border: 1px solid rgb(243,247,250);
-
-}
-
 
 .modal_button {
     background-color: rgb(25, 23, 29);
@@ -137,5 +145,6 @@
 
 /* TBD 
     Github & LinkedIn to Pics
+    Github to project github
     Edit & Delete CSS
 */

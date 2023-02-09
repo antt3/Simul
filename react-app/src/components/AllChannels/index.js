@@ -86,8 +86,8 @@ const AllChannels = () => {
                 <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
             </div>
             <div className='top_channels'>
-                <h1>Channels</h1>
-                <CreateChannelModal socket={socket} currentUser={currentUser} />
+                <p className='tc_title'>Channels</p>
+                <p className='tc_add'><CreateChannelModal socket={socket} currentUser={currentUser} /> <p>Create Channel</p></p>
             </div>
             {channels && channelsArr.map((channel) => 
                 <div className='channel' key={channel.id}>
@@ -105,7 +105,7 @@ const AllChannels = () => {
                 </div>
             )}
             <div className='top_channels'>
-                <h1>Direct Messages</h1>
+                <p className='tc_title'>Direct Messages</p>
             </div>
             {users ? ( Object.values(users).map((user) => 
                 <div className='channel' key={user.id}>
