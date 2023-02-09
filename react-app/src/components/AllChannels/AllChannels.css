@@ -116,5 +116,17 @@
 
 .channel_title:hover {
     cursor: pointer;
+    background-color: grey;
+}
+
+.current_channel_title {
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 3px;
+    padding: 3px;
     background-color: rgb(17,100,163);
+}
+
+.current_channel_title:hover {
+    cursor: pointer;
 }

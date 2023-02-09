@@ -31,7 +31,7 @@ const DirectMessages = () => {
     const { setCurrentChannel } = useChannel();
 
     useEffect(()=> {
-        setCurrentChannel([ "DM", refId ]);
+        setCurrentChannel([ "DM", +refId ]);
     }, [ setCurrentChannel, refId ]);
 
     const createdAt = (timestamp) => {

@@ -32,7 +32,7 @@ const ChannelChat = () => {
     const { setCurrentChannel } = useChannel();
 
     useEffect(()=> {
-        setCurrentChannel([ "C", channelId ]);
+        setCurrentChannel([ "C", +channelId ]);
     }, [setCurrentChannel, channelId])
         
 

@@ -27,6 +27,7 @@ const AllChannels = () => {
 
     const { currentChannel } = useChannel();
 
+    console.log("-----------Current Channel: ", currentChannel, "-----------------");
     // console.log('----------currentUser: ', currentUser, '-------');
     // console.log('----------Channels: ', channels, '-------');
     // console.log('----------channelsArr: ', channelsArr, '-------');
@@ -90,7 +91,12 @@ const AllChannels = () => {
             </div>
             {channels && channelsArr.map((channel) => 
                 <div className='channel' key={channel.id}>
-                    <div className='channel_title' onClick={(e)=> onClick(e, channel)}># {channel.title}</div>
+                    {console.log("----------T or F------------: ", 'C' === currentChannel[0], channel.id === currentChannel[1], channel.id)}
+                    <div 
+                        className={'C' === currentChannel[0] && channel.id === currentChannel[1] ? 'current_channel_title' : 'channel_title'}
+                        onClick={(e)=> onClick(e, channel)}>
+                            # {channel.title}
+                    </div>
                     { currentUser.id === channel.user.id ?
                         <div className='edit_delete_channel'>
                             <EditChannelModal socket={socket} channel={channel} />
