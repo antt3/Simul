@@ -27,7 +27,7 @@ const AllChannels = () => {
 
     const { currentChannel } = useChannel();
 
-    console.log("-----------Current Channel: ", currentChannel, "-----------------");
+    // console.log("-----------Current Channel: ", currentChannel, "-----------------");
     // console.log('----------currentUser: ', currentUser, '-------');
     // console.log('----------Channels: ', channels, '-------');
     // console.log('----------channelsArr: ', channelsArr, '-------');
@@ -58,7 +58,7 @@ const AllChannels = () => {
 
         // listen for chat events
         socket.on("chat", async(res) => {
-            // when we recieve a chat, add it into our messages array in state
+            // when recieving a chat, add it into the messages array in state
             // console.log('-------Add/Edit Socket Res: ', res, '----------');
             // await dispatch(channelMessagesReducer.actionAddEditMessage(res));
             if (res === "channel") {
@@ -91,7 +91,6 @@ const AllChannels = () => {
             </div>
             {channels && channelsArr.map((channel) => 
                 <div className='channel' key={channel.id}>
-                    {console.log("----------T or F------------: ", 'C' === currentChannel[0], channel.id === currentChannel[1], channel.id)}
                     <div 
                         className={'C' === currentChannel[0] && channel.id === currentChannel[1] ? 'current_channel_title' : 'channel_title'}
                         onClick={(e)=> onClick(e, channel)}>
@@ -111,7 +110,7 @@ const AllChannels = () => {
             {users ? ( Object.values(users).map((user) => 
                 <div className='channel' key={user.id}>
                     <div
-                        className='channel_title'
+                        className={'DM' === currentChannel[0] && user.id === currentChannel[1] ? 'current_channel_title' : 'channel_title'}
                         onClick={(e)=> onClick2(e, user)}>
                             {`${user.nickname ? user.nickname : user.full_name}`}
                     </div>
