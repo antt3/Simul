@@ -73,26 +73,28 @@
 }
 
 
-.new_channel_modal:hover {
+.new_channel_modal:hover,
+.tc_add:hover {
     cursor: pointer;
+    color: rgb(243,247,250);
 }
 
 .modal_button {
     background-color: rgb(25, 23, 29);
-    font-size: 16px;
+    color: rgb(150,149,152);
+    font-size: 15px;
     border: none;
     padding: 3px;
     border-radius: 5px;
     margin-right: 10px;
     margin-left: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
 }
 
 
 .modal_button:hover {
     cursor: pointer;
     color: rgb(243,247,250);
-    transition: all .1s ease-in;
 }
 
 
@@ -110,7 +112,6 @@
 
 .edit_delete_channel {
     display: flex;
-
 }
 
 
@@ -147,4 +148,5 @@
     Github & LinkedIn to Pics
     Github to project github
     Edit & Delete CSS
+    Debug New Channel Modal by adding "New Channel to Modal js"
 */
