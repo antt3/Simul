@@ -87,7 +87,7 @@ const AllChannels = () => {
             </div>
             <div className='top_channels'>
                 <p className='tc_title'>Channels</p>
-                <p className='tc_add'><CreateChannelModal socket={socket} currentUser={currentUser} /> <p>Create Channel</p></p>
+                <CreateChannelModal socket={socket} currentUser={currentUser} />
             </div>
             {channels && channelsArr.map((channel) => 
                 <div className='channel' key={channel.id}>
