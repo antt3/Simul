@@ -31,7 +31,7 @@
 
 .top_channels {
     margin-top: 40px;
-    margin-bottom: -15px
+    margin-bottom: -15px;
 }
 
 
@@ -41,11 +41,17 @@
     font-weight: 400;
 }
 
+
+.tc_title_c {
+    margin-bottom: -10px;
+}
+
+
 .nc_modal_div {
-    margin-top: -10px;
-    margin-bottom: 3px;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    margin-bottom: 2px;
 }
 
 .new_channel_modal {
@@ -53,21 +59,36 @@
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    border: 1px solid rgb(43,42,48);
-    transition: all .1s ease-in;
     margin-right: 5px;
     color: rgb(150,149,152);
     font-weight: 400;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .new_channel_p {
     font-size: 16px;
     color: rgb(150,149,152);
-    font-weight: 400;
+    font-weight: 400; 
 }
 
-
 .nc_modal_div:hover {
+    cursor: pointer;
+}
+
+.new_channel_modal:hover + .new_channel_p {
+    cursor: pointer;
+    color: rgb(243,247,250);
+}
+
+.nc_modal_div:hover > .new_channel_modal {
+    cursor: pointer;
+    color: rgb(243,247,250);
+}
+
+.nc_modal_div:hover > .new_channel_p {
     cursor: pointer;
     color: rgb(243,247,250);
 }
@@ -140,5 +161,4 @@
 /* TBD 
     Github & LinkedIn to Pics
     Github to project github
-    Debug New Channel Modal by adding "New Channel to Modal js"
 */

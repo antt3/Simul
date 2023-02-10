@@ -6,8 +6,8 @@ const CreateChannelModal = ({currentUser, socket}) => {
     const [showModal, setShowModal] = useState(false);
   
     return (
-        <div className='nc_modal_div' onClick={(e)=> e.stopPropagation()} >
-            <button className='new_channel_modal' onClick={() => setShowModal(true)}>+</button>
+        <div className='nc_modal_div' onClick={(e)=> e.stopPropagation()}>
+            <p className='new_channel_modal' onClick={() => setShowModal(true)}>+</p>
             <p className='new_channel_p' onClick={() => setShowModal(true)}>Create Channel</p>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>

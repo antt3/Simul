@@ -86,7 +86,7 @@ const AllChannels = () => {
                 <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
             </div>
             <div className='top_channels'>
-                <p className='tc_title'>Channels</p>
+                <p className='tc_title tc_title_c'>Channels</p>
                 <CreateChannelModal socket={socket} currentUser={currentUser} />
             </div>
             {channels && channelsArr.map((channel) => 
