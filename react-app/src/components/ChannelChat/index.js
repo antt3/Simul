@@ -3,6 +3,7 @@ import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
 
+import { useChannel } from '../../context/channelContext';
 import DeleteChatModal from './Modals/DeleteChatModal';
 import EditChatModal from './Modals/EditChatModal';
 import * as channelMessagesReducer from '../../store/channelMessages';
@@ -28,6 +29,14 @@ const ChannelChat = () => {
     const channelMessages = Object.values(useSelector((state) => state.channelMessages));
     
     const [content, setContent] = useState("");
+    const { setCurrentChannel } = useChannel();
+
+    useEffect(()=> {
+        setCurrentChannel([ "C", +channelId ]);
+    }, [setCurrentChannel, channelId])
+        
+
+    // console.log('---------------CHANNEL:', channelId, '-------------------');
     // console.log('--------messages: ', messages, '------------')
 
     const createdAt = (timestamp) => {
