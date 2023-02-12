@@ -155,23 +155,32 @@ each of the following variables:
 
 ## Website Screenshots
 ### Splash
-
+![IMG_0088](https://user-images.githubusercontent.com/95051166/218296356-e71ad177-c14f-4cd3-9cc1-16dfd47ad16b.jpg)
 ### Sign In
-
-### Channel page
+![IMG_0086](https://user-images.githubusercontent.com/95051166/218296450-30fba13e-21f6-417f-a54d-f575ab6195f3.jpg)
+### Sign Up
+![IMG_0087](https://user-images.githubusercontent.com/95051166/218296394-e7839fe4-00bf-470f-b6a7-22f4165c3bdc.jpg)
+### Channel Page
 ![IMG_0075](https://user-images.githubusercontent.com/95051166/218295685-2e8b47e0-34b5-4578-b811-636315b10197.jpg)
 ### Direct Message Page
 ![IMG_0080](https://user-images.githubusercontent.com/95051166/218295797-4beda0c7-6a06-4f14-b203-654524e5f4d8.jpg)
 ### Edit Message
-
+![IMG_0084](https://user-images.githubusercontent.com/95051166/218296458-fa8aa328-8ad1-4997-b9a9-7cb7e77a80bd.jpg)
+### Delete Message
+![IMG_0085](https://user-images.githubusercontent.com/95051166/218296431-9112251c-abd3-4024-86de-ef38e8ab354b.jpg)
 ### New Channel
-
+![IMG_0081](https://user-images.githubusercontent.com/95051166/218296487-cb05d9d2-8b75-4b4b-aa03-711bbfc60f2b.jpg)
+### Edit Channel
+![IMG_0082](https://user-images.githubusercontent.com/95051166/218296524-9f47e8a4-24f9-44e2-b78b-db72e2e65e94.jpg)
+### Delete Channel
+![IMG_0083](https://user-images.githubusercontent.com/95051166/218296468-36ccbd3d-c6fd-4031-ad08-f903689e0480.jpg)
 ### Profile
 ![IMG_0077](https://user-images.githubusercontent.com/95051166/218295754-f98a6ea5-a05a-4deb-ba20-e16786dfa153.jpg)
 ### Users
 ![IMG_0079](https://user-images.githubusercontent.com/95051166/218295719-fe5c6598-f5d3-49d5-b14b-ea4fedd9181f.jpg)
 ### Search
 ![IMG_0078](https://user-images.githubusercontent.com/95051166/218295763-2da32374-b48d-4204-a46d-4048405e7f11.jpg)
+
 
 
 
