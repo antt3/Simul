@@ -155,23 +155,23 @@ each of the following variables:
 
 ## Wireframe guides
 ### Splash
-![IMG_4042](https://user-images.githubusercontent.com/95051166/184661498-f96fedd0-5bd8-465a-8cf6-1be70f9ea7a2.jpg)
+
 ### Sign In
-![IMG_4043](https://user-images.githubusercontent.com/95051166/184661499-0e75e9c7-eccd-4389-8ab4-206d2257f655.jpg)
+
 ### Channel page
-![IMG_4044](https://user-images.githubusercontent.com/95051166/184661502-38d31ff7-7af7-4d98-819b-3dab81312f6b.jpg)
+![IMG_0075](https://user-images.githubusercontent.com/95051166/218295685-2e8b47e0-34b5-4578-b811-636315b10197.jpg)
+### Direct Message Page
+![IMG_0080](https://user-images.githubusercontent.com/95051166/218295797-4beda0c7-6a06-4f14-b203-654524e5f4d8.jpg)
 ### Edit Message
-![IMG_4048](https://user-images.githubusercontent.com/95051166/184661508-48479759-5cc5-4af8-834d-a882a83f4255.jpg)
+
 ### New Channel
-![IMG_4045](https://user-images.githubusercontent.com/95051166/184661493-abc0e943-ae8f-472d-aa67-2aed291287d7.jpg)
+
 ### Profile
-![IMG_4046](https://user-images.githubusercontent.com/95051166/184661504-4c286b92-0912-4abb-ab2e-eb7b451e6107.jpg)
+![IMG_0077](https://user-images.githubusercontent.com/95051166/218295754-f98a6ea5-a05a-4deb-ba20-e16786dfa153.jpg)
 ### Users
-![IMG_4047](https://user-images.githubusercontent.com/95051166/184661506-d21159a3-e339-4687-9209-6761ef45b771.jpg)
-
-
-
-
+![IMG_0079](https://user-images.githubusercontent.com/95051166/218295719-fe5c6598-f5d3-49d5-b14b-ea4fedd9181f.jpg)
+### Search
+![IMG_0078](https://user-images.githubusercontent.com/95051166/218295763-2da32374-b48d-4204-a46d-4048405e7f11.jpg)
 
 
 
