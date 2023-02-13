@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory, Link } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { io } from 'socket.io-client';
 
 import CreateChannelModal from './Modals/CreateChannelModal';
