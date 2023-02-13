@@ -231,7 +231,7 @@ input {
 
 
 .other_submit {
-    background-color: #007a5a;
+    background-color: #672868;
     margin-top: 2vh;
     margin-left: 10px;
     text-decoration: none;
@@ -249,7 +249,7 @@ input {
 
 
 .other_submit:hover {
-    background-color: #0b946f;
+    border: 1px solid white
 }
 
 
