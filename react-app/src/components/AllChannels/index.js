@@ -86,8 +86,8 @@ const AllChannels = () => {
     return (
         <div className='sidebar sidebar_main_div'>
             <div className='nav_dev_links'>
-                <img src='/github-transparent.png' alt='Github'></img>
-                <img src='/linkedin-transparent.png' alt='LinkedIn'></img>
+                <img className='dev_link_gh' src='/github-transparent.png' alt='Github'></img>
+                <img className='dev_link_li' src='/linkedin-transparent.png' alt='LinkedIn'></img>
             </div>
             <div className='top_channels'>
                 <p className='tc_title tc_title_c'>Channels</p>

@@ -15,6 +15,29 @@
 }
 
 
+.dev_link_gh,
+.dev_link_li {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-right: 5px;
+    outline: 2px solid rgb(25, 23, 29);;
+    outline-offset: -1px;
+}
+
+.dev_link_gh:hover {
+    background-color: rgb(243,247,250);
+    cursor: pointer;
+}
+
+
+.dev_link_li:hover {
+    background-color: rgb(17,100,163);
+    cursor: pointer;
+}
+
+
 .nav_dev_links > a {
     text-decoration: none;
     font-size: 18px;
@@ -30,7 +53,7 @@
 
 
 .top_channels {
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: -15px;
 }
 
