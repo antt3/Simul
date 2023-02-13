@@ -103,7 +103,7 @@ const DirectMessages = () => {
     if (!currentUser) return <Redirect to="/splash" />;
 
 
-    return ((currentUser && allMessages && ref) ? (
+    return ((currentUser && allMessages && ref && ref[0]) ? (
         <div className='content'>
                 <div className='dm_pic_name'>
                     <img
