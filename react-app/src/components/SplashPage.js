@@ -9,10 +9,12 @@ const SplashPage = () => {
     const currentUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
+    // Demo Login Handler
     const handleDemo = () => {
 		return dispatch(sessionActions.demoLogin());
     };
 
+    // Redirect If Signed in
     if (currentUser) {
         return <Redirect to='/' />;
     }
@@ -24,8 +26,8 @@ const SplashPage = () => {
                 <p style={{color: "black"}} id='logo_p'>simul</p>
             </div>
             <div className='devlinks_div'>
-                <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
-                <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
+                <a href="https://github.com/antt3" target="_blank" rel='noreferrer'><img className='dev_link_gh' src='/github-transparent.png' alt='Github'></img></a>
+                <a href="https://www.linkedin.com/in/anthony-t3" target="_blank" rel='noreferrer'><img className='dev_link_li' src='/linkedin-transparent.png' alt='LinkedIn'></img></a>
             </div>
             <h1 style={{color: "black"}}>Welcome to Simul</h1>
             <h3 style={{color: "black"}}>Simul is a Slack clone featuring Channels, Channel Messages with Live Chat, and User Profiles.</h3>
