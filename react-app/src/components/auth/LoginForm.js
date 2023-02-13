@@ -14,20 +14,24 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // Validate Email With Regex
   const validateEmail = (email) => {
     let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
 
+  // Handle Splash Page Click
   const onClick = (e) => {
     e.stopPropagation();
     history.push("/splash")
   };
 
+  // Demo Login Handler
   const handleDemo = () => {
 		return dispatch(sessionActions.demoLogin());
 	};
 
+  // Login Validators
   useEffect(() => {
     const errors = [];
     if (!email) errors.push('An email is required.');
@@ -39,6 +43,7 @@ const LoginForm = () => {
     setErrors(errors);
   }, [email, password]);
 
+  // Handle Login
   const onLogin = async (e) => {
     e.preventDefault();
     setFirstSubmit(true);
@@ -60,6 +65,7 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  // Redirect If Signed In
   if (currentUser) {
     return <Redirect to='/' />;
   }
@@ -71,8 +77,8 @@ const LoginForm = () => {
         <p className='website_s' onClick={e => onClick(e)} style={{color: "black"}} id='logo_p'>simul</p>
       </div>
       <div className='devlinks_div'>
-        <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
-        <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
+        <a href="https://github.com/antt3" target="_blank" rel='noreferrer'><img className='dev_link_gh' src='/github-transparent.png' alt='Github'></img></a>
+        <a href="https://www.linkedin.com/in/anthony-t3" target="_blank" rel='noreferrer'><img className='dev_link_li' src='/linkedin-transparent.png' alt='LinkedIn'></img></a>
       </div>
       <p style={{color: "black"}} className='form_action'>Sign in to Simul</p>
       <form className='form' onSubmit={onLogin}>

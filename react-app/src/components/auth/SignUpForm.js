@@ -22,6 +22,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // Validate Email With Regex
   const validateEmail = (email) => {
     let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -32,10 +33,12 @@ const SignUpForm = () => {
   //   return re.test(url);
   // }
 
+  // Demo Login Handler
   const handleDemo = () => {
 		return dispatch(sessionActions.demoLogin());
 	}
 
+  // Sign Up Validators
   useEffect(() => {
     const errors = [];
     if (!email) errors.push('An email is required.');
@@ -54,12 +57,14 @@ const SignUpForm = () => {
     setErrors(errors);
   }, [email, fullName, password, repeatPassword, nickname, bio, isJPG, jpg]);
 
+  // Handle Image Upload
   const handleUpload = e => {
     e.preventDefault();
     setIsJPG(true);
     hiddenFileInput.current.click();
   };
 
+  // Handle Sign Up
   const onSignUp = async (e) => {
     e.preventDefault();
     setFirstSubmit(true);
@@ -95,6 +100,7 @@ const SignUpForm = () => {
     }
   };
 
+  // Demo Login Handler
   const onClick = (e) => {
     e.stopPropagation();
     history.push("/splash")
@@ -124,6 +130,7 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  // Redirect If Signed In
   if (currentUser) {
     return <Redirect to='/' />;
   }
@@ -135,8 +142,8 @@ const SignUpForm = () => {
         <p className='website_s' onClick={e => onClick(e)} style={{color: "black"}} id='logo_p'>simul</p>
       </div>
       <div className='devlinks_div'>
-        <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
-        <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
+        <a href="https://github.com/antt3" target="_blank" rel='noreferrer'><img className='dev_link_gh' src='/github-transparent.png' alt='Github'></img></a>
+        <a href="https://www.linkedin.com/in/anthony-t3" target="_blank" rel='noreferrer'><img className='dev_link_li' src='/linkedin-transparent.png' alt='LinkedIn'></img></a>
       </div>
       <p style={{color: "black"}} className='form_action'>Sign up for Simul</p>
       <form className='form' onSubmit={onSignUp}>

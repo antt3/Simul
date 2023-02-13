@@ -80,6 +80,7 @@ const AllChannels = () => {
         })
     }, [dispatch, currentUser])
 
+    // Redirect If No User Is Signed In
     if (!currentUser) return <Redirect to="/splash" />;
 
 
