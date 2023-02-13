@@ -32,16 +32,19 @@ const AllChannels = () => {
     // console.log('----------Channels: ', channels, '-------');
     // console.log('----------channelsArr: ', channelsArr, '-------');
 
+    // Select Channel
     const onClick = (e, channel) => {
         e.stopPropagation();
         history.push(`/channels/${channel.id}`)
     };
 
+    // Select DM
     const onClick2 = (e, user) => {
         e.stopPropagation();
         history.push(`/direct-messages/${user.id}`)
     };
 
+    // Gets Channel & DM Names
     useEffect(() => {
         (async() => {
           await dispatch(channelsReducer.thunkGetChannels());
@@ -50,6 +53,7 @@ const AllChannels = () => {
     }, [dispatch]);
     
 
+    // Socket.io useEffect
     useEffect(() => {
         
         // open socket connection
@@ -82,8 +86,8 @@ const AllChannels = () => {
     return (
         <div className='sidebar sidebar_main_div'>
             <div className='nav_dev_links'>
-                <a href='https://github.com/antt3' target="_blank" rel='noreferrer'>Github</a>
-                <a href='https://www.linkedin.com/in/anthony-t3/' target="_blank" rel='noreferrer'>LinkedIn</a>
+                <img src='/github-transparent.png' alt='Github'></img>
+                <img src='/linkedin-transparent.png' alt='LinkedIn'></img>
             </div>
             <div className='top_channels'>
                 <p className='tc_title tc_title_c'>Channels</p>
