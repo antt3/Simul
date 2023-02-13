@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, Link } from 'react-router-dom';
 import { io } from 'socket.io-client';
 
 import CreateChannelModal from './Modals/CreateChannelModal';
@@ -86,8 +86,8 @@ const AllChannels = () => {
     return (
         <div className='sidebar sidebar_main_div'>
             <div className='nav_dev_links'>
-                <img className='dev_link_gh' src='/github-transparent.png' alt='Github'></img>
-                <img className='dev_link_li' src='/linkedin-transparent.png' alt='LinkedIn'></img>
+                <a href="https://github.com/antt3" target="_blank" rel='noreferrer'><img className='dev_link_gh' src='/github-transparent.png' alt='Github'></img></a>
+                <a href="https://www.linkedin.com/in/anthony-t3" target="_blank" rel='noreferrer'><img className='dev_link_li' src='/linkedin-transparent.png' alt='LinkedIn'></img></a>
             </div>
             <div className='top_channels'>
                 <p className='tc_title tc_title_c'>Channels</p>
