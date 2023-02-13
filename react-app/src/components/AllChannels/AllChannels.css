@@ -38,20 +38,6 @@
 }
 
 
-.nav_dev_links > a {
-    text-decoration: none;
-    font-size: 18px;
-    margin-right: 10px;
-    margin-left: 10px;
-    color: rgb(243,247,250);
-}
-
-
-.nav_dev_links > a:hover {
-    color: white;
-}
-
-
 .top_channels {
     margin-top: 20px;
     margin-bottom: -15px;
