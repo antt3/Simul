@@ -8,7 +8,11 @@
 
 [User Stories](https://github.com/antt3/Simul/wiki/User-Stories)
 
+[Screenshots](https://github.com/antt3/Simul/wiki/ScreenShots)
+
 [Wireframes](https://github.com/antt3/Simul/wiki/Wireframes)
+
+
 
 ## Live site hosted by Heroku
 
@@ -151,42 +155,3 @@ each of the following variables:
 | `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
 | `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
-
-
-## Wireframe guides
-### Splash
-![IMG_4042](https://user-images.githubusercontent.com/95051166/184661498-f96fedd0-5bd8-465a-8cf6-1be70f9ea7a2.jpg)
-### Sign In
-![IMG_4043](https://user-images.githubusercontent.com/95051166/184661499-0e75e9c7-eccd-4389-8ab4-206d2257f655.jpg)
-### Channel page
-![IMG_4044](https://user-images.githubusercontent.com/95051166/184661502-38d31ff7-7af7-4d98-819b-3dab81312f6b.jpg)
-### Edit Message
-![IMG_4048](https://user-images.githubusercontent.com/95051166/184661508-48479759-5cc5-4af8-834d-a882a83f4255.jpg)
-### New Channel
-![IMG_4045](https://user-images.githubusercontent.com/95051166/184661493-abc0e943-ae8f-472d-aa67-2aed291287d7.jpg)
-### Profile
-![IMG_4046](https://user-images.githubusercontent.com/95051166/184661504-4c286b92-0912-4abb-ab2e-eb7b451e6107.jpg)
-### Users
-![IMG_4047](https://user-images.githubusercontent.com/95051166/184661506-d21159a3-e339-4687-9209-6761ef45b771.jpg)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
