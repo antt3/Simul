@@ -1,6 +1,6 @@
 nav {
     z-index: 1;
-    background-color: rgb(25, 23, 29);
+    background-color: rgb(18,16,22);
     border-bottom: 1px solid rgb(53,55,59);
 }
 
@@ -110,7 +110,7 @@ nav {
 
 
 .profile_menu {
-    background-color: rgb(55, 55, 55);
+    background-color: rgb(25, 23, 29);
     width: 330px;
     border: 1px solid grey;
     border-radius: 10px;
@@ -135,7 +135,7 @@ nav {
 
 
 .menu_item:hover {
-    background-color:steelblue;
+    background-color:rgb(17,100,163);
     cursor: pointer;
 }
 
