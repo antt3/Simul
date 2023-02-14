@@ -1,28 +1,54 @@
 import React from 'react';
 import { useSelector } from "react-redux";
-import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
+import defaultProfileImage from '../default_profile_image.jpg';
+
 import './Profiles.css';
+import './Search/Search.css';
 
 function UsersList() {
-  const users = useSelector((state) => state.users);
+  const history = useHistory();
+  const usersObj = useSelector((state) => state.users);
+  const users = Object.values(usersObj);
 
-  const userComponents = Object.values(users).map((user) => {
-    return (
-      <li key={user.id}>
-        <NavLink
-          className="NavLink"
-          to={`/users/${user.id}`}>
-            {`${user.nickname ? user.nickname : user.full_name}`}
-        </NavLink>
-      </li>
-    );
-  });
+  // Handles Username Click
+  const onClickUser = (e, user) => {
+    e.stopPropagation();
+    history.push(`/users/${user.id}`);
+};
+
+console.log("------------------Users: ", users, "--------------------");
 
   return (
-    <div className='content'>
-      <h1>Users: </h1>
-      <ul className='users_ul'>{userComponents}</ul>
-    </div>
+    <>
+      {users.length > 0 ? (
+        <div className='users_div'>
+          <h1>Users: </h1>
+          <div className="users_divs">
+            {users.map((user, ind) => (
+              <div className='dm_pic_name' key={ind}>
+                <img
+                  className='dm_menu_img dm_chat_img'
+                  onClick={(e) => onClickUser(e, user)}
+                  src={user.profile_pic ? user.profile_pic : defaultProfileImage}
+                  alt='navbar profile'
+                />
+                <div className='dm_chat_tm'>
+                  <div
+                    onClick={(e, user) => onClickUser(e, user)}
+                    className='dm_user_name'>
+                      {user.nickname ? user.full_name : user.nickname}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+    </>
   );
 }
 
