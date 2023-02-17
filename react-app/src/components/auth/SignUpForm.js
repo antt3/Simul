@@ -48,7 +48,8 @@ const SignUpForm = () => {
     if (fullName.length > 100) errors.push('Your name must be under 100 characters.');
     if (nickname.length > 40) errors.push('Your nickname must be under 40 characters.');
     if (!isJPG && jpg) errors.push('Your profile photo must be a jpg.');
-    if (bio.length > 255) errors.push('Bio must be under 255 characters.')
+    if (!jpg) errors.push('Your profile photo is required.');
+    if (bio.length > 255) errors.push('Bio must be under 255 characters.');
     if (password.length < 7) errors.push('Password must be more than 6 characters.');
     if (password.length > 50) errors.push('Password must be under 50 characters.');
     if (!repeatPassword) errors.push('Please repeat the password.');
