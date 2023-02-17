@@ -231,25 +231,24 @@ input {
 
 
 .other_submit {
-    background-color: #007a5a;
+    background-color: #4a154b;
     margin-top: 2vh;
     margin-left: 10px;
     text-decoration: none;
     font-weight: bold;
     color: white;
     font-size: 23px;
-    border: none;
+    border: 1px solid rgb(25, 23, 29);
     cursor: pointer;
     border-radius: 5px;
     transition: all .06s ease-in;
     height: 50px;
     width: 130px;
-    transition: 0.3s ease;
 }
 
 
 .other_submit:hover {
-    background-color: #0b946f;
+    border: 1px solid white;
 }
 
 
