@@ -18,7 +18,7 @@ function UsersList() {
     history.push(`/users/${user.id}`);
 };
 
-console.log("------------------Users: ", users, "--------------------");
+// console.log("------------------Users: ", users, "--------------------");
 
   return (
     <>

@@ -31,6 +31,7 @@ const ChannelChat = () => {
     const [content, setContent] = useState("");
     const { setCurrentChannel } = useChannel();
 
+    // Set Current Channel Context
     useEffect(()=> {
         setCurrentChannel([ "C", +channelId ]);
     }, [setCurrentChannel, channelId])
@@ -39,15 +40,18 @@ const ChannelChat = () => {
     // console.log('---------------CHANNEL:', channelId, '-------------------');
     // console.log('--------messages: ', messages, '------------')
 
+    // Edit Timestamp
     const createdAt = (timestamp) => {
         return timestamp.split('.')[0];
     }
 
+    // Handles Username Click
     const onClick = (e, id) => {
         e.preventDefault();
         history.push(`/users/${id}`);
     };
 
+    // Websocket.io UseEffect
     useEffect(() => {
         
         // open socket connection
@@ -77,6 +81,7 @@ const ChannelChat = () => {
         })
     }, [dispatch, channelId, currentUser])
 
+    // Get Channel Messages Dispatch
     useEffect(() => {
         (async() => {
             await dispatch(channelMessagesReducer.thunkGetMessages(channelId));
@@ -86,6 +91,7 @@ const ChannelChat = () => {
         })()
     }, [dispatch, channelId, content, currentUser]);
 
+    // Handle Message Submit
     const sendChat = async(e) => {
         e.preventDefault();
 
@@ -97,6 +103,7 @@ const ChannelChat = () => {
         };
     };
 
+    // Redirect if not signed-in
     if (!currentUser) return <Redirect to="/splash" />;
 
     return ((currentUser && channel) ? (
