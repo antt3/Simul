@@ -38,7 +38,7 @@ function UsersList() {
                   <div
                     onClick={(e, user) => onClickUser(e, user)}
                     className='dm_user_name'>
-                      {user.nickname ? user.nickname : user.nickname}
+                      {user.nickname ? user.nickname : user.full_name}
                   </div>
                 </div>
               </div>
