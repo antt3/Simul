@@ -7,6 +7,7 @@ function User() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
 
+  // Get profile information
   useEffect(() => {
     if (!userId) {
       return;
@@ -18,6 +19,7 @@ function User() {
     })();
   }, [userId]);
 
+  // If there is no user load nothing
   if (!user) {
     return null;
   }
