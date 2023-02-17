@@ -8,7 +8,7 @@
 
 .chat_modal_button {
     background-color: rgb(26,29,33);
-    font-size: 16px;
+    font-size: 15px;
     border: none;
     padding: 3px;
     border-radius: 5px;
@@ -23,11 +23,6 @@
     cursor: pointer;
     color: rgb(220, 220, 220);
     transition: all .1s ease-in;
-}
-
-
-.chat_modal_button:active {
-    color: rgb(5, 5, 5);
 }
 
 
@@ -77,7 +72,7 @@
 
 .message_edited {
     color: rgb(209,210,176);
-    font-size: 16px;
+    font-size: 15px;
 }
 
 
