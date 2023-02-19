@@ -14,6 +14,11 @@
 }
 
 
-.search_dm:hover {
+.search_ch {
+    margin-bottom: 10px;
+}
+
+.search_dm:hover,
+.search_ch:hover {
     cursor: pointer;
 }
