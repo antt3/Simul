@@ -24,7 +24,8 @@
 .profile_div > p {
     margin-top: 20px;
     margin-bottom: 20px;
-    
+    font-weight: 400px;
+    font-size: 15px;
 }
 
 
@@ -40,4 +41,18 @@
 
 .content > h1 {
     margin-left: 20px;
+}
+
+#prof_title {
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+#prof_email {
+    font-size: 14px;
+}
+
+#prof_name {
+    font-size: 25px;
+    font-weight: 550;
 }

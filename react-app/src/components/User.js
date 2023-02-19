@@ -32,15 +32,15 @@ function User() {
         alt='Profile'
       />
       <div>
-        <p>{user.nickname ? user.nickname : user.full_name}</p>
+        <p id='prof_name'>{user.nickname ? user.nickname : user.full_name}</p>
       </div>
       <div>
-        <p>Contact Information</p>
-        <p>Email</p>
+        <p id='prof_title'>Contact Information</p>
+        <p className='prof_email'>Email</p>
         <p>{user.email}</p>
       </div>
       <div>
-        <p>About me</p>
+        <p id='prof_title'>About me</p>
         <p>{user.bio}</p>
       </div>
     </div>
