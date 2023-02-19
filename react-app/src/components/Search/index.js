@@ -100,7 +100,7 @@ const Search = () => {
 					<h1>Channels: </h1>
 					<div className="users_divs">
                         {searchedChannels.map((channel, ind) => (
-                            <div className='user_div' onClick={(e, channel) => onClickChannel(e, channel)} key={ind}>
+                            <div className='user_div search_ch' onClick={(e) => onClickChannel(e, channel)} key={ind}>
                                 {channel.title}
                             </div>
                         ))}
@@ -131,7 +131,7 @@ const Search = () => {
                                 />
                                 <div className='dm_chat_tm'>
                                     <div
-                                        onClick={(e, user) => onClickUser(e, user)}
+                                        onClick={(e) => onClickUser(e, user)}
                                         className='dm_user_name'>
                                             {user.full_name.toLowerCase().includes(searchedTerm.toLowerCase()) ? user.full_name : user.nickname}
                                     </div>
