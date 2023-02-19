@@ -15,18 +15,17 @@
     word-break: break-all;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding-right: 20px;
     padding-left: 20px;
 }
 
 
-.profile_div > div {
+.profile_div > p {
     margin-top: 20px;
     margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-weight: 400px;
+    font-size: 15px;
 }
 
 
@@ -36,9 +35,24 @@
     margin-top: 40px;
     margin-bottom: 20px;
     border-radius: 10%;
+    align-self: center;
 }
 
 
 .content > h1 {
     margin-left: 20px;
+}
+
+#prof_title {
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+#prof_email {
+    font-size: 14px;
+}
+
+#prof_name {
+    font-size: 25px;
+    font-weight: 550;
 }

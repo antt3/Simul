@@ -18,8 +18,6 @@ function UsersList() {
     history.push(`/users/${user.id}`);
 };
 
-// console.log("------------------Users: ", users, "--------------------");
-
   return (
     <>
       {users.length > 0 ? (
@@ -36,7 +34,7 @@ function UsersList() {
                 />
                 <div className='dm_chat_tm'>
                   <div
-                    onClick={(e, user) => onClickUser(e, user)}
+                    onClick={(e) => onClickUser(e, user)}
                     className='dm_user_name'>
                       {user.nickname ? user.nickname : user.full_name}
                   </div>
