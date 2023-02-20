@@ -132,7 +132,8 @@ const Search = () => {
                                 <div className='dm_chat_tm'>
                                     <div
                                         onClick={(e) => onClickUser(e, user)}
-                                        className='dm_user_name'>
+                                        className='dm_user_name'
+                                        id='search_name'>
                                             {user.full_name.toLowerCase().includes(searchedTerm.toLowerCase()) ? user.full_name : user.nickname}
                                     </div>
                                 </div>

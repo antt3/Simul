@@ -35,7 +35,7 @@ function UsersList() {
                 <div className='dm_chat_tm'>
                   <div
                     onClick={(e) => onClickUser(e, user)}
-                    className='dm_user_name'>
+                    className='dm_user_name' id='search_name'>
                       {user.nickname ? user.nickname : user.full_name}
                   </div>
                 </div>

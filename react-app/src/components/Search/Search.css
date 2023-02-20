@@ -22,3 +22,7 @@
 .search_ch:hover {
     cursor: pointer;
 }
+
+#search_name:hover {
+    text-decoration: none;
+}

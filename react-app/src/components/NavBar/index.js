@@ -6,6 +6,7 @@ import { useSelector, useDispatch} from 'react-redux';
 import { logout } from '../../store/session';
 
 import './NavBar.css';
+import '../../responsive.css';
 import defaultProfileImage from '../../default_profile_image.jpg';
 
 const NavBar = () => {
