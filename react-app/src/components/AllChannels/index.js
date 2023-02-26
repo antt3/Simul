@@ -13,6 +13,7 @@ import * as usersReducer from '../../store/users';
 import { useChannel } from '../../context/channelContext';
 
 import './AllChannels.css';
+import '../../responsive.css';
 
 let socket;
 
