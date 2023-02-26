@@ -12,6 +12,7 @@ import defaultProfileImage from '../../default_profile_image.jpg';
 
 import './DirectMessages.css';
 import '../ChannelChat/ChannelChat.css';
+import '../../responsive.css';
 
 let socket;
 

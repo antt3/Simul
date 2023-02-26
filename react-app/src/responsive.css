@@ -1,19 +1,17 @@
-@media (max-width: 1400px) {
-
-
-    .nav_divs_1 {
-        grid-column: 1 / 2;
+@media (max-width: 1800px) {
+    .nav_div {
+        grid-template-columns: auto auto 200px 350px;
     }
-
 
     .nav_divs_3 {
-        grid-column: 2;
+        justify-content: center;
     }
 
+}
 
-    .nav_divs_4 {
-        grid-column: 3;
+@media (max-width: 650px) {
+    #nav_p {
+        margin-left: 25px;
+        margin-right: 25px;
     }
-
-
 }
