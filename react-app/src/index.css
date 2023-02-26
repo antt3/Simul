@@ -31,7 +31,7 @@ input {
     min-width: 98vw;
     display: grid;
     grid-template-columns: 150px 1fr;
-    grid-template-rows: 40px 1fr;
+    grid-template-rows: 50px 1fr;
     grid-template-areas:
     'sidebar navbar'
     'sidebar content';
