@@ -332,6 +332,13 @@ input {
     align-items: center;
 }
 
+.splash_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 
 #splash_links {
     display: flex;
