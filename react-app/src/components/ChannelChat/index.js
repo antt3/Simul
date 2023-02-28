@@ -146,7 +146,7 @@ const ChannelChat = () => {
                     placeholder={`Message #${channel.title}`}
                     onChange={(e) => setContent(e.target.value)}
                 />
-                { 254 < content.length && <div className='form_label message_length' style={{color: "red"}}>
+                { 254 < content.length && <div className='message_length' style={{color: "red"}}>
                     {254 - content.length}
                 </div> }
                 {(255 > content.length && content.length > 0) && <button className='form_divs chat_submit' type="submit">Send</button>}
