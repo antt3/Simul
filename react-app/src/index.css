@@ -27,7 +27,7 @@ input {
 
 #root {
     margin: 0px;
-    min-height: 98vh;
+    min-height: 100vh;
     min-width: 98vw;
     display: grid;
     grid-template-columns: 150px 1fr;

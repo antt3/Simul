@@ -112,7 +112,7 @@ const ChannelChat = () => {
             {channel.description ?
                 <div className='description_div'>{channel.description}</div>
             : <></>}
-            { channelMessages && <div>
+            { channelMessages && <div className='all_messages'>
                 {channelMessages.map((message, ind) => (
                     <div className='message_div' key={ind}>
                         <div className='pic_name'>
