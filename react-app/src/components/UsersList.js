@@ -19,7 +19,7 @@ function UsersList() {
 };
 
   return (
-    <>
+    <div className='users_list_div'>
       {users.length > 0 ? (
         <div className='users_div'>
           <h1>Users: </h1>
@@ -46,7 +46,7 @@ function UsersList() {
       ) : (
         <></>
       )}
-    </>
+    </div>
   );
 }
 
